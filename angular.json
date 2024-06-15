@@ -32,7 +32,7 @@
                 "input": "projects/ariyadey-main/public"
               }
             ],
-            "styles": ["projects/ariyadey-main/src/styles.css"],
+            "styles": ["projects/ariyadey-main/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -85,7 +85,7 @@
                 "input": "projects/ariyadey-main/public"
               }
             ],
-            "styles": ["projects/ariyadey-main/src/styles.css"],
+            "styles": ["projects/ariyadey-main/src/styles.scss"],
             "scripts": []
           }
         },
