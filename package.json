@@ -7,8 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint",
-    "eslint-prettier-check": "eslint-config-prettier projects/ariyaday-main/src/main.ts"
+    "lint": "ng lint && stylelint **/*.{css,scss}",
+    "eslint-prettier-check": "eslint-config-prettier projects/ariyaday-main/src/main.ts",
+    "stylelint": "stylelint **/*.{css,scss}"
   },
   "private": true,
   "dependencies": {
@@ -39,6 +40,9 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "prettier": "3.3.2",
+    "stylelint": "^16.6.1",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-config-standard-scss": "^13.1.0",
     "typescript": "~5.4.2",
     "typescript-eslint": "8.0.0-alpha.20"
   },
