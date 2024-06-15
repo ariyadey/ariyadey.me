@@ -7,32 +7,32 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "ariyaday-main": {
+    "ariyadey-main": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "inlineStyle": true
         }
       },
-      "root": "projects/ariyaday-main",
-      "sourceRoot": "projects/ariyaday-main/src",
+      "root": "projects/ariyadey-main",
+      "sourceRoot": "projects/ariyadey-main/src",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ariyaday-main",
-            "index": "projects/ariyaday-main/src/index.html",
-            "browser": "projects/ariyaday-main/src/main.ts",
+            "outputPath": "dist/ariyadey-main",
+            "index": "projects/ariyadey-main/src/index.html",
+            "browser": "projects/ariyadey-main/src/main.ts",
             "polyfills": ["zone.js"],
-            "tsConfig": "projects/ariyaday-main/tsconfig.app.json",
+            "tsConfig": "projects/ariyadey-main/tsconfig.app.json",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/ariyaday-main/public"
+                "input": "projects/ariyadey-main/public"
               }
             ],
-            "styles": ["projects/ariyaday-main/src/styles.css"],
+            "styles": ["projects/ariyadey-main/src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ariyaday-main:build:production"
+              "buildTarget": "ariyadey-main:build:production"
             },
             "development": {
-              "buildTarget": "ariyaday-main:build:development"
+              "buildTarget": "ariyadey-main:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,14 +78,14 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "polyfills": ["zone.js", "zone.js/testing"],
-            "tsConfig": "projects/ariyaday-main/tsconfig.spec.json",
+            "tsConfig": "projects/ariyadey-main/tsconfig.spec.json",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/ariyaday-main/public"
+                "input": "projects/ariyadey-main/public"
               }
             ],
-            "styles": ["projects/ariyaday-main/src/styles.css"],
+            "styles": ["projects/ariyadey-main/src/styles.css"],
             "scripts": []
           }
         },
@@ -93,10 +93,10 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "projects/ariyaday-main/**/*.ts",
-              "projects/ariyaday-main/**/*.html"
+              "projects/ariyadey-main/**/*.ts",
+              "projects/ariyadey-main/**/*.html"
             ],
-            "eslintConfig": "projects/ariyaday-main/eslint.config.js"
+            "eslintConfig": "projects/ariyadey-main/eslint.config.js"
           }
         }
       }

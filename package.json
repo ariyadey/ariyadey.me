@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint && stylelint **/*.{css,scss}",
-    "eslint-prettier-check": "eslint-config-prettier projects/ariyaday-main/src/main.ts",
+    "eslint-prettier-check": "eslint-config-prettier projects/ariyadey-main/src/main.ts",
     "stylelint": "stylelint **/*.{css,scss}"
   },
   "private": true,
