@@ -2,7 +2,8 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "yarn"
+    "packageManager": "yarn",
+    "schematicCollections": ["@angular-eslint/schematics"]
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -86,6 +87,16 @@
             ],
             "styles": ["projects/ariyaday-main/src/styles.css"],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/ariyaday-main/**/*.ts",
+              "projects/ariyaday-main/**/*.html"
+            ],
+            "eslintConfig": "projects/ariyaday-main/eslint.config.js"
           }
         }
       }
