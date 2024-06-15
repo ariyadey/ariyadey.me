@@ -23,9 +23,7 @@
             "outputPath": "dist/ariyaday-main",
             "index": "projects/ariyaday-main/src/index.html",
             "browser": "projects/ariyaday-main/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/ariyaday-main/tsconfig.app.json",
             "assets": [
               {
@@ -33,9 +31,7 @@
                 "input": "projects/ariyaday-main/public"
               }
             ],
-            "styles": [
-              "projects/ariyaday-main/src/styles.css"
-            ],
+            "styles": ["projects/ariyaday-main/src/styles.css"],
             "scripts": []
           },
           "configurations": {
@@ -80,10 +76,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/ariyaday-main/tsconfig.spec.json",
             "assets": [
               {
@@ -91,9 +84,7 @@
                 "input": "projects/ariyaday-main/public"
               }
             ],
-            "styles": [
-              "projects/ariyaday-main/src/styles.css"
-            ],
+            "styles": ["projects/ariyaday-main/src/styles.css"],
             "scripts": []
           }
         }
