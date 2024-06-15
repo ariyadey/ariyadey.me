@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "eslint-prettier-check": "eslint-config-prettier projects/ariyaday-main/src/main.ts"
   },
   "private": true,
   "dependencies": {
@@ -30,6 +31,7 @@
     "@types/jasmine": "~5.1.0",
     "angular-eslint": "18.0.1",
     "eslint": "^9.3.0",
+    "eslint-config-prettier": "^9.1.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
