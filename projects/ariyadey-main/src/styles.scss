@@ -4,6 +4,7 @@
 // For more information: https://material.angular.io/guide/theming
 @use "@angular/material" as mat;
 @use "m3-theme" as custom;
+
 // Plus imports for other components in your app.
 
 /* Tailwind CSS */
@@ -16,6 +17,7 @@
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat.core;
+
 // It emits structural indicator styles for all components.
 // It should be included exactly once in an application.
 // https://material.angular.io/guide/theming#customizing-strong-focus-indicators
@@ -47,15 +49,15 @@
     // https://material.angular.io/guide/theming#defining-multiple-themes
 
     &.light-theme {
-      // TODO: 16/06/2024 This adds styles even for unused components
+      // FIXME: 16/06/2024 This adds styles even for unused components
       @include mat.all-component-themes(custom.$light-theme);
       @include mat.strong-focus-indicators-theme(custom.$light-theme);
     }
 
     &.dark-theme {
-      // TODO: 16/06/2024 This adds styles even for unused components
-      @include mat.all-component-themes(custom.$dark-theme);
-      @include mat.strong-focus-indicators-theme(custom.$dark-theme);
+      // FIXME: 16/06/2024 This adds styles even for unused components
+      @include mat.all-component-colors(custom.$dark-theme);
+      @include mat.strong-focus-indicators-color(custom.$dark-theme);
     }
   }
 }
