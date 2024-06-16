@@ -1,6 +1,7 @@
 extends:
   - stylelint-config-standard-scss
   - stylelint-config-recess-order
+defaultSeverity: warning
 rules:
   scss/at-rule-no-unknown:
     - true
