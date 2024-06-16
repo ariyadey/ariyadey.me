@@ -7,48 +7,57 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use "@angular/material" as mat;
-
+@use "m3-theme" as custom;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 @include mat.core;
-
-// Define the theme object.
-$ariyadey-main-theme: mat.define-theme(
-    (
-      color: (
-        theme-type: light,
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
-      ),
-      density: (
-        scale: 0,
-      ),
-    )
-);
+// It emits structural indicator styles for all components.
+// It should be included exactly once in an application.
+// https://material.angular.io/guide/theming#customizing-strong-focus-indicators
+// TODO: 16/06/2024 Tweak the below config
+@include mat.strong-focus-indicators((
+  border-style: dotted,
+  border-width: 4px,
+  border-radius: 2px,
+));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
+// https://material.angular.io/guide/theming#applying-a-theme-to-components
+// https://material.angular.io/guide/theming#theming-dimensions
+// https://material.angular.io/guide/theming#using-component-color-variants
+// https://material.angular.io/guide/theming#theme-your-own-components-using-a-material-3-theme
 :root {
-  @include mat.all-component-themes($ariyadey-main-theme);
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+
+    // https://material.angular.io/guide/theming#defining-multiple-themes
+
+    &.light-theme {
+      // TODO: 16/06/2024 This adds styles even for unused components
+      @include mat.all-component-themes(custom.$light-theme);
+      @include mat.strong-focus-indicators-theme(custom.$light-theme);
+    }
+
+    &.dark-theme {
+      // TODO: 16/06/2024 This adds styles even for unused components
+      @include mat.all-component-themes(custom.$dark-theme);
+      @include mat.strong-focus-indicators-theme(custom.$dark-theme);
+    }
+  }
 }
 
 // Comment out the line below if you want to use the pre-defined typography utility classes.
 // For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
 // @include mat.typography-hierarchy($ariyadey-main-theme);
-
-// Comment out the line below if you want to use the deprecated `color` inputs.
-// @include mat.color-variants-backwards-compatibility($ariyadey-main-theme);
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
