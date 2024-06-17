@@ -16,6 +16,7 @@ module.exports = tseslint.config(
     ],
     processor: angular.processInlineTemplates,
     rules: {
+      "@typescript-eslint/array-type": ["warn", { default: "generic", readonly: "generic" }],
       "@angular-eslint/directive-selector": [
         "error",
         {
