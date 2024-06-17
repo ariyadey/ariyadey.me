@@ -146,9 +146,7 @@ $light-theme: mat.define-theme(
       primary: $_primary,
       tertiary: $_tertiary,
     ),
-    density: (
-      scale: -2,
-    ),
+    density: (),
   )
 );
 
@@ -161,8 +159,6 @@ $dark-theme: mat.define-theme(
       primary: $_primary,
       tertiary: $_tertiary,
     ),
-    density: (
-      scale: -2,
-    ),
+    density: (),
   )
 );
