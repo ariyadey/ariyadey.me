@@ -4038,6 +4038,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/eslint__js@npm:^8.42.3":
+  version: 8.42.3
+  resolution: "@types/eslint__js@npm:8.42.3"
+  dependencies:
+    "@types/eslint": "npm:*"
+  checksum: 10c0/ccc5180b92155929a089ffb03ed62625216dcd5e46dd3197c6f82370ce8b52c7cb9df66c06b0a3017995409e023bc9eafe5a3f009e391960eacefaa1b62d9a56
+  languageName: node
+  linkType: hard
+
 "@types/estree@npm:*, @types/estree@npm:1.0.5, @types/estree@npm:^1.0.5":
   version: 1.0.5
   resolution: "@types/estree@npm:1.0.5"
@@ -4823,10 +4832,11 @@ __metadata:
     "@angular/platform-browser-dynamic": "npm:^18.0.0"
     "@angular/router": "npm:^18.0.0"
     "@eslint/js": "npm:^9.5.0"
+    "@types/eslint__js": "npm:^8.42.3"
     "@types/jasmine": "npm:~5.1.0"
     angular-eslint: "npm:18.0.1"
     autoprefixer: "npm:^10.4.19"
-    eslint: "npm:^9.3.0"
+    eslint: "npm:^9.5.0"
     eslint-config-prettier: "npm:^9.1.0"
     jasmine-core: "npm:~5.1.0"
     karma: "npm:~6.4.0"
@@ -4836,6 +4846,8 @@ __metadata:
     karma-jasmine-html-reporter: "npm:~2.1.0"
     postcss: "npm:^8.4.38"
     prettier: "npm:3.3.2"
+    prettier-plugin-organize-attributes: "npm:^1.0.0"
+    prettier-plugin-organize-imports: "npm:^3.2.4"
     prettier-plugin-tailwindcss: "npm:^0.6.4"
     rxjs: "npm:~7.8.0"
     stylelint: "npm:^16.6.1"
@@ -4843,7 +4855,7 @@ __metadata:
     stylelint-config-standard-scss: "npm:^13.1.0"
     tailwindcss: "npm:^3.4.4"
     tslib: "npm:^2.3.0"
-    typescript: "npm:~5.4.2"
+    typescript: "npm:^5.4.5"
     typescript-eslint: "npm:8.0.0-alpha.20"
     zone.js: "npm:~0.14.3"
   languageName: unknown
@@ -6413,7 +6425,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^9.3.0":
+"eslint@npm:^9.5.0":
   version: 9.5.0
   resolution: "eslint@npm:9.5.0"
   dependencies:
@@ -9870,6 +9882,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prettier-plugin-organize-attributes@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "prettier-plugin-organize-attributes@npm:1.0.0"
+  peerDependencies:
+    prettier: ^3.0.0
+  checksum: 10c0/eb84691390eadd256ec8ec34ad6946f7ebdbbe7ff0ec26ca569cb9e74f94677c9b4cfe1b34df06d3a01a68700bdab87c9a6d1e8c62dafc8ae53c73fd3d255b60
+  languageName: node
+  linkType: hard
+
+"prettier-plugin-organize-imports@npm:^3.2.4":
+  version: 3.2.4
+  resolution: "prettier-plugin-organize-imports@npm:3.2.4"
+  peerDependencies:
+    "@volar/vue-language-plugin-pug": ^1.0.4
+    "@volar/vue-typescript": ^1.0.4
+    prettier: ">=2.0"
+    typescript: ">=2.9"
+  peerDependenciesMeta:
+    "@volar/vue-language-plugin-pug":
+      optional: true
+    "@volar/vue-typescript":
+      optional: true
+  checksum: 10c0/c20afa9b379106839a273d53c83fef70920e8ae86939d4890a06c63da19440de411568793e716bafcdd96e5ba8e34233f2944ea53ecd6ac18ba1ec0fa05bb58b
+  languageName: node
+  linkType: hard
+
 "prettier-plugin-tailwindcss@npm:^0.6.4":
   version: 0.6.4
   resolution: "prettier-plugin-tailwindcss@npm:0.6.4"
@@ -11618,7 +11656,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:~5.4.2":
+"typescript@npm:^5.4.5":
   version: 5.4.5
   resolution: "typescript@npm:5.4.5"
   bin:
@@ -11628,7 +11666,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A~5.4.2#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A^5.4.5#optional!builtin<compat/typescript>":
   version: 5.4.5
   resolution: "typescript@patch:typescript@npm%3A5.4.5#optional!builtin<compat/typescript>::version=5.4.5&hash=5adc0c"
   bin:
