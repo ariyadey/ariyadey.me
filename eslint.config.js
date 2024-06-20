@@ -17,6 +17,7 @@ module.exports = tseslint.config(
     processor: angular.processInlineTemplates,
     rules: {
       "@typescript-eslint/array-type": ["warn", { default: "generic", readonly: "generic" }],
+      "@typescript-eslint/no-unused-expressions": ["warn", { allowTernary: true }],
       "@angular-eslint/directive-selector": [
         "error",
         {
