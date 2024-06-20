@@ -47,7 +47,7 @@
     @include mat.all-component-themes(custom.$light-theme);
     //@include mat.strong-focus-indicators-theme(custom.$light-theme);
 
-    &.dark-theme {
+    &.DEFAULT-DARK-theme {
       // FIXME: 16/06/2024 This adds styles even for unused components
       @include mat.all-component-colors(custom.$dark-theme);
       //@include mat.strong-focus-indicators-color(custom.$dark-theme);
