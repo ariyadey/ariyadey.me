@@ -3,7 +3,7 @@ import {
   APP_INITIALIZER,
   ApplicationConfig,
   isDevMode,
-  provideExperimentalZonelessChangeDetection, provideZoneChangeDetection
+  provideExperimentalZonelessChangeDetection,
 } from "@angular/core";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
 import { provideRouter } from "@angular/router";
@@ -25,7 +25,8 @@ export const appConfig: ApplicationConfig = {
       deps: [TranslocoService],
       multi: true,
     },
-    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideExperimentalZonelessChangeDetection(),
+    // provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideAnimationsAsync(),
     provideHttpClient(),

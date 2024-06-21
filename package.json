@@ -26,8 +26,7 @@
     "@jsverse/transloco": "7.4.2",
     "@jsverse/transloco-locale": "^7.0.1",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.14.3"
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.0.4",
