@@ -1,51 +1,44 @@
 <mat-sidenav-container class="h-full">
-  <mat-sidenav #drawer fixedInViewport>
-    <mat-toolbar>
+  <mat-sidenav #drawer>
+    <mat-toolbar class="justify-between">
       <button (click)="drawer.close()" mat-icon-button>
-        <mat-icon fontIcon="menu_open" />
+        <mat-icon class="mat-icon-rtl-mirror" fontIcon="menu_open" />
       </button>
+      <mat-button-toggle-group
+        (valueChange)="switchThemeVariant($event)"
+        [value]="currentThemeVariant()"
+        hideSingleSelectionIndicator
+      >
+        <mat-button-toggle value="AUTO">
+          <mat-icon fontIcon="motion_photos_auto" />
+        </mat-button-toggle>
+        <mat-button-toggle value="LIGHT">
+          <mat-icon fontIcon="light_mode" />
+        </mat-button-toggle>
+        <mat-button-toggle value="DARK">
+          <mat-icon fontIcon="dark_mode" />
+        </mat-button-toggle>
+      </mat-button-toggle-group>
     </mat-toolbar>
+
     <mat-nav-list>
       @for (menuItem of menu(); track $index) {
-        <a
-          (focus)="setFocusedIndex($index)"
-          (mouseover)="setFocusedIndex($index)"
-          (mouseleave)="clearFocusedIndex()"
-          class="flex align-middle"
-          [routerLink]="menuItem.link"
-          mat-list-item
-        >
-          <mat-icon
-            [fontSet]="focusedMenuItemIndex() === $index ? 'alternative-fs' : 'default-fs'"
-            matListItemIcon
-          >{{ menuItem.iconName }}
-          </mat-icon>
-          <span matListItemTitle>{{ menuItem.title }}</span>
+        <a [routerLink]="menuItem.link" mat-list-item>
+          <mat-icon [fontIcon]="menuItem.iconName" matListItemIcon />
+          <span matListItemTitle>{{ menuItem.title | transloco }}</span>
         </a>
       }
     </mat-nav-list>
-    <div class="absolute bottom-5 start-1/2 transform -translate-x-1/2">
-      @if (currentTheme() === "light") {
-        <button (click)="enableDarkTheme()" mat-stroked-button>
-          <mat-icon fontIcon="dark_mode" />
-          Switch to dark mode
-        </button>
-      } @else {
-        <button (click)="enableLightTheme()" mat-stroked-button>
-          <mat-icon fontIcon="light_mode" />
-          Switch to light mode
-        </button>
-      }
-    </div>
   </mat-sidenav>
+
   <mat-sidenav-content>
-    <mat-toolbar>
-      @if (isHandset()) {
-        <button (click)="drawer.toggle()" mat-icon-button>
-          <mat-icon fontIcon="menu" />
-        </button>
-        <span class="flex-auto text-start">AriyaDey</span>
-      }
+    <mat-toolbar class="justify-between">
+      <button (click)="drawer.toggle()" mat-icon-button>
+        <mat-icon fontIcon="menu" />
+      </button>
+      <button (click)="switchLanguage(alternativeLanguage()[0])" mat-button>
+        {{ alternativeLanguage()[1] }}
+      </button>
     </mat-toolbar>
     <!-- Add Content Here -->
   </mat-sidenav-content>

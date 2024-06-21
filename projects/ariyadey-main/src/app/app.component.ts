@@ -1,96 +1,74 @@
-import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
-import { AsyncPipe, DOCUMENT } from "@angular/common";
-import { Component, inject, Renderer2, Signal, signal, WritableSignal } from "@angular/core";
-import { toSignal } from "@angular/core/rxjs-interop";
+import { Component, computed, inject, signal } from "@angular/core";
 import { MatButton, MatIconButton } from "@angular/material/button";
-import { MatIcon, MatIconRegistry } from "@angular/material/icon";
+import { MatButtonToggle, MatButtonToggleGroup } from "@angular/material/button-toggle";
+import { MatIcon } from "@angular/material/icon";
 import { MatListItem, MatListItemIcon, MatListItemTitle, MatNavList } from "@angular/material/list";
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from "@angular/material/sidenav";
 import { MatToolbar } from "@angular/material/toolbar";
-import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
-import { map, shareReplay } from "rxjs/operators";
+import { RouterLink } from "@angular/router";
+import { TranslocoPipe } from "@jsverse/transloco";
+import { I18nService, Language } from "@main/shared/i18n/i18n.service";
+import { Theme, ThemeService } from "@main/shared/theming/theme.service";
 
 @Component({
   selector: "app-root",
   standalone: true,
+  templateUrl: "./app.component.html",
   imports: [
-    RouterOutlet,
-    AsyncPipe,
-    MatIcon,
-    MatIconButton,
-    MatListItem,
-    MatNavList,
-    MatSidenav,
     MatSidenavContainer,
     MatToolbar,
-    MatSidenavContent,
+    MatIcon,
+    MatNavList,
     RouterLink,
-    RouterLinkActive,
+    MatSidenav,
+    MatSidenavContent,
+    MatIconButton,
+    MatListItem,
     MatListItemIcon,
     MatListItemTitle,
     MatButton,
+    TranslocoPipe,
+    MatButtonToggleGroup,
+    MatButtonToggle,
   ],
-  templateUrl: "./app.component.html",
-  styles: ``,
 })
 export class AppComponent {
-  breakpointObserver = inject(BreakpointObserver);
-  matIconRegistry = inject(MatIconRegistry);
-  renderer = inject(Renderer2);
-  document = inject(DOCUMENT);
-  currentTheme: WritableSignal<"light" | "dark"> = signal("light");
-  menu: Signal<Array<MenuItem>> = signal([
-    { iconName: "home", title: "Home", link: "" },
-    { iconName: "pages", title: "Blog", link: "blog" },
-  ]).asReadonly();
-  focusedMenuItemIndex = signal(Number.NaN);
-  isHandset = toSignal(
-    this.breakpointObserver.observe([Breakpoints.Handset]).pipe(
-      map((result) => result.matches),
-      shareReplay(),
-    ),
-  );
+  readonly i18nService = inject(I18nService);
+  readonly themeService = inject(ThemeService);
+  // readonly breakpointObserver = inject(BreakpointObserver);
+  readonly alternativeLanguage = computed(() => this.getAlternativeLanguage());
+  readonly currentThemeVariant = computed(() => this.themeService.currentTheme().variant);
+  readonly menu = signal(MENU).asReadonly();
+  // readonly isHandset = toSignal(
+  //   this.breakpointObserver.observe([Breakpoints.Handset]).pipe(
+  //     map((result) => result.matches),
+  //     shareReplay(),
+  //   ),
+  // );
 
-  constructor() {
-    this.setUpMatIconRegistry();
-    this.enableLightTheme();
+  switchLanguage(language: Language) {
+    this.i18nService.switchLanguage(language);
   }
 
-  setFocusedIndex(index: number) {
-    this.focusedMenuItemIndex.set(index);
+  switchThemeVariant(variant: Theme["variant"]) {
+    this.themeService.switchThemeVariant(variant);
   }
 
-  clearFocusedIndex() {
-    this.focusedMenuItemIndex.set(Number.NaN);
-  }
-
-  enableLightTheme() {
-    this.renderer.addClass(this.document.body, "light-theme");
-    this.renderer.removeClass(this.document.body, "dark-theme");
-    this.currentTheme.set("light");
-  }
-
-  enableDarkTheme() {
-    this.renderer.addClass(this.document.body, "dark-theme");
-    this.renderer.removeClass(this.document.body, "light-theme");
-    this.currentTheme.set("dark");
-  }
-
-  private setUpMatIconRegistry() {
-    this.matIconRegistry.setDefaultFontSetClass("mat-ligature-font", "material-icons-outlined");
-    this.matIconRegistry.registerFontClassAlias(
-      "default-fs",
-      "mat-ligature-font material-icons-outlined",
-    );
-    this.matIconRegistry.registerFontClassAlias(
-      "alternative-fs",
-      "mat-ligature-font material-icons",
-    );
+  private getAlternativeLanguage() {
+    return this.i18nService
+      .getAvailableLanguages()
+      .filter((language) => language !== this.i18nService.activeLanguage())
+      .map(
+        (language) =>
+          [
+            language,
+            this.i18nService.translate(`language.${language}`, { language: language }),
+          ] as [Language, string],
+      )[0];
   }
 }
 
-type MenuItem = Readonly<{
-  iconName: string;
-  title: string;
-  link: string;
-}>;
+const MENU = [
+  { iconName: "home", title: "home", link: "" },
+  { iconName: "pages", title: "blog", link: "blog" },
+];
