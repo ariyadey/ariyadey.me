@@ -1,5 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use "@angular/material" as mat;
@@ -20,12 +18,6 @@
 // It emits structural indicator styles for all components.
 // It should be included exactly once in an application.
 // https://material.angular.io/guide/theming#customizing-strong-focus-indicators
-// TODO: 16/06/2024 Tweak the below config
-//@include mat.strong-focus-indicators((
-//  border-style: dotted,
-//  border-width: 4px,
-//  border-radius: 2px,
-//));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -43,14 +35,28 @@
 
     // https://material.angular.io/guide/theming#defining-multiple-themes
 
-    // FIXME: 16/06/2024 This adds styles even for unused components
-    @include mat.all-component-themes(custom.$light-theme);
-    //@include mat.strong-focus-indicators-theme(custom.$light-theme);
+    @include mat.all-component-bases(custom.$light-theme);
+    @include mat.all-component-densities(custom.$light-theme);
+    @include mat.all-component-typographies(custom.$light-theme);
+
+    &.DEFAULT-LIGHT-theme {
+      // FIXME: 16/06/2024 This adds styles even for unused components
+      @include mat.all-component-colors(custom.$light-theme);
+    }
 
     &.DEFAULT-DARK-theme {
       // FIXME: 16/06/2024 This adds styles even for unused components
       @include mat.all-component-colors(custom.$dark-theme);
-      //@include mat.strong-focus-indicators-color(custom.$dark-theme);
+    }
+
+    @media (prefers-color-scheme: light) {
+      // FIXME: 16/06/2024 This adds styles even for unused components
+      @include mat.all-component-colors(custom.$light-theme);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      // FIXME: 16/06/2024 This adds styles even for unused components
+      @include mat.all-component-colors(custom.$dark-theme);
     }
   }
 }

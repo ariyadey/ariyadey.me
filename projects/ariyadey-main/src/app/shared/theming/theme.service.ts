@@ -46,10 +46,12 @@ export class ThemeService {
       );
     }
     this.localStorageService.set(PersistKey.THEME, this._currentTheme());
-    this.renderer.addClass(
-      this.document.body,
-      `${this._currentTheme().name}-${this._currentTheme().variant}-theme`,
-    );
+    if (this._currentTheme().variant !== "AUTO") {
+      this.renderer.addClass(
+        this.document.body,
+        `${this._currentTheme().name}-${this._currentTheme().variant}-theme`,
+      );
+    }
   }
 
   private setUpMatIconRegistry() {
@@ -63,15 +65,11 @@ export class ThemeService {
 }
 
 export type Theme = Readonly<{
-  name: ThemeName;
-  variant: "LIGHT" | "DARK";
+  name: "DEFAULT";
+  variant: "AUTO" | "LIGHT" | "DARK";
 }>;
 
-export const enum ThemeName {
-  DEFAULT = "DEFAULT",
-}
-
 const DEFAULT_THEME: Theme = {
-  name: ThemeName.DEFAULT,
-  variant: "LIGHT",
+  name: "DEFAULT",
+  variant: "AUTO",
 };
