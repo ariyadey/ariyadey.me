@@ -25,7 +25,7 @@
       @for (menuItem of menu(); track $index) {
         <a [routerLink]="menuItem.link" mat-list-item>
           <mat-icon [fontIcon]="menuItem.iconName" matListItemIcon />
-          <span matListItemTitle>{{ menuItem.title | transloco }}</span>
+          <span matListItemTitle>{{ menuItem.title | i18n }}</span>
         </a>
       }
     </mat-nav-list>

@@ -6,7 +6,7 @@ import { MatListItem, MatListItemIcon, MatListItemTitle, MatNavList } from "@ang
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from "@angular/material/sidenav";
 import { MatToolbar } from "@angular/material/toolbar";
 import { RouterLink } from "@angular/router";
-import { TranslocoPipe } from "@jsverse/transloco";
+import { I18nPipe } from "@main/shared/i18n/i18n.pipe";
 import { I18nService, Language } from "@main/shared/i18n/i18n.service";
 import { Theme, ThemeService } from "@main/shared/theming/theme.service";
 
@@ -27,9 +27,9 @@ import { Theme, ThemeService } from "@main/shared/theming/theme.service";
     MatListItemIcon,
     MatListItemTitle,
     MatButton,
-    TranslocoPipe,
     MatButtonToggleGroup,
     MatButtonToggle,
+    I18nPipe,
   ],
 })
 export class AppComponent {

@@ -9,7 +9,7 @@ import { provideAnimationsAsync } from "@angular/platform-browser/animations/asy
 import { provideRouter } from "@angular/router";
 import { provideTransloco, TranslocoService } from "@jsverse/transloco";
 import { provideTranslocoLocale } from "@jsverse/transloco-locale";
-import { TranslocoHttpLoader } from "@main/shared/transloco-http-loader";
+import { TranslocoHttpLoader } from "@main/shared/i18n/transloco-http-loader";
 import { forkJoin } from "rxjs";
 import { routes } from "./app.routes";
 
