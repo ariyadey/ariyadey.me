@@ -3,7 +3,11 @@
   "version": 1,
   "cli": {
     "packageManager": "yarn",
-    "schematicCollections": ["@angular-eslint/schematics"]
+    "schematicCollections": [
+      "@cypress/schematic",
+      "@angular-eslint/schematics",
+      "@schematics/angular"
+    ]
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -95,6 +99,53 @@
               "projects/ariyadey-main/**/*.html"
             ],
             "eslintConfig": "projects/ariyadey-main/eslint.config.js"
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "ariyadey-main:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ariyadey-main:serve:production"
+            }
+          }
+        },
+        "ct": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "ariyadey-main:serve",
+            "watch": true,
+            "headless": false,
+            "testingType": "component"
+          },
+          "configurations": {
+            "development": {
+              "devServerTarget": "ariyadey-main:serve:development"
+            }
+          }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "ariyadey-main:serve",
+            "configFile": "projects/ariyadey-main/cypress.config.js"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ariyadey-main:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false,
+            "configFile": "projects/ariyadey-main/cypress.config.js"
           }
         }
       }
