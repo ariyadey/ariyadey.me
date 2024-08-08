@@ -3,10 +3,6 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "@main/*": ["src/app/*"]
-    },
     "outDir": "../../out-tsc/app",
     "types": []
   },
