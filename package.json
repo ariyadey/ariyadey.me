@@ -7,8 +7,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
     "lint": "ng lint && stylelint **/*.{css,scss}",
+    "test": "ng test",
     "eslint-prettier-check": "eslint-config-prettier projects/ariyadey-main/src/main.ts",
     "stylelint": "stylelint **/*.{css,scss}"
   },

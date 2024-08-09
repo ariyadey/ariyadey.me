@@ -74,6 +74,16 @@
           },
           "defaultConfiguration": "development"
         },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/ariyadey-main/**/*.ts",
+              "projects/ariyadey-main/**/*.html"
+            ],
+            "eslintConfig": "projects/ariyadey-main/eslint.config.js"
+          }
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:web-test-runner",
           "options": {
@@ -86,16 +96,6 @@
             ],
             "styles": ["projects/ariyadey-main/src/styles.scss"],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "projects/ariyadey-main/**/*.ts",
-              "projects/ariyadey-main/**/*.html"
-            ],
-            "eslintConfig": "projects/ariyadey-main/eslint.config.js"
           }
         }
       }
