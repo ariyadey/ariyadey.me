@@ -25,3 +25,8 @@ Run `ng e2e` to execute the end-to-end tests via Cypress.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## TODO
+
+- Write unit and integration tests after API stabilization by the Angular team
+- Write E2E and Component tests with Cypress after support for Vite in Angular by the Cypress team
