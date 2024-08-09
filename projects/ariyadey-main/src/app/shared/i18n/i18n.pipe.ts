@@ -10,7 +10,7 @@ import { Language } from "@main/shared/i18n/i18n.service";
 export class I18nPipe implements PipeTransform {
   readonly translocoPipe = inject(TranslocoPipe);
 
-  transform(key: string, params?: Record<string, unknown>, inlineLang?: Language): string {
+  transform(key: string, params?: ReadonlyArray<unknown>, inlineLang?: Language): string {
     return this.translocoPipe.transform(key, params, inlineLang);
   }
 }
