@@ -25,7 +25,10 @@ yarn-error.log
 .pnp.*
 
 # IDEs and editors
-.idea/
+.idea/*
+!.idea/stylesheetLinters/
+!.idea/inspectionProfiles/
+!.idea/prettier.xml
 .project
 .classpath
 .c9/
