@@ -1,30 +1,35 @@
 import { provideHttpClient } from "@angular/common/http";
 import {
-  APP_INITIALIZER,
   ApplicationConfig,
+  inject,
   isDevMode,
+  provideAppInitializer,
   provideExperimentalZonelessChangeDetection,
 } from "@angular/core";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
-import { provideRouter } from "@angular/router";
+import { provideRouter, withInMemoryScrolling, withRouterConfig } from "@angular/router";
 import { provideTransloco, TranslocoService } from "@jsverse/transloco";
 import { provideTranslocoLocale } from "@jsverse/transloco-locale";
 import { TranslocoHttpLoader } from "@main/shared/i18n/transloco-http-loader";
-import { forkJoin } from "rxjs";
+import { forkJoin, tap } from "rxjs";
 import { routes } from "./app.routes";
-
-function loadActiveTranslation(translationService: TranslocoService) {
-  return () => forkJoin([translationService.load("en"), translationService.load("fa")]);
-}
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    {
-      provide: APP_INITIALIZER,
-      useFactory: loadActiveTranslation,
-      deps: [TranslocoService],
-      multi: true,
-    },
+    provideAppInitializer(() => {
+      const i18nService = inject(TranslocoService);
+      return forkJoin([i18nService.load("en"), i18nService.load("fa")]).pipe(
+        tap(() => {
+          const splashScreen = document.getElementById("splash-screen");
+          if (splashScreen) {
+            splashScreen.classList.add("hidden");
+            splashScreen.addEventListener("transitionend", () => {
+              splashScreen.remove();
+            });
+          }
+        }),
+      );
+    }),
     provideExperimentalZonelessChangeDetection(),
     // provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
