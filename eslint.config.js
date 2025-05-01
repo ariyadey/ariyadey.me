@@ -18,14 +18,6 @@ module.exports = tseslint.config(
     rules: {
       "@typescript-eslint/array-type": ["warn", { default: "generic", readonly: "generic" }],
       "@typescript-eslint/no-unused-expressions": ["warn", { allowTernary: true }],
-      "@angular-eslint/directive-selector": [
-        "error",
-        {
-          type: "attribute",
-          prefix: "app",
-          style: "camelCase",
-        },
-      ],
       "@angular-eslint/component-selector": [
         "error",
         {
