@@ -21,12 +21,8 @@ export const appConfig: ApplicationConfig = {
       return forkJoin([i18nService.load("en"), i18nService.load("fa")]).pipe(
         tap(() => {
           const splashScreen = document.getElementById("splash-screen");
-          if (splashScreen) {
-            splashScreen.classList.add("hidden");
-            splashScreen.addEventListener("transitionend", () => {
-              splashScreen.remove();
-            });
-          }
+          splashScreen?.classList.add("hidden");
+          splashScreen?.addEventListener("transitionend", () => splashScreen.remove());
         }),
       );
     }),

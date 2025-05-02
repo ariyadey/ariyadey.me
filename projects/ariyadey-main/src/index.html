@@ -15,72 +15,54 @@
       rel="stylesheet"
     />
     <style>
-      /* Keep the basic #splash-screen styles for position, background, etc. */
       #splash-screen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
         z-index: 9999;
         background-color: #fef8f1; /* Adjust to match your theme */
-        display: flex !important;
+        display: flex;
         justify-content: center;
         align-items: center;
         transition: opacity 0.5s ease-out; /* Fade out transition */
         opacity: 1;
-        pointer-events: all;
+        pointer-events: all; /* Clicks don't pass through when visible */
       }
 
+      /*noinspection CssUnusedSymbol*/
       #splash-screen.hidden {
         opacity: 0;
         pointer-events: none; /* Clicks pass through when hidden */
       }
 
-      /* Style the container for the image and spinner */
       .splash-content {
-        /* Existing centering styles */
-        text-align: center;
-        /* Make this container relative so we can absolute position the spinner inside it */
         position: relative;
-        /* Set a size for this container - spinner and image will be sized relative to this */
-        width: 180px; /* Adjust size as needed */
-        height: 180px;
-        display: flex; /* Use flex to help center content inside */
+        width: 160px;
+        aspect-ratio: 1;
+        display: flex;
         justify-content: center;
         align-items: center;
       }
 
-      /* Style the profile image */
-      .profile-splash-image {
-        display: block; /* Helps remove any extra space below the image */
-        width: 120px; /* Set the size of the image - smaller than the container */
-        height: 120px;
-        border-radius: 50%; /* *** Make the image circular *** */
-        object-fit: cover; /* Ensures the image fills the circle nicely */
-        z-index: 1; /* Position the image above the spinner */
-        background-color: transparent; /* Choose a background color that blends with your splash screen */
-        color: transparent; /* Try making the alt text transparent */
+      .splash-image {
+        width: 80%;
+        border-radius: 50%;
+        z-index: 1;
+        background-color: transparent; /* The BG color when the image is not loaded yet */
+        color: transparent; /* Trying making the alt text transparent */
       }
 
-      /* Style the circular spinner */
       .circular-spinner {
-        position: absolute; /* Position relative to the .splash-content container */
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        margin: auto; /* Auto margins with top/left/right/bottom 0 centers it absolutely */
-        width: 160px; /* Size of the spinner - slightly larger than the image */
-        height: 160px;
+        position: absolute;
+        width: 100%;
+        height: 100%;
         border: 8px solid #f9f3ec; /* The static part of the circle (light color) */
         border-top-color: #715c00; /* The colored part that spins (choose your accent color) */
-        border-radius: 50%; /* *** Make it circular *** */
-        animation: spin 1s linear infinite; /* Apply the spin animation */
-        z-index: 0; /* Position the spinner below the image */
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        z-index: 0;
       }
 
-      /* Define the spin animation keyframes (re-use if you had them before) */
       @keyframes spin {
         0% {
           transform: rotate(0deg);
@@ -93,12 +75,13 @@
   </head>
 
   <body class="mat-app-background mat-typography">
-  <div id="splash-screen" style="display: none">
-    <div class="splash-content">
-      <img alt="Avatar" class="profile-splash-image" src="assets/img/avatar.jpg">
-      <div class="circular-spinner"></div>
+    <div id="splash-screen">
+      <div class="splash-content">
+        <!--suppress AngularNgOptimizedImage -->
+        <img alt="User Avatar" class="splash-image" src="assets/img/avatar.jpg" />
+        <span class="circular-spinner"></span>
+      </div>
     </div>
-  </div>
     <app-root></app-root>
   </body>
 </html>
