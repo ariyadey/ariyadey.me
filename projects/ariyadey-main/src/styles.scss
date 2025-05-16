@@ -1,66 +1,109 @@
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
+@use "tailwind";
 @use "@angular/material" as mat;
-@use "theme-colors" as custom;
+@use "theme";
+@use "sass:map";
 
-// Plus imports for other components in your app.
-
-/* Tailwind CSS */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat.core;
-
-// It emits structural indicator styles for all components.
-// It should be included exactly once in an application.
-// https://material.angular.io/guide/theming#customizing-strong-focus-indicators
-
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-// https://material.angular.io/guide/theming#applying-a-theme-to-components
-// https://material.angular.io/guide/theming#theming-dimensions
-// https://material.angular.io/guide/theming#using-component-color-variants
-// https://material.angular.io/guide/theming#theme-your-own-components-using-a-material-3-theme
 :root {
+  color-scheme: light dark;
 
-  body {
-    height: 100%;
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+  @include mat.theme(
+      (
+        color: (
+          primary: theme.$primary-palette,
+          tertiary: theme.$tertiary-palette,
+          theme-type: color-scheme,
+        ),
+        density: 0,
+      )
+  );
 
-    // https://material.angular.io/guide/theming#defining-multiple-themes
-
-    @include mat.all-component-bases(custom.$light-theme);
-    @include mat.all-component-densities(custom.$light-theme);
-    @include mat.all-component-typographies(custom.$light-theme);
-
-    &.DEFAULT-LIGHT-theme {
-      // FIXME: 16/06/2024 This adds styles even for unused components
-      @include mat.all-component-colors(custom.$light-theme);
-    }
-
-    &.DEFAULT-DARK-theme {
-      // FIXME: 16/06/2024 This adds styles even for unused components
-      @include mat.all-component-colors(custom.$dark-theme);
-    }
-
-    @media (prefers-color-scheme: light) {
-      // FIXME: 16/06/2024 This adds styles even for unused components
-      @include mat.all-component-colors(custom.$light-theme);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      // FIXME: 16/06/2024 This adds styles even for unused components
-      @include mat.all-component-colors(custom.$dark-theme);
-    }
+  &[dir="ltr"] {
+    @include mat.theme(
+        (
+          typography: (
+            brand-family: (
+              Arya,
+              Zain,
+              sans-serif,
+            ),
+            plain-family: (
+              Roboto,
+              Vazirmatn,
+              sans-serif,
+            ),
+          ),
+        )
+    );
   }
+
+  &[dir="rtl"] {
+    @include mat.theme(
+        (
+          typography: (
+            brand-family: (
+              Zain,
+              sans-serif,
+            ),
+            plain-family: (
+              Vazirmatn,
+              sans-serif,
+            ),
+          ),
+        )
+    );
+  }
+
+  &.DEFAULT-LIGHT-theme {
+    color-scheme: light;
+  }
+
+  &.DEFAULT-DARK-theme {
+    color-scheme: dark;
+  }
+
+  @apply bg-surface;
+  @apply text-on-surface;
+  @apply font-body-lg;
+
+  @include mat.card-overrides(
+      (
+        title-text-font: var(--mat-sys-headline-small-font),
+        title-text-line-height: var(--mat-sys-headline-small-line-height),
+        title-text-size: var(--mat-sys-headline-small-size),
+        title-text-tracking: var(--mat-sys-headline-small-tracking),
+        title-text-weight: var(--mat-sys-headline-small-weight),
+      )
+  );
+
+  @include mat.divider-overrides(
+      (
+        color: var(--mat-sys-outline-variant),
+      )
+  );
 }
 
-// Comment out the line below if you want to use the pre-defined typography utility classes.
-// For more information: https://material.angular.io/guide/typography#using-typography-styles-in-your-application.
-// @include mat.typography-hierarchy($ariyadey-main-theme);
+.more-less-btn {
+  @apply absolute end-0 bottom-0 ps-28;
+  @apply select-none;
+  @apply cursor-pointer;
+  @apply font-body-lg;
+  @apply text-on-surface-variant;
+
+  mat-card & {
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--mat-sys-surface-container-low) 50%,
+        var(--mat-sys-surface-container-low) 100%
+    );
+  }
+
+  [dir="rtl"] mat-card & {
+    background: linear-gradient(
+        to left,
+        transparent,
+        var(--mat-sys-surface-container-low) 50%,
+        var(--mat-sys-surface-container-low) 100%
+    );
+  }
+}
