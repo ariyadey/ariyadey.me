@@ -27,6 +27,14 @@ module.exports = tseslint.config(
           style: "kebab-case",
         },
       ],
+      "@angular-eslint/directive-selector": [
+        "error",
+        {
+          type: "attribute",
+          style: "camelCase",
+        },
+      ],
+      "@angular-eslint/template/eqeqeq": ["off", { allowNullOrUndefined: true }],
     },
   },
   {
