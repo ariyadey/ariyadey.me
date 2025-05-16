@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="h-full" lang="en">
+<html lang="en" style="height: 100%">
   <head>
     <meta charset="utf-8" />
     <title>AriyaDey</title>
@@ -20,13 +20,11 @@
       }
 
       #splash-screen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
         z-index: 9999;
-        background-color: #fef8f1; /* Adjust to match your theme */
+        background-color: #fef8f1; /* Neutral - 98 */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -43,16 +41,16 @@
 
       .splash-content {
         position: relative;
-        width: 160px;
         aspect-ratio: 1;
+        width: 144px;
         display: flex;
         justify-content: center;
         align-items: center;
       }
 
       .splash-image {
-        width: 80%;
         aspect-ratio: 1;
+        width: 80%;
         border-radius: 50%;
         z-index: 1;
         background-color: transparent; /* The BG color when the image is not loaded yet */
@@ -61,26 +59,23 @@
 
       .circular-spinner {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border: 8px solid #f9f3ec; /* The static part of the circle (light color) */
-        border-top-color: #715c00; /* The colored part that spins (choose your accent color) */
+        aspect-ratio: 1;
+        width: 100%;
+        border: 8px solid #f9f3ec; /* Neutral 96 */
+        border-top-color: #715c00; /* Primary 40 */
         border-radius: 50%;
         animation: spin 1s linear infinite;
         z-index: 0;
       }
 
-      /* Dark mode colors */
       @media (prefers-color-scheme: dark) {
         #splash-screen {
-          background-color: #15130f;
+          background-color: #15130f; /* Neutral 6 */
         }
 
         .circular-spinner {
-          border-color: #1d1b17;
-          border-top-color: #e1c564;
+          border-color: #1d1b17; /* Neutral 10 */
+          border-top-color: #e1c564; /* Primary 80 */
         }
       }
 
@@ -95,7 +90,7 @@
     </style>
   </head>
 
-  <body class="mat-app-background mat-typography">
+  <body style="height: 100%; margin: 0">
     <div id="splash-screen">
       <div class="splash-content">
         <!--suppress AngularNgOptimizedImage -->
