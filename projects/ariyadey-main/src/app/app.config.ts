@@ -6,6 +6,7 @@ import {
   provideAppInitializer,
   provideExperimentalZonelessChangeDetection,
 } from "@angular/core";
+import { MAT_CARD_CONFIG, MatCardConfig } from "@angular/material/card";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
 import { provideRouter, withInMemoryScrolling, withRouterConfig } from "@angular/router";
 import { provideTransloco, TranslocoService } from "@jsverse/transloco";
@@ -57,5 +58,6 @@ export const appConfig: ApplicationConfig = {
       },
     }),
     { provide: Window, useValue: window },
+    { provide: MAT_CARD_CONFIG, useValue: { appearance: "raised" } as MatCardConfig },
   ],
 };
