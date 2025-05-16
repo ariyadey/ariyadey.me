@@ -28,7 +28,6 @@ export const appConfig: ApplicationConfig = {
       );
     }),
     provideExperimentalZonelessChangeDetection(),
-    // provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(
       routes,
       withRouterConfig({
@@ -45,9 +44,10 @@ export const appConfig: ApplicationConfig = {
       config: {
         availableLangs: ["en", "fa"],
         defaultLang: "en",
-        reRenderOnLangChange: true,
-        interpolation: ["{", "}"],
         prodMode: !isDevMode(),
+        flatten: {
+          aot: !isDevMode(),
+        },
       },
       loader: TranslocoHttpLoader,
     }),
