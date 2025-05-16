@@ -1,0 +1,138 @@
+{
+  "language": {
+    "en": "English",
+    "fa": "Persian"
+  },
+  "me": {
+    "first-name": "Ariya",
+    "last-name": "Moheb",
+    "full-name": "{{first-name}} {{last-name}}",
+    "headline": "Full-stack Software Engineer",
+    "description": "Results-oriented and highly motivated Software Engineer with over 5 years of experience in enterprise and web application development. Specializing in Java, Spring Framework, and Angular. Proven track record of improving system performance (e.g., 10x faster build times ) and implementing complex features. Seeking a Remote position where I can leverage my skills in a dynamic, international team and contribute to delivering high-quality products.",
+    "project": {
+      "portfolio": {
+        "title": "Personal Website",
+        "description": "A portfolio website built with modern technologies and methodologies."
+      },
+      "minesweeper": {
+        "title": "Minesweeper Game",
+        "description": "A classic Minesweeper game implemented in React."
+      }
+    },
+    "experience": {
+      "tosan": {
+        "description": "As a Full-Stack Developer at NetWay, I played a key role in developing and maintaining the company's core banking system. My responsibilities included designing and implementing new features, optimizing performance, and ensuring the system's security and reliability."
+      },
+      "asta": {
+        "description": "Developed a library management system while applying Spring Framework, TDD, Clean Coding, and SOLID Principles, improving code quality and project efficiency."
+      }
+    }
+  },
+  "theme": {
+    "switch": {
+      "dark": "Switch to dark theme",
+      "light": "Switch to light theme"
+    }
+  },
+  "menu": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "experience": "Experience",
+    "contact": "Contact"
+  },
+  "section": {
+    "about": "About Me",
+    "skills": "My Skills",
+    "projects": "My Open Source Projects",
+    "experience": "My Experience",
+    "contact": "Contact Me"
+  },
+  "action": {
+    "contact": "Contact Me",
+    "resume": "View My Resume"
+  },
+  "footer": {
+    "copyright": "© Ariya Moheb. All rights reserved."
+  },
+  "employment": {
+    "location": {
+      "type": {
+        "ON_SITE": "On-site",
+        "HYBRID": "Hybrid",
+        "REMOTE": "Remote"
+      }
+    },
+    "type": {
+      "FULL_TIME": "Full-time",
+      "PART_TIME": "Part-time",
+      "SELF_EMPLOYED": "Self-employed",
+      "INTERNSHIP": "Internship",
+      "FREELANCE": "Freelance",
+      "CONTRACT": "Contract",
+      "SEASONAL": "Seasonal",
+      "APPRENTICESHIP": "Apprenticeship"
+    }
+  },
+  "job": {
+    "title": {
+      "SOFTWARE_ENGINEER": "Software Engineer",
+      "WEB_DEVELOPER": "Web Developer"
+    }
+  },
+  "skill": {
+    "category": {
+      "COMPUTER_SCIENCE": "Computer Science",
+      "BACKEND_DEVELOPMENT": "Backend Development",
+      "FRONTEND_DEVELOPMENT": "Frontend Development",
+      "PLATFORMS_TOOLS": "Platforms & Tools"
+    },
+    "title": {
+      "ALGORITHMS": "Algorithms",
+      "ANGULAR_FRAMEWORK": "Angular Framework",
+      "AOP": "Aspect-Oriented Programming",
+      "BREATH_FIRST_SEARCH": "Breadth-First Search",
+      "CSS": "CSS",
+      "DATA_STRUCTURES": "Data Structures",
+      "DEPTH_FIRST_SEARCH": "Depth-First Search",
+      "DESIGN_PATTERNS": "Design Patterns",
+      "FUNCTIONAL_PROGRAMMING": "Functional Programming",
+      "GIT": "Git",
+      "GITHUB": "GitHub",
+      "HTML": "HTML",
+      "I18N": "Internationalization (i18n)",
+      "INTELLIJ_IDEA": "IntelliJ IDEA",
+      "JAVA": "Java",
+      "JAVASCRIPT": "JavaScript",
+      "JIRA": "Jira",
+      "JSX": "JSX",
+      "JUNIT": "JUnit",
+      "JWT": "JSON Web Tokens",
+      "LINUX": "Linux",
+      "MAPSTRUCT": "MapStruct",
+      "MAVEN": "Maven",
+      "MOCKITO": "Mockito",
+      "OOP": "Object-Oriented Programming",
+      "OWASP": "OWASP Top 10",
+      "REACT": "React",
+      "REACTIVE_PROGRAMMING": "Reactive Programming",
+      "RESTFUL_APIS": "Restful APIS",
+      "RXJS": "RxJS",
+      "SOLID": "SOLID Principles",
+      "SPRING_FRAMEWORK": "Spring Framework",
+      "TDD": "Test-Driven Development",
+      "TYPESCRIPT": "TypeScript",
+      "VS_CODE": "Visual Studio Code"
+    }
+  },
+  "location": {
+    "DUBAI": "Dubai, UAE",
+    "RASHT": "Rasht, Iran",
+    "TEHRAN": "Tehran, Iran"
+  },
+  "company": {
+    "TOSAN": "TOSAN",
+    "ASTA": "ASTA"
+  }
+}
