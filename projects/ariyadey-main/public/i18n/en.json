@@ -6,7 +6,7 @@
   "me": {
     "first-name": "Ariya",
     "last-name": "Moheb",
-    "full-name": "{{first-name}} {{last-name}}",
+    "full-name": "{{me.first-name}} {{me.last-name}}",
     "headline": "Full-stack Software Engineer",
     "description": "Results-oriented and highly motivated Software Engineer with over 5 years of experience in enterprise and web application development. Specializing in Java, Spring Framework, and Angular. Proven track record of improving system performance (e.g., 10x faster build times ) and implementing complex features. Seeking a Remote position where I can leverage my skills in a dynamic, international team and contribute to delivering high-quality products.",
     "project": {
@@ -50,6 +50,10 @@
     "contact": "Contact Me"
   },
   "action": {
+    "truncate": {
+      "undo": "...See more",
+      "do": "See less"
+    },
     "contact": "Contact Me",
     "resume": "View My Resume"
   },
