@@ -1,7 +1,7 @@
-import { Direction } from "@angular/cdk/bidi";
 import { DOCUMENT } from "@angular/common";
-import { effect, inject, Injectable, RendererFactory2, signal } from "@angular/core";
+import { inject, Injectable, RendererFactory2 } from "@angular/core";
 import { getBrowserLang, TranslocoService } from "@jsverse/transloco";
+import { Language, LanguageDirection } from "@main/shared/i18n/language";
 import { LocalStorageService } from "@main/shared/persistance/local-storage.service";
 import { PersistKey } from "@main/shared/persistance/persist-key";
 
@@ -13,19 +13,20 @@ export class I18nService {
   private readonly renderer = inject(RendererFactory2).createRenderer(null, null);
   private readonly translator = inject(TranslocoService);
   private readonly localStorageService = inject(LocalStorageService);
-  private readonly _activeLanguage;
+  private readonly language = this.getInitialLanguage();
 
   constructor() {
-    this._activeLanguage = signal(
-      (this.localStorageService.get(PersistKey.LANGUAGE) ??
-        getBrowserLang() ??
-        this.translator.getDefaultLang()) as Language,
+    this.localStorageService.set(PersistKey.LANGUAGE, this.language);
+    this.translator.setActiveLang(this.language);
+    this.renderer.setAttribute(
+      this.document.documentElement,
+      "dir",
+      LanguageDirection[this.language],
     );
-    effect(() => this.onLanguageChange());
   }
 
-  get activeLanguage() {
-    return this._activeLanguage.asReadonly();
+  getActiveLanguage() {
+    return this.language;
   }
 
   getAvailableLanguages() {
@@ -33,27 +34,24 @@ export class I18nService {
   }
 
   switchLanguage(language: Language) {
-    this._activeLanguage.set(language);
+    this.localStorageService.set(PersistKey.LANGUAGE, language);
+    this.document.location.reload();
   }
 
-  translate(key: string, options?: Partial<{ params: ReadonlyArray<string>; language: Language }>) {
+  translate(
+    key: string,
+    options?: Partial<{ params: Record<string, unknown>; language: Language }>,
+  ) {
     return this.translator.translate(key, options?.params, options?.language);
   }
 
-  private onLanguageChange() {
-    this.localStorageService.set(PersistKey.LANGUAGE, this._activeLanguage());
-    this.translator.setActiveLang(this._activeLanguage());
-    this.renderer.setAttribute(
-      this.document.documentElement,
-      "dir",
-      LanguageDirection[this._activeLanguage()],
+  private getInitialLanguage(): Language {
+    const browserLang = getBrowserLang() as Language;
+    return (
+      this.localStorageService.get<Language>(PersistKey.LANGUAGE) ??
+      (Object.values(Language).includes(browserLang)
+        ? browserLang
+        : (this.translator.getDefaultLang() as Language))
     );
   }
 }
-
-export type Language = "en" | "fa";
-
-const LanguageDirection: Readonly<Record<Language, Direction>> = {
-  en: "ltr",
-  fa: "rtl",
-};

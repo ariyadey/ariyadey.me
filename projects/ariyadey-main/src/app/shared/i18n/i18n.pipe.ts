@@ -1,16 +1,14 @@
 import { inject, Pipe, PipeTransform } from "@angular/core";
-import { TranslocoPipe } from "@jsverse/transloco";
-import { Language } from "@main/shared/i18n/i18n.service";
+import { I18nService } from "@main/shared/i18n/i18n.service";
+import { Language } from "@main/shared/i18n/language";
 
 @Pipe({
   name: "i18n",
-  pure: false,
-  standalone: true,
 })
 export class I18nPipe implements PipeTransform {
-  readonly translocoPipe = inject(TranslocoPipe);
+  readonly i18nService = inject(I18nService);
 
-  transform(key: string, params?: ReadonlyArray<unknown>, inlineLang?: Language): string {
-    return this.translocoPipe.transform(key, params, inlineLang);
+  transform(key: string, params?: Record<string, unknown>, language?: Language): string {
+    return this.i18nService.translate(key, { params, language });
   }
 }
