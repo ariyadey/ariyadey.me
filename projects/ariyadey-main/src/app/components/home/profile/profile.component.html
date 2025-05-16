@@ -1,0 +1,19 @@
+<mat-card>
+  <img alt="Avatar" mat-card-image src="{{ mainInfo.avatarPath | imgResolve }}" />
+  <mat-card-header>
+    <mat-card-title>
+      <span class="font-display-md"
+        >{{ mainInfo.firstName | i18n }} {{ mainInfo.lastName | i18n }}</span
+      >
+    </mat-card-title>
+    <mat-card-subtitle>
+      <span class="font-title-md">{{ mainInfo.headline | i18n }}</span>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions class="gap-2">
+    <a [routerLink]="" fragment="contact" mat-button scroll="contact">{{
+      "action.contact" | i18n
+    }}</a>
+    <a [href]="mainInfo.resumePath" mat-button target="_blank">{{ "action.resume" | i18n }}</a>
+  </mat-card-actions>
+</mat-card>
