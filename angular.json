@@ -18,6 +18,9 @@
       "sourceRoot": "projects/ariyadey-main/src",
       "prefix": "app",
       "architect": {
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy"
+        },
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
