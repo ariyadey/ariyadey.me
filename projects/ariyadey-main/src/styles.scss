@@ -3,6 +3,14 @@
 @use "theme";
 @use "sass:map";
 
+app-root {
+  @apply flex justify-center;
+
+  mat-sidenav-container {
+    @apply max-w-2xl;
+  }
+}
+
 :root {
   color-scheme: light dark;
 
