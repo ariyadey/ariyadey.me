@@ -34,6 +34,15 @@
       "light": "Switch to light theme"
     }
   },
+  "time": {
+    "present": "Present",
+    "short": {
+      "year": "yr",
+      "years": "yrs",
+      "month": "mo",
+      "months": "mos"
+    }
+  },
   "menu": {
     "home": "Home",
     "about": "About",
