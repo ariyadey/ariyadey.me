@@ -7,7 +7,7 @@ import { PersistKey } from "@main/shared/persistance/persist-key";
 export class LocalStorageService {
   private readonly localStorage = inject(Window).localStorage;
 
-  get(key: PersistKey): unknown {
+  get<T>(key: PersistKey): T | null {
     const value = this.localStorage.getItem(key);
     return value != null ? JSON.parse(value) : null;
   }
