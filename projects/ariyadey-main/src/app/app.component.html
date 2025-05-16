@@ -1,16 +1,34 @@
-<mat-sidenav-container class="h-full">
+<mat-sidenav-container class="h-full [--mat-sidenav-container-width:80vw]">
   <mat-sidenav #drawer>
-    <mat-toolbar class="justify-between">
+    <mat-toolbar>
       <button (click)="drawer.close()" mat-icon-button>
         <mat-icon class="mat-icon-rtl-mirror" fontIcon="menu_open" />
       </button>
+    </mat-toolbar>
+
+    <mat-nav-list class="px-[7px]!">
+      @for (menuItem of menu(); track $index) {
+        <a
+          (click)="drawer.close()"
+          [routerLink]=""
+          [fragment]="menuItem.fragment"
+          [scroll]="menuItem.fragment"
+          mat-list-item
+        >
+          <mat-icon [fontIcon]="menuItem.iconName" matListItemIcon />
+          <span matListItemTitle>{{ "menu." + menuItem.titleKey | i18n }}</span>
+        </a>
+      }
+    </mat-nav-list>
+
+    <mat-toolbar class="absolute bottom-4 justify-center">
       <mat-button-toggle-group
         (valueChange)="switchThemeVariant($event)"
         [value]="currentThemeVariant()"
         hideSingleSelectionIndicator
       >
         <mat-button-toggle value="AUTO">
-          <mat-icon fontIcon="motion_photos_auto" />
+          <mat-icon fontIcon="brightness_auto" />
         </mat-button-toggle>
         <mat-button-toggle value="LIGHT">
           <mat-icon fontIcon="light_mode" />
@@ -20,26 +38,24 @@
         </mat-button-toggle>
       </mat-button-toggle-group>
     </mat-toolbar>
-
-    <mat-nav-list>
-      @for (menuItem of menu(); track $index) {
-        <a [routerLink]="menuItem.link" mat-list-item>
-          <mat-icon [fontIcon]="menuItem.iconName" matListItemIcon />
-          <span matListItemTitle>{{ menuItem.title | i18n }}</span>
-        </a>
-      }
-    </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar class="justify-between">
+    <mat-toolbar class="fixed z-50 justify-between">
       <button (click)="drawer.toggle()" mat-icon-button>
         <mat-icon fontIcon="menu" />
       </button>
-      <button (click)="switchLanguage(alternativeLanguage()[0])" mat-button>
-        {{ alternativeLanguage()[1] }}
-      </button>
+      @if (alternativeLanguage) {
+        <button (click)="switchLanguage(alternativeLanguage!)" mat-button>
+          {{ "language." + alternativeLanguage | i18n:undefined:alternativeLanguage }}
+        </button>
+      }
     </mat-toolbar>
-    <!-- Add Content Here -->
+
+    <app-home class="mt-14 inline-block px-4" />
+    <mat-divider class="text-on-primary! mx-4! mt-6!" />
+    <footer class="text-on-surface-variant py-2 ps-4">
+      {{ "footer.copyright" | i18n }}
+    </footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,23 +1,25 @@
 import { Component, computed, inject, signal } from "@angular/core";
 import { MatButton, MatIconButton } from "@angular/material/button";
 import { MatButtonToggle, MatButtonToggleGroup } from "@angular/material/button-toggle";
+import { MatDivider } from "@angular/material/divider";
 import { MatIcon } from "@angular/material/icon";
 import { MatListItem, MatListItemIcon, MatListItemTitle, MatNavList } from "@angular/material/list";
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from "@angular/material/sidenav";
 import { MatToolbar } from "@angular/material/toolbar";
 import { RouterLink } from "@angular/router";
+import { HomeComponent } from "@main/components/home/home.component";
+import { MENU } from "@main/menu-item";
 import { I18nPipe } from "@main/shared/i18n/i18n.pipe";
-import { I18nService, Language } from "@main/shared/i18n/i18n.service";
-import { Theme, ThemeService } from "@main/shared/theming/theme.service";
+import { I18nService } from "@main/shared/i18n/i18n.service";
+import { Language } from "@main/shared/i18n/language";
+import { ScrollableDirective } from "@main/shared/scrollable.directive";
+import { Theme } from "@main/shared/theming/theme";
+import { ThemeService } from "@main/shared/theming/theme.service";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styles: `
-    :host {
-      --mat-sidenav-container-width: 80vw;
-    }
-  `,
+  styles: ``,
   imports: [
     MatSidenavContainer,
     MatToolbar,
@@ -34,21 +36,19 @@ import { Theme, ThemeService } from "@main/shared/theming/theme.service";
     MatButtonToggleGroup,
     MatButtonToggle,
     I18nPipe,
+    HomeComponent,
+    ScrollableDirective,
+    MatDivider,
   ],
 })
 export class AppComponent {
   readonly i18nService = inject(I18nService);
   readonly themeService = inject(ThemeService);
-  // readonly breakpointObserver = inject(BreakpointObserver);
-  readonly alternativeLanguage = computed(() => this.getAlternativeLanguage());
+  readonly alternativeLanguage = this.i18nService
+    .getAvailableLanguages()
+    .find((language) => language !== this.i18nService.getActiveLanguage());
   readonly currentThemeVariant = computed(() => this.themeService.currentTheme().variant);
   readonly menu = signal(MENU).asReadonly();
-  // readonly isHandset = toSignal(
-  //   this.breakpointObserver.observe([Breakpoints.Handset]).pipe(
-  //     map((result) => result.matches),
-  //     shareReplay(),
-  //   ),
-  // );
 
   switchLanguage(language: Language) {
     this.i18nService.switchLanguage(language);
@@ -57,22 +57,4 @@ export class AppComponent {
   switchThemeVariant(variant: Theme["variant"]) {
     this.themeService.switchThemeVariant(variant);
   }
-
-  private getAlternativeLanguage() {
-    return this.i18nService
-      .getAvailableLanguages()
-      .filter((language) => language !== this.i18nService.activeLanguage())
-      .map(
-        (language) =>
-          [
-            language,
-            this.i18nService.translate(`language.${language}`, { language: language }),
-          ] as [Language, string],
-      )[0];
-  }
 }
-
-const MENU = [
-  { iconName: "home", title: "home", link: "" },
-  { iconName: "pages", title: "blog", link: "blog" },
-];
