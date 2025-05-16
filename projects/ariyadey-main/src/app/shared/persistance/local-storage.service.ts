@@ -1,3 +1,4 @@
+import { DOCUMENT } from "@angular/common";
 import { inject, Injectable } from "@angular/core";
 import { PersistKey } from "@main/shared/persistance/persist-key";
 
@@ -5,7 +6,7 @@ import { PersistKey } from "@main/shared/persistance/persist-key";
   providedIn: "root",
 })
 export class LocalStorageService {
-  private readonly localStorage = inject(Window).localStorage;
+  private readonly localStorage = inject(DOCUMENT).defaultView!.localStorage;
 
   get<T>(key: PersistKey): T | null {
     const value = this.localStorage.getItem(key);
