@@ -29,6 +29,10 @@ export class I18nService {
     return this.language;
   }
 
+  getActiveLocale() {
+    return this.getActiveLanguage();
+  }
+
   getAvailableLanguages() {
     return this.translator.getAvailableLangs() as ReadonlyArray<Language>;
   }
