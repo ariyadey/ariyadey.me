@@ -28,7 +28,16 @@ export const appConfig: ApplicationConfig = {
     }),
     provideExperimentalZonelessChangeDetection(),
     // provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
+    provideRouter(
+      routes,
+      withRouterConfig({
+        onSameUrlNavigation: "reload",
+      }),
+      withInMemoryScrolling({
+        anchorScrolling: "enabled",
+        scrollPositionRestoration: "enabled",
+      }),
+    ),
     provideAnimationsAsync(),
     provideHttpClient(),
     provideTransloco({
