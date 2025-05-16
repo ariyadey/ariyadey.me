@@ -1,8 +1,8 @@
 editorconfig: true
 plugins:
-  - prettier-plugin-tailwindcss
   - prettier-plugin-organize-attributes
   - prettier-plugin-organize-imports
+  - prettier-plugin-tailwindcss
 attributeGroups:
   - $ANGULAR_STRUCTURAL_DIRECTIVE
   - $ANGULAR_OUTPUT
