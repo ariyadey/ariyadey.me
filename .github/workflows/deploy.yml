@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: "23" # Use a stable LTS Node.js version (e.g., 20)
 
+      - name: Enable Corepack
+        run: corepack enable # Enable Corepack for Yarn 2+ support
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile # Use yarn install with frozen-lockfile for consistency
 
