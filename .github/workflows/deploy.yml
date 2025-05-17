@@ -25,7 +25,7 @@ jobs:
         run: yarn install --frozen-lockfile # Use yarn install with frozen-lockfile for consistency
 
       - name: Build Angular application
-        run: ng build --configuration production --base-href=/
+        run: npx ng build --configuration production --base-href=/
         # This is your build command. Ensure baseHref is set to '/' for User Pages.
         # The deployment action will automatically pick up the 'ariyadey-main' path.
 
