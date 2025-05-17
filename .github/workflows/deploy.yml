@@ -35,7 +35,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3 # Popular action for deploying to gh-pages
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }} # Automatically provided token for authentication
-          publish_dir: ./dist/ariyadey-main # The directory containing your built site
+          publish_dir: ./dist/ariyadey-main/browser # The directory containing your built site
           publish_branch: gh-pages # The branch to push your built site to (must match your GH Pages settings)
           # If you were deploying a Project Page (e.g., /repo-name/), you'd typically need
           # to add the base_url here: base_url: /<your-repo-name>/
