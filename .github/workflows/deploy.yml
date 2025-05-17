@@ -9,6 +9,8 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest # The type of virtual machine to run the job on
 
+    permissions: write-all
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4 # Checks out your repository code
