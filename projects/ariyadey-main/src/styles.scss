@@ -5,9 +5,13 @@
 
 app-root {
   @apply flex justify-center;
-
   mat-sidenav-container {
     @apply max-w-2xl;
+    mat-sidenav-content {
+      mat-toolbar {
+        @apply max-w-2xl;
+      }
+    }
   }
 }
 
