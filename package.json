@@ -39,7 +39,6 @@
     "@types/jasmine": "^5.1.4",
     "@types/luxon": "^3.6.2",
     "@web/test-runner": "^0.18.2",
-    "angular-cli-ghpages": "^2.0.3",
     "angular-eslint": "^18.2.0",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^9.1.0",
