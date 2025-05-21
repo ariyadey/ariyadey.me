@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { MatAnchor } from "@angular/material/button";
 import {
@@ -37,6 +38,7 @@ import { PersonalInfoService } from "@main/shared/personal-info/personal-info.se
     MatCardTitleGroup,
     MatCardXlImage,
     CommunicationChannelsComponent,
+    NgTemplateOutlet,
   ],
   templateUrl: "./profile.component.html",
   styles: ``,
