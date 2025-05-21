@@ -87,6 +87,15 @@
       color: var(--mat-sys-outline-variant),
     )
   );
+
+  @media (width >= 960px) {
+    @include mat.sidenav-overrides(
+        (
+          container-width: 88px,
+        )
+    );
+    --mat-sidenav-container-background-color: var(--mat-sys-surface-container);
+  }
 }
 
 .more-less-btn {

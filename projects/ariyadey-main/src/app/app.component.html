@@ -1,61 +1,101 @@
-<mat-sidenav-container class="h-full [--mat-sidenav-container-width:80vw]">
-  <mat-sidenav #drawer>
-    <mat-toolbar>
-      <button (click)="drawer.close()" mat-icon-button>
-        <mat-icon class="mat-icon-rtl-mirror" fontIcon="menu_open" />
-      </button>
-    </mat-toolbar>
+<mat-sidenav-container class="h-full">
+  <mat-sidenav
+    #drawer
+    [mode]="layout().md ? 'side' : 'push'"
+    [opened]="layout().md"
+    class="md:pt-4"
+  >
+    @if (!layout().md) {
+      <mat-toolbar>
+        <button (click)="drawer.close()" mat-icon-button>
+          <mat-icon class="mat-icon-rtl-mirror" fontIcon="menu_open" />
+        </button>
+      </mat-toolbar>
 
-    <mat-nav-list class="px-[7px]!">
-      @for (menuItem of menu(); track $index) {
-        <a
-          (click)="drawer.close()"
-          [routerLink]=""
-          [fragment]="menuItem.fragment"
-          [scroll]="menuItem.fragment"
-          mat-list-item
+      <mat-nav-list>
+        @for (menuItem of menu(); track $index) {
+          <a
+            (click)="drawer.close()"
+            [routerLink]=""
+            [fragment]="menuItem.fragment"
+            [scroll]="menuItem.fragment"
+            mat-list-item
+          >
+            <mat-icon [fontIcon]="menuItem.iconName" matListItemIcon />
+            <span matListItemTitle>{{ "menu." + menuItem.titleKey | i18n }}</span>
+          </a>
+        }
+      </mat-nav-list>
+    } @else {
+      <div cdkMenu class="font-body-md flex-col items-center gap-7">
+        @for (menuItem of menu(); track $index) {
+          <a
+            class="flex cursor-pointer flex-col items-center hover:font-bold"
+            [routerLink]=""
+            [fragment]="menuItem.fragment"
+            [scroll]="menuItem.fragment"
+            cdkMenuItem
+          >
+            <button mat-icon-button>
+              <mat-icon [fontIcon]="menuItem.iconName" />
+            </button>
+            <span>{{ "menu." + menuItem.titleKey | i18n }}</span>
+          </a>
+        }
+      </div>
+    }
+
+    <mat-toolbar
+      class="absolute bottom-4 gap-3 md:[--mat-toolbar-container-background-color:transparent] md:[--mat-toolbar-standard-height:auto]"
+    >
+      <mat-toolbar-row class="justify-center">
+        <mat-button-toggle-group
+          (valueChange)="switchThemeVariant($event)"
+          [value]="currentThemeVariant()"
+          [vertical]="layout().md"
+          hideSingleSelectionIndicator
         >
-          <mat-icon [fontIcon]="menuItem.iconName" matListItemIcon />
-          <span matListItemTitle>{{ "menu." + menuItem.titleKey | i18n }}</span>
-        </a>
-      }
-    </mat-nav-list>
+          <mat-button-toggle value="AUTO">
+            <mat-icon fontIcon="brightness_auto" />
+          </mat-button-toggle>
+          <mat-button-toggle value="LIGHT">
+            <mat-icon fontIcon="light_mode" />
+          </mat-button-toggle>
+          <mat-button-toggle value="DARK">
+            <mat-icon fontIcon="dark_mode" />
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </mat-toolbar-row>
 
-    <mat-toolbar class="absolute bottom-4 justify-center">
-      <mat-button-toggle-group
-        (valueChange)="switchThemeVariant($event)"
-        [value]="currentThemeVariant()"
-        hideSingleSelectionIndicator
-      >
-        <mat-button-toggle value="AUTO">
-          <mat-icon fontIcon="brightness_auto" />
-        </mat-button-toggle>
-        <mat-button-toggle value="LIGHT">
-          <mat-icon fontIcon="light_mode" />
-        </mat-button-toggle>
-        <mat-button-toggle value="DARK">
-          <mat-icon fontIcon="dark_mode" />
-        </mat-button-toggle>
-      </mat-button-toggle-group>
+      @if (layout().md) {
+        <mat-toolbar-row class="justify-center">
+          <ng-container *ngTemplateOutlet="language" />
+        </mat-toolbar-row>
+      }
     </mat-toolbar>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar class="fixed z-50 justify-between">
-      <button (click)="drawer.toggle()" mat-icon-button>
-        <mat-icon fontIcon="menu" />
-      </button>
-      @if (alternativeLanguage) {
-        <button (click)="switchLanguage(alternativeLanguage!)" mat-button>
-          {{ "language." + alternativeLanguage | i18n:undefined:alternativeLanguage }}
+    @if (!layout().md) {
+      <mat-toolbar class="fixed z-50 justify-between md:hidden!">
+        <button (click)="drawer.toggle()" mat-icon-button>
+          <mat-icon fontIcon="menu" />
         </button>
-      }
-    </mat-toolbar>
-
-    <app-home class="mt-14 inline-block px-4" />
-    <mat-divider class="text-on-primary! mx-4! mt-6!" />
+        <ng-container *ngTemplateOutlet="language" />
+      </mat-toolbar>
+    }
+    <app-home class="mt-14 inline-block px-4 sm:mt-16 md:mt-4" />
+    <mat-divider class="mx-4! mt-6!" />
     <footer class="text-on-surface-variant py-2 ps-4">
       {{ "footer.copyright" | i18n }}
     </footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<ng-template #language>
+  @if (alternativeLanguage) {
+    <button (click)="switchLanguage(alternativeLanguage!)" mat-button>
+      {{ "language." + alternativeLanguage | i18n: undefined : alternativeLanguage }}
+    </button>
+  }
+</ng-template>
