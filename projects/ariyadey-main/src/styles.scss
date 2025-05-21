@@ -7,49 +7,49 @@
   color-scheme: light dark;
 
   @include mat.theme(
-      (
-        color: (
-          primary: theme.$primary-palette,
-          tertiary: theme.$tertiary-palette,
-          theme-type: color-scheme,
-        ),
-        density: 0,
-      )
+    (
+      color: (
+        primary: theme.$primary-palette,
+        tertiary: theme.$tertiary-palette,
+        theme-type: color-scheme,
+      ),
+      density: 0,
+    )
   );
 
   &[dir="ltr"] {
     @include mat.theme(
-        (
-          typography: (
-            brand-family: (
-              Arya,
-              Zain,
-              sans-serif,
-            ),
-            plain-family: (
-              Roboto,
-              Vazirmatn,
-              sans-serif,
-            ),
+      (
+        typography: (
+          brand-family: (
+            Arya,
+            Zain,
+            sans-serif,
           ),
-        )
+          plain-family: (
+            Roboto,
+            Vazirmatn,
+            sans-serif,
+          ),
+        ),
+      )
     );
   }
 
   &[dir="rtl"] {
     @include mat.theme(
-        (
-          typography: (
-            brand-family: (
-              Zain,
-              sans-serif,
-            ),
-            plain-family: (
-              Vazirmatn,
-              sans-serif,
-            ),
+      (
+        typography: (
+          brand-family: (
+            Zain,
+            sans-serif,
           ),
-        )
+          plain-family: (
+            Vazirmatn,
+            sans-serif,
+          ),
+        ),
+      )
     );
   }
 
@@ -65,20 +65,27 @@
   @apply text-on-surface;
   @apply font-body-lg;
 
+  @include mat.sidenav-overrides(
+    (
+      container-width: 256px,
+      container-divider-color: var(--mat-sys-outline-variant),
+    )
+  );
+
   @include mat.card-overrides(
-      (
-        title-text-font: var(--mat-sys-headline-small-font),
-        title-text-line-height: var(--mat-sys-headline-small-line-height),
-        title-text-size: var(--mat-sys-headline-small-size),
-        title-text-tracking: var(--mat-sys-headline-small-tracking),
-        title-text-weight: var(--mat-sys-headline-small-weight),
-      )
+    (
+      title-text-font: var(--mat-sys-headline-small-font),
+      title-text-line-height: var(--mat-sys-headline-small-line-height),
+      title-text-size: var(--mat-sys-headline-small-size),
+      title-text-tracking: var(--mat-sys-headline-small-tracking),
+      title-text-weight: var(--mat-sys-headline-small-weight),
+    )
   );
 
   @include mat.divider-overrides(
-      (
-        color: var(--mat-sys-outline-variant),
-      )
+    (
+      color: var(--mat-sys-outline-variant),
+    )
   );
 }
 
@@ -91,19 +98,19 @@
 
   mat-card & {
     background: linear-gradient(
-        to right,
-        transparent,
-        var(--mat-sys-surface-container-low) 50%,
-        var(--mat-sys-surface-container-low) 100%
+      to right,
+      transparent,
+      var(--mat-sys-surface-container-low) 50%,
+      var(--mat-sys-surface-container-low) 100%
     );
   }
 
   [dir="rtl"] mat-card & {
     background: linear-gradient(
-        to left,
-        transparent,
-        var(--mat-sys-surface-container-low) 50%,
-        var(--mat-sys-surface-container-low) 100%
+      to left,
+      transparent,
+      var(--mat-sys-surface-container-low) 50%,
+      var(--mat-sys-surface-container-low) 100%
     );
   }
 }
