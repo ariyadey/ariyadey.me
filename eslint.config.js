@@ -19,6 +19,7 @@ module.exports = tseslint.config(
       "@typescript-eslint/array-type": ["warn", { default: "generic", readonly: "generic" }],
       "@typescript-eslint/no-unused-expressions": ["warn", { allowTernary: true }],
       "@typescript-eslint/no-unused-vars": ["off"],
+      "@typescript-eslint/consistent-type-definitions": ["off"],
       "@angular-eslint/component-selector": [
         "error",
         {
