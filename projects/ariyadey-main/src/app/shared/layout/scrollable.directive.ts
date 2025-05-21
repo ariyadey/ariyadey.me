@@ -1,5 +1,5 @@
 import { DOCUMENT } from "@angular/common";
-import { Directive, HostListener, inject, Input } from "@angular/core";
+import { Directive, HostListener, inject, input } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 /**
@@ -16,21 +16,21 @@ export class ScrollableDirective {
   readonly document = inject(DOCUMENT);
   readonly router = inject(Router);
   readonly activatedRoute = inject(ActivatedRoute);
-  @Input("scroll") targetFragment = "";
+  readonly targetFragment = input("", { alias: "scroll" });
 
   @HostListener("click")
   onClick() {
-    if (this.targetFragment === "") {
+    if (this.targetFragment() === "") {
       return;
     }
 
     this.router
       .navigate([], {
-        fragment: this.targetFragment,
+        fragment: this.targetFragment(),
         relativeTo: this.activatedRoute,
       })
       .then(() =>
-        this.document.getElementById(this.targetFragment)?.scrollIntoView({ behavior: "smooth" }),
+        this.document.getElementById(this.targetFragment())?.scrollIntoView({ behavior: "smooth" }),
       );
   }
 }

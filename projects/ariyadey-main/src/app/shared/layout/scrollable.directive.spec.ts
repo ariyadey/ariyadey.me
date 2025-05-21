@@ -1,4 +1,4 @@
-import { ScrollableDirective } from "./scrollable.directive";
+import { ScrollableDirective } from "ariyadey-main/src/app/shared/layout/scrollable.directive";
 
 describe("ScrollableDirective", () => {
   it("should create an instance", () => {
