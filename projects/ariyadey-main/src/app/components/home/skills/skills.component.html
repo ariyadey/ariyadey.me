@@ -3,7 +3,7 @@
     <mat-card-title>{{ "section.skills" | i18n }}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <ul class="flex flex-col gap-3 pt-3">
+    <ul class="flex flex-col gap-5 pt-5 md:grid md:grid-cols-2">
       @for (skills of categorizedSkills | keyvalue: compareFn; track skills; let isLast = $last) {
         <li class="flex flex-col gap-1">
           <span class="font-title-md">{{ "skill.category." + skills.key | i18n }}</span>
@@ -13,7 +13,7 @@
             }
           </mat-chip-set>
         </li>
-        @if (!isLast) {
+        @if (!isLast && !layout().md) {
           <mat-divider />
         }
       }

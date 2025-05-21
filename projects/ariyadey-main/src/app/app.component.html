@@ -12,7 +12,7 @@
         </button>
       </mat-toolbar>
 
-      <mat-nav-list>
+      <mat-nav-list class="px-2!">
         @for (menuItem of menu(); track $index) {
           <a
             (click)="drawer.close()"
@@ -80,13 +80,27 @@
   <mat-sidenav-content>
     @if (!layout().md) {
       <mat-toolbar class="fixed z-50 justify-between md:hidden!">
-        <button (click)="drawer.toggle()" mat-icon-button>
-          <mat-icon fontIcon="menu" />
-        </button>
+        <div class="flex items-center gap-2">
+          <button (click)="drawer.toggle()" mat-icon-button>
+            <mat-icon fontIcon="menu" />
+          </button>
+          @if (layout().sm) {
+            <a
+              (click)="drawer.close()"
+              mat-button
+              routerLink=""
+              fragment="profile"
+              scroll="profile"
+              class="font-title-md!"
+            >
+              {{ "me.full-name" | i18n }}
+            </a>
+          }
+        </div>
         <ng-container *ngTemplateOutlet="language" />
       </mat-toolbar>
     }
-    <app-home class="mt-14 inline-block px-4 sm:mt-16 md:mt-4" />
+    <app-home class="mt-14 inline-block w-full px-2 sm:mt-16 md:mt-4" />
     <mat-divider class="mx-4! mt-6!" />
     <footer class="text-on-surface-variant py-2 ps-4">
       {{ "footer.copyright" | i18n }}

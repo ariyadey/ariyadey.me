@@ -1,7 +1,7 @@
 import { CdkMenu, CdkMenuItem } from "@angular/cdk/menu";
 import { NgTemplateOutlet } from "@angular/common";
 import { Component, computed, inject } from "@angular/core";
-import { MatButton, MatIconButton } from "@angular/material/button";
+import { MatAnchor, MatButton, MatIconButton } from "@angular/material/button";
 import { MatButtonToggle, MatButtonToggleGroup } from "@angular/material/button-toggle";
 import { MatDivider } from "@angular/material/divider";
 import { MatIcon } from "@angular/material/icon";
@@ -46,6 +46,7 @@ import { ThemeService } from "@main/shared/theming/theme.service";
     CdkMenuItem,
     NgTemplateOutlet,
     MatToolbarRow,
+    MatAnchor,
   ],
 })
 export class AppComponent {

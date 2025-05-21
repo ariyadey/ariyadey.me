@@ -6,6 +6,7 @@ import { MatDivider } from "@angular/material/divider";
 
 import { MatListItemLine } from "@angular/material/list";
 import { I18nPipe } from "@main/shared/i18n/i18n.pipe";
+import { LayoutService } from "@main/shared/layout/layout.service";
 import { PersonalInfoService } from "@main/shared/personal-info/personal-info.service";
 
 @Component({
@@ -26,6 +27,7 @@ import { PersonalInfoService } from "@main/shared/personal-info/personal-info.se
   styles: ``,
 })
 export class SkillsComponent {
+  readonly layout = inject(LayoutService).layout;
   readonly categorizedSkills = inject(PersonalInfoService).getSkills();
 
   compareFn() {
