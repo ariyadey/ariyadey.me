@@ -1,16 +1,55 @@
-<mat-card>
-  <img alt="Avatar" mat-card-image src="{{ mainInfo.avatarPath | imgResolve }}" />
+<mat-card class="relative">
+  <img alt="Avatar" class="sm:hidden" mat-card-image src="{{ mainInfo.avatarPath | imgResolve }}" />
   <mat-card-header>
-    <mat-card-title>
-      <span class="font-display-md"
+    <mat-card-title-group class="sm:items-center sm:justify-around!">
+      <img
+        alt="Avatar"
+        class="hidden rounded-t-full sm:block md:hidden"
+        mat-card-xl-image
+        src="{{ mainInfo.avatarPath | imgResolve }}"
+      />
+      <img
+        alt="Avatar"
+        class="hidden rounded-t-full md:block"
+        mat-card-image
+        src="{{ mainInfo.avatarPath | imgResolve }}"
+      />
+      <mat-card-title>
+        <span class="font-display-md sm:font-display-lg"
         >{{ mainInfo.firstName | i18n }} {{ mainInfo.lastName | i18n }}</span
-      >
-    </mat-card-title>
-    <mat-card-subtitle>
-      <span class="font-title-md">{{ mainInfo.headline | i18n }}</span>
-    </mat-card-subtitle>
+        >
+      </mat-card-title>
+      <mat-card-subtitle>
+        <span class="font-title-md sm:font-title-lg">{{ mainInfo.headline | i18n }}</span>
+      </mat-card-subtitle>
+      <mat-card-subtitle>
+        <div class="mt-4 hidden flex-wrap gap-4 sm:flex">
+          <a
+            [routerLink]=""
+            class="md:hidden!"
+            fragment="contact"
+            mat-flat-button
+            scroll="contact"
+          >{{ "action.contact" | i18n }}</a
+          >
+          <a
+            class="hidden! md:flex!"
+            href="mailto:{{ email }}"
+            mat-flat-button
+            target="_blank"
+          >{{ "action.contact" | i18n }}</a
+          >
+          <a [href]="mainInfo.resumePath" mat-flat-button target="_blank">{{
+              "action.resume" | i18n
+            }}</a>
+        </div>
+      </mat-card-subtitle>
+      <mat-card-subtitle>
+        <app-communication-channels class="mt-7 hidden md:inline-block" />
+      </mat-card-subtitle>
+    </mat-card-title-group>
   </mat-card-header>
-  <mat-card-actions class="gap-2">
+  <mat-card-actions class="gap-2 sm:hidden!">
     <a [routerLink]="" fragment="contact" mat-button scroll="contact">{{
       "action.contact" | i18n
     }}</a>
