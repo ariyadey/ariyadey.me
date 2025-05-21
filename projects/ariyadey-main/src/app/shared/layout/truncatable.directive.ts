@@ -7,14 +7,14 @@ import {
   ElementRef,
   HostListener,
   inject,
-  Input,
+  input,
   OnDestroy,
   OnInit,
   Renderer2,
   signal
 } from "@angular/core";
+import { I18nService } from "ariyadey-main/src/app/shared/i18n/i18n.service";
 import { timer } from "rxjs";
-import { I18nService } from "./i18n/i18n.service";
 
 /**
  * @desc
@@ -35,9 +35,9 @@ import { I18nService } from "./i18n/i18n.service";
   selector: "[truncate]",
 })
 export class TruncatableDirective implements OnInit, AfterViewInit, OnDestroy {
-  @Input() expandTextKey = "action.truncate.undo";
-  @Input() truncateTextKey = "action.truncate.do";
-  @Input({ transform: booleanAttribute }) reTruncate = true;
+  readonly expandTextKey = input("action.truncate.undo");
+  readonly truncateTextKey = input("action.truncate.do");
+  readonly reTruncate = input(true, { transform: booleanAttribute });
   readonly window = inject(DOCUMENT).defaultView!;
   readonly renderer = inject(Renderer2);
   readonly element = inject(ElementRef).nativeElement as HTMLElement;
@@ -57,12 +57,12 @@ export class TruncatableDirective implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.setUpBtn(this.expandButton, this.expandTextKey);
+    this.setUpBtn(this.expandButton, this.expandTextKey());
     this.renderer.listen(this.expandButton, "click", () => {
       this.shouldTruncate.set(false);
     });
-    if (this.reTruncate) {
-      this.setUpBtn(this.truncateButton, this.truncateTextKey);
+    if (this.reTruncate()) {
+      this.setUpBtn(this.truncateButton, this.truncateTextKey());
       this.renderer.listen(this.truncateButton, "click", () => {
         this.shouldTruncate.set(true);
       });
@@ -131,7 +131,7 @@ export class TruncatableDirective implements OnInit, AfterViewInit, OnDestroy {
     this.renderer.setStyle(element, "max-height", "unset");
     this.renderer.removeStyle(element, "overflow");
     this.renderer.setStyle(this.expandButton, "display", "none");
-    if (this.reTruncate) {
+    if (this.reTruncate()) {
       this.renderer.removeStyle(this.truncateButton, "display");
     }
   }

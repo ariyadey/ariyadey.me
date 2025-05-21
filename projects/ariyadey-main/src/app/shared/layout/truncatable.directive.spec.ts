@@ -1,4 +1,4 @@
-import { TruncatableDirective } from "@main/shared/truncatable.directive";
+import { TruncatableDirective } from "@main/shared/layout/truncatable.directive";
 
 describe("TruncatableDirective", () => {
   it("should create an instance", () => {
