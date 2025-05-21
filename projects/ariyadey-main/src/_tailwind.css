@@ -59,6 +59,9 @@
   --radius-md: var(--mat-sys-corner-medium);
   --radius-lg: var(--mat-sys-corner-large);
   --radius-xl: var(--mat-sys-corner-extra-large);
+  --radius-2xl: initial;
+  --radius-3xl: initial;
+  --radius-4xl: initial;
   --radius-full: var(--mat-sys-corner-full);
 }
 
