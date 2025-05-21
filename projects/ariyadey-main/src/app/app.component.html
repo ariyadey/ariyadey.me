@@ -27,22 +27,24 @@
         }
       </mat-nav-list>
     } @else {
-      <div cdkMenu class="font-body-md flex-col items-center gap-7">
+      <menu class="font-body-md flex flex-col items-center gap-7" cdkMenu>
         @for (menuItem of menu(); track $index) {
-          <a
-            class="flex cursor-pointer flex-col items-center hover:font-bold"
-            [routerLink]=""
-            [fragment]="menuItem.fragment"
-            [scroll]="menuItem.fragment"
-            cdkMenuItem
-          >
-            <button mat-icon-button>
-              <mat-icon [fontIcon]="menuItem.iconName" />
-            </button>
-            <span>{{ "menu." + menuItem.titleKey | i18n }}</span>
-          </a>
+          <li>
+            <a
+              class="flex cursor-pointer flex-col items-center hover:font-bold"
+              [routerLink]=""
+              [fragment]="menuItem.fragment"
+              [scroll]="menuItem.fragment"
+              cdkMenuItem
+            >
+              <button mat-icon-button>
+                <mat-icon [fontIcon]="menuItem.iconName" />
+              </button>
+              <span>{{ "menu." + menuItem.titleKey | i18n }}</span>
+            </a>
+          </li>
         }
-      </div>
+      </menu>
     }
 
     <mat-toolbar
