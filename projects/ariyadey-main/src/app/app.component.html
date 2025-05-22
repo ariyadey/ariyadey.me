@@ -100,10 +100,12 @@
         <ng-container *ngTemplateOutlet="language" />
       </mat-toolbar>
     }
-    <app-home class="mt-14 inline-block w-full px-2 sm:mt-16 md:mt-4" />
-    <mat-divider class="mx-4! mt-6!" />
-    <footer class="text-on-surface-variant py-2 ps-4">
-      {{ "footer.copyright" | i18n }}
+    <app-home class="mt-14 mb-10 inline-block w-full px-2 sm:mt-16 md:mt-4" />
+    <footer class="px-4">
+      <mat-divider />
+      <p class="text-on-surface-variant py-2">
+        {{ "footer.copyright" | i18n }}
+      </p>
     </footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
