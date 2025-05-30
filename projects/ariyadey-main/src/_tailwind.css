@@ -46,12 +46,12 @@
   --breakpoint-xl: 1920px;
   --breakpoint-2xl: initial;
   /* ELEVATION */
-  --shadow-0: var(--mat-app-elevation-shadow-level-0);
-  --shadow-1: var(--mat-app-elevation-shadow-level-1);
-  --shadow-2: var(--mat-app-elevation-shadow-level-2);
-  --shadow-3: var(--mat-app-elevation-shadow-level-3);
-  --shadow-4: var(--mat-app-elevation-shadow-level-4);
-  --shadow-5: var(--mat-app-elevation-shadow-level-5);
+  --shadow-0: var(--mat-sys-level0);
+  --shadow-1: var(--mat-sys-level1);
+  --shadow-2: var(--mat-sys-level2);
+  --shadow-3: var(--mat-sys-level3);
+  --shadow-4: var(--mat-sys-level4);
+  --shadow-5: var(--mat-sys-level5);
   /* CORNERS */
   --radius-none: var(--mat-sys-corner-none);
   --radius-xs: var(--mat-sys-corner-extra-small);
