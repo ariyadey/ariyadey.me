@@ -9,7 +9,7 @@
           <span class="font-title-md">{{ "skill.category." + skills.key | i18n }}</span>
           <mat-chip-set matListItemLine>
             @for (skill of skills.value; track skill) {
-              <mat-chip>{{ "skill.title." + skill | i18n }}</mat-chip>
+              <mat-chip disableRipple>{{ "skill.title." + skill | i18n }}</mat-chip>
             }
           </mat-chip-set>
         </li>

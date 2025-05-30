@@ -19,7 +19,7 @@
           <p>{{ "me.project." + project.description + ".description" | i18n }}</p>
           <mat-chip-set>
             @for (skill of project.skills; track skill) {
-              <mat-chip>{{ "skill.title." + skill | i18n }}</mat-chip>
+              <mat-chip disableRipple>{{ "skill.title." + skill | i18n }}</mat-chip>
             }
           </mat-chip-set>
         </li>

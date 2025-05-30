@@ -47,7 +47,7 @@
               </p>
               <mat-chip-set>
                 @for (tech of experience.skills; track tech) {
-                  <mat-chip>{{ "skill.title." + tech | i18n }}</mat-chip>
+                  <mat-chip disableRipple>{{ "skill.title." + tech | i18n }}</mat-chip>
                 }
               </mat-chip-set>
             </div>
