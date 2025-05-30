@@ -4,7 +4,7 @@ import {
   inject,
   isDevMode,
   provideAppInitializer,
-  provideExperimentalZonelessChangeDetection,
+  provideZonelessChangeDetection,
 } from "@angular/core";
 import { MAT_CARD_CONFIG, MatCardConfig } from "@angular/material/card";
 import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
@@ -26,7 +26,7 @@ export const appConfig: ApplicationConfig = {
         }),
       );
     }),
-    provideExperimentalZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     provideRouter(
       routes,
       withRouterConfig({
