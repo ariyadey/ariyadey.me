@@ -1,18 +1,11 @@
 <mat-card class="relative overflow-hidden [--mat-card-elevated-container-color:transparent]">
   <ng-container *ngTemplateOutlet="background" />
-  <img alt="Avatar" class="sm:hidden" mat-card-image src="{{ mainInfo.avatarPath | imgResolve }}" />
-  <mat-card-header>
+  <img alt="Avatar" class="sm:hidden" src="{{ mainInfo.avatarPath | imgResolve }}" />
+  <mat-card-header class="sm:py-4! md:py-10!">
     <mat-card-title-group class="sm:items-center sm:justify-around!">
       <img
         alt="Avatar"
-        class="hidden rounded-t-full sm:block md:hidden"
-        mat-card-xl-image
-        src="{{ mainInfo.avatarPath | imgResolve }}"
-      />
-      <img
-        alt="Avatar"
-        class="hidden rounded-t-full md:block"
-        mat-card-image
+        class="shadow-5! hidden rounded-t-[1024px]! rounded-b-full! sm:block sm:w-60 md:w-auto"
         src="{{ mainInfo.avatarPath | imgResolve }}"
       />
       <mat-card-title>
