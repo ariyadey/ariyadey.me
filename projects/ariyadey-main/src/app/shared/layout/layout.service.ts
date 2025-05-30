@@ -1,7 +1,7 @@
 import { BreakpointObserver } from "@angular/cdk/layout";
 import { inject, Injectable } from "@angular/core";
 import { toSignal } from "@angular/core/rxjs-interop";
-import { combineLatest, debounceTime, map, Observable } from "rxjs";
+import { combineLatest, map, Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -22,7 +22,7 @@ export class LayoutService {
       lg: this.breakPointObserver
         .observe("(min-width: 1280px)")
         .pipe(map((result) => result.matches)),
-    }).pipe(debounceTime(250)),
+    }),
     { initialValue: { xs: false, sm: false, md: false, lg: false } },
   );
 

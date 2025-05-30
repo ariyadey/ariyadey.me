@@ -14,7 +14,7 @@ export const ARIYA_MOHEB: Person = {
     lastName: "me.last-name",
     headline: "me.headline",
     description: "me.description",
-    avatarPath: "avatar.jpg",
+    avatarPath: "avatar.avif",
     resumePath: "resume.pdf",
   },
   skills: {

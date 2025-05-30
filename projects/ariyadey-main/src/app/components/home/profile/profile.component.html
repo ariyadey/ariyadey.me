@@ -1,13 +1,19 @@
 <mat-card class="relative overflow-hidden [--mat-card-elevated-container-color:transparent]">
   <ng-container *ngTemplateOutlet="background" />
-  <img alt="Avatar" class="sm:hidden" src="{{ mainInfo.avatarPath | imgResolve }}" />
+  @if (!layout().sm) {
+    <div class="relative aspect-square">
+      <img alt="Avatar" ngSrc="{{ mainInfo.avatarPath | imgResolve }}" fill priority />
+    </div>
+  }
   <mat-card-header class="sm:py-4! md:py-10!">
     <mat-card-title-group class="sm:items-center sm:justify-around!">
-      <img
-        alt="Avatar"
-        class="shadow-5! hidden rounded-t-[1024px]! rounded-b-full! sm:block sm:w-60 md:w-auto"
-        src="{{ mainInfo.avatarPath | imgResolve }}"
-      />
+      @if (layout().sm) {
+        <div
+          class="shadow-5! relative aspect-square w-72 overflow-hidden rounded-t-[1024px]! rounded-b-full! md:w-xl"
+        >
+          <img alt="Avatar" ngSrc="{{ mainInfo.avatarPath | imgResolve }}" fill priority />
+        </div>
+      }
       <mat-card-title>
         <span class="font-display-md sm:font-display-lg"
         >{{ mainInfo.firstName | i18n }} {{ mainInfo.lastName | i18n }}</span
