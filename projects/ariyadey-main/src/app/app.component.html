@@ -84,15 +84,19 @@
           <button (click)="drawer.toggle()" mat-icon-button>
             <mat-icon fontIcon="menu" />
           </button>
-          @if (layout().sm) {
+          @if (layout().xs) {
+            <a mat-icon-button routerLink="/" fragment="profile" scroll="profile">
+              <mat-icon class="flex! h-6! w-6! items-center text-2xl!" fontIcon="terminal" />
+            </a>
+          } @else if (layout().sm) {
             <a
-              (click)="drawer.close()"
-              class="font-title-md!"
+              class="font-title-md! gap-2"
               mat-button
-              routerLink=""
+              routerLink="/"
               fragment="profile"
               scroll="profile"
             >
+              <mat-icon class="flex! h-6! w-6! items-center text-2xl!" fontIcon="terminal" />
               {{ "me.full-name" | i18n }}
             </a>
           }
