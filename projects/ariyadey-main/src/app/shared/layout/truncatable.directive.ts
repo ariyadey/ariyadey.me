@@ -1,8 +1,8 @@
-import { DOCUMENT } from "@angular/common";
 import {
   AfterViewInit,
   booleanAttribute,
   Directive,
+  DOCUMENT,
   effect,
   ElementRef,
   HostListener,

@@ -1,5 +1,4 @@
-import { DOCUMENT } from "@angular/common";
-import { Directive, HostListener, inject, input } from "@angular/core";
+import { Directive, DOCUMENT, HostListener, inject, input } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 /**

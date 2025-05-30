@@ -1,5 +1,4 @@
-import { DOCUMENT } from "@angular/common";
-import { effect, inject, Injectable, RendererFactory2, signal } from "@angular/core";
+import { DOCUMENT, effect, inject, Injectable, RendererFactory2, signal } from "@angular/core";
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import { LocalStorageService } from "@main/shared/persistance/local-storage.service";

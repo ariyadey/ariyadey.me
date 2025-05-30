@@ -1,5 +1,4 @@
-import { DOCUMENT } from "@angular/common";
-import { inject, Injectable, RendererFactory2 } from "@angular/core";
+import { DOCUMENT, inject, Injectable, RendererFactory2 } from "@angular/core";
 import { getBrowserLang, TranslocoService } from "@jsverse/transloco";
 import { Language, LanguageDirection } from "@main/shared/i18n/language";
 import { LocalStorageService } from "@main/shared/persistance/local-storage.service";
