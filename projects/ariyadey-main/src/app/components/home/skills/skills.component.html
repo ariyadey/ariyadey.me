@@ -5,17 +5,19 @@
   <mat-card-content>
     <ul class="flex flex-col gap-5 pt-5 md:grid md:grid-cols-2">
       @for (skills of categorizedSkills | keyvalue: compareFn; track skills; let isLast = $last) {
-        <li class="flex flex-col gap-1">
-          <span class="font-title-md">{{ "skill.category." + skills.key | i18n }}</span>
-          <mat-chip-set matListItemLine>
-            @for (skill of skills.value; track skill) {
-              <mat-chip disableRipple>{{ "skill.title." + skill | i18n }}</mat-chip>
-            }
-          </mat-chip-set>
+        <li class="flex flex-col gap-5">
+          <div class="flex flex-col gap-1">
+            <span class="font-title-md">{{ "skill.category." + skills.key | i18n }}</span>
+            <mat-chip-set matListItemLine>
+              @for (skill of skills.value; track skill) {
+                <mat-chip disableRipple>{{ "skill.title." + skill | i18n }}</mat-chip>
+              }
+            </mat-chip-set>
+          </div>
+          @if (!isLast && layout().xs && !layout().md) {
+            <mat-divider />
+          }
         </li>
-        @if (!isLast && !layout().md) {
-          <mat-divider />
-        }
       }
     </ul>
   </mat-card-content>

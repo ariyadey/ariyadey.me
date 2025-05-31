@@ -1,6 +1,6 @@
 <mat-card class="relative overflow-hidden [--mat-card-elevated-container-color:transparent]">
   <ng-container *ngTemplateOutlet="background" />
-  @if (!layout().sm) {
+  @if (layout().xs && !layout().sm) {
     <div class="relative aspect-square">
       <img alt="Avatar" ngSrc="{{ mainInfo.avatarPath | imgResolve }}" fill priority />
     </div>

@@ -5,27 +5,35 @@
   <mat-card-content>
     <ul class="flex flex-col gap-5 pt-5">
       @for (project of projects; track project; let isLast = $last) {
-        <li>
-          <div class="flex items-center gap-2">
-            <h4 class="font-title-lg">{{ "me.project." + project.title + ".title" | i18n }}</h4>
-            <a [href]="project.link" rel="noopener noreferer" target="_blank" mat-icon-button>
-              <mat-icon class="mat-icon-rtl-mirror" fontIcon="open_in_new" />
-            </a>
+        <li class="flex flex-col gap-5">
+          <div>
+            <div class="flex items-center gap-2">
+              <h4 class="font-title-lg">{{ "me.project." + project.title + ".title" | i18n }}</h4>
+              <a
+                [href]="project.link"
+                aria-label="View project"
+                rel="noopener noreferer"
+                target="_blank"
+                mat-icon-button
+              >
+                <mat-icon class="mat-icon-rtl-mirror" fontIcon="open_in_new" />
+              </a>
+            </div>
+            <div class="font-label-lg text-on-surface-variant flex items-center gap-1">
+              <mat-icon fontIcon="date_range" inline />
+              <span>{{ project.timeFrame.start | dateRange: project.timeFrame.end }}</span>
+            </div>
+            <p>{{ "me.project." + project.description + ".description" | i18n }}</p>
+            <mat-chip-set>
+              @for (skill of project.skills; track skill) {
+                <mat-chip disableRipple>{{ "skill.title." + skill | i18n }}</mat-chip>
+              }
+            </mat-chip-set>
           </div>
-          <div class="font-label-lg text-on-surface-variant flex items-center gap-1">
-            <mat-icon fontIcon="date_range" inline />
-            <span>{{ project.timeFrame.start | dateRange: project.timeFrame.end }}</span>
-          </div>
-          <p>{{ "me.project." + project.description + ".description" | i18n }}</p>
-          <mat-chip-set>
-            @for (skill of project.skills; track skill) {
-              <mat-chip disableRipple>{{ "skill.title." + skill | i18n }}</mat-chip>
-            }
-          </mat-chip-set>
+          @if (!isLast) {
+            <mat-divider />
+          }
         </li>
-        @if (!isLast) {
-          <mat-divider />
-        }
       }
     </ul>
   </mat-card-content>

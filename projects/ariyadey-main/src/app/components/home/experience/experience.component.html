@@ -5,57 +5,61 @@
   <mat-card-content>
     <ul class="flex flex-col gap-5 pt-5">
       @for (experience of experiences; track experience; let isLast = $last) {
-        <li class="flex flex-col gap-2">
-          <a
-            class="flex w-fit gap-3"
-            href="{{ experience.link }}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              class="border-outline size-16 rounded-md border"
-              [ngSrc]="experience.companyLogoPath | imgResolve"
-              [alt]="'company.' + experience.companyName | i18n"
-              height="64"
-              width="64"
-            />
-            <div class="flex flex-col justify-around">
-              <span class="font-title-lg">{{ "job.title." + experience.title | i18n }}</span>
-              <div class="font-title-md flex gap-1">
-                <h5>{{ "company." + experience.companyName | i18n }}</h5>
-                <span>·</span>
-                <h5>{{ "employment.type." + experience.employmentType | i18n }}</h5>
+        <li class="flex flex-col gap-5">
+          <div class="flex flex-col gap-2">
+            <a
+              class="flex w-fit gap-3"
+              href="{{ experience.link }}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                class="border-outline size-16 rounded-md border"
+                [ngSrc]="experience.companyLogoPath | imgResolve"
+                [alt]="'company.' + experience.companyName | i18n"
+                height="64"
+                width="64"
+              />
+              <div class="flex flex-col justify-around">
+                <span class="font-title-lg">{{ "job.title." + experience.title | i18n }}</span>
+                <div class="font-title-md flex gap-1">
+                  <h5>{{ "company." + experience.companyName | i18n }}</h5>
+                  <span>·</span>
+                  <h5>{{ "employment.type." + experience.employmentType | i18n }}</h5>
+                </div>
               </div>
-            </div>
-          </a>
-          <div class="flex flex-col gap-1">
-            <div class="font-label-lg text-on-surface-variant">
-              <div class="flex items-center gap-1">
-                <mat-icon fontIcon="date_range" inline />
-                <span>{{ experience.timeFrame.start | dateRange: experience.timeFrame.end }}</span>
+            </a>
+            <div class="flex flex-col gap-1">
+              <div class="font-label-lg text-on-surface-variant">
+                <div class="flex items-center gap-1">
+                  <mat-icon fontIcon="date_range" inline />
+                  <span>{{
+                      experience.timeFrame.start | dateRange: experience.timeFrame.end
+                    }}</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <mat-icon inline fontIcon="place" />
+                  <div>{{ "location." + experience.location | i18n }}</div>
+                  <span>•</span>
+                  <div>{{ "employment.location.type." + experience.locationType | i18n }}</div>
+                </div>
               </div>
-              <div class="flex items-center gap-1">
-                <mat-icon inline fontIcon="place" />
-                <div>{{ "location." + experience.location | i18n }}</div>
-                <span>•</span>
-                <div>{{ "employment.location.type." + experience.locationType | i18n }}</div>
+              <div>
+                <p class="max-h-24" truncate reTruncate="false">
+                  {{ "me.experience." + experience.description + ".description" | i18n }}
+                </p>
+                <mat-chip-set>
+                  @for (tech of experience.skills; track tech) {
+                    <mat-chip disableRipple>{{ "skill.title." + tech | i18n }}</mat-chip>
+                  }
+                </mat-chip-set>
               </div>
-            </div>
-            <div>
-              <p class="max-h-24" truncate reTruncate="false">
-                {{ "me.experience." + experience.description + ".description" | i18n }}
-              </p>
-              <mat-chip-set>
-                @for (tech of experience.skills; track tech) {
-                  <mat-chip disableRipple>{{ "skill.title." + tech | i18n }}</mat-chip>
-                }
-              </mat-chip-set>
             </div>
           </div>
+          @if (!isLast) {
+            <mat-divider />
+          }
         </li>
-        @if (!isLast) {
-          <mat-divider />
-        }
       }
     </ul>
   </mat-card-content>
