@@ -22,7 +22,14 @@ import { ThemeService } from "@main/shared/theming/theme.service";
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styles: ``,
+  styles: `
+    .desktop-menu-item {
+      @apply [--mat-button-text-container-height:60px];
+      @apply [--mat-button-text-container-shape:var(--mat-sys-corner-medium)];
+      @apply [--mat-button-text-label-text-color:var(--mat-sys-on-surface-variant)];
+      @apply [--mat-button-text-state-layer-color:var(--mat-sys-on-surface-variant)];
+    }
+  `,
   imports: [
     MatSidenavContainer,
     MatToolbar,
