@@ -12,7 +12,7 @@
     <meta content="Ariya Moheb - Full-Stack Software Engineer" property="og:title" />
     <meta content="website" property="og:type" />
     <meta content="https://ariyadey.github.io/" property="og:url" />
-    <meta content="https://ariyadey.github.io/img/avatar.avif" property="og:image" />
+    <meta content="https://ariyadey.github.io/img/avatar-1000w.avif" property="og:image" />
     <meta content="1000" property="og:image:width" />
     <meta content="1000" property="og:image:height" />
     <meta content="Ariya Moheb's professional avatar" property="og:image:alt" />
@@ -26,6 +26,14 @@
     <link href="favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
     <meta content="Ariya" name="apple-mobile-web-app-title" />
     <link href="favicon/site.webmanifest" rel="manifest" />
+    <!-- Preload the LCP image with a high fetchpriority so it starts loading with the stylesheet. -->
+    <link
+      as="image"
+      fetchpriority="high"
+      href="img/avatar-800w.avif"
+      rel="preload"
+      type="image/avif"
+    />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
     <link
