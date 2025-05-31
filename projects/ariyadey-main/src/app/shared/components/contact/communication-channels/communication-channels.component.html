@@ -3,7 +3,7 @@
 >
   @if (showEmail()) {
     <li>
-      <a href="mailto:{{ contacts.email }}" mat-icon-button target="_blank">
+      <a aria-label="Send an email" href="mailto:{{ contacts.email }}" mat-icon-button target="_blank">
         <mat-icon class="h-auto! w-auto!" svgIcon="email" />
       </a>
     </li>
