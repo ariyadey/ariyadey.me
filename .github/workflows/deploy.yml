@@ -1,42 +1,36 @@
 name: Deploy to GitHub Pages
-
 on:
   push:
     branches:
-      - master
-
+      - main
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest # The type of virtual machine to run the job on
-
+    runs-on: ubuntu-latest
     permissions: write-all
 
     steps:
+
       - name: Checkout code
-        uses: actions/checkout@v4 # Checks out your repository code
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "23" # Use a stable LTS Node.js version (e.g., 20)
+          node-version: "22"
 
+      # Corepack enabled for Yarn 2+ support
       - name: Enable Corepack
-        run: corepack enable # Enable Corepack for Yarn 2+ support
+        run: corepack enable
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile # Use yarn install with frozen-lockfile for consistency
+        run: yarn install --frozen-lockfile
 
       - name: Build Angular application
-        run: npx ng build --configuration production --base-href=/
-        # This is your build command. Ensure baseHref is set to '/' for User Pages.
-        # The deployment action will automatically pick up the 'ariyadey-main' path.
+        run: npx ng build --configuration production
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3 # Popular action for deploying to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # Automatically provided token for authentication
-          publish_dir: ./dist/ariyadey-main/browser # The directory containing your built site
-          publish_branch: gh-pages # The branch to push your built site to (must match your GH Pages settings)
-          # If you were deploying a Project Page (e.g., /repo-name/), you'd typically need
-          # to add the base_url here: base_url: /<your-repo-name>/
-          # But for User Pages (ariyadey.github.io), it's not needed as baseHref is /
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/ariyadey-main/browser
+          publish_branch: gh-pages
