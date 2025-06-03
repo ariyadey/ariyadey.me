@@ -77,7 +77,7 @@
               "projects/ariyadey-main/**/*.ts",
               "projects/ariyadey-main/**/*.html"
             ],
-            "eslintConfig": "projects/ariyadey-main/eslint.config.js"
+            "eslintConfig": "eslint.config.js"
           }
         },
         "test": {
