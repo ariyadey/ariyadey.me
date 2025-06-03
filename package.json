@@ -7,10 +7,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "lint": "ng lint && stylelint **/*.{css,scss}",
+    "lint": "ng lint",
     "test": "ng test",
     "eslint-prettier-check": "eslint-config-prettier projects/ariyadey-main/src/main.ts",
-    "stylelint": "stylelint **/*.{css,scss}"
   },
   "dependencies": {
     "@angular/animations": "^20.0.0",
@@ -48,9 +47,6 @@
     "prettier-plugin-organize-attributes": "^1.0.0",
     "prettier-plugin-organize-imports": "^4.1.0",
     "prettier-plugin-tailwindcss": "^0.6.11",
-    "stylelint": "^16.19.1",
-    "stylelint-config-recess-order": "^6.0.0",
-    "stylelint-config-standard-scss": "^15.0.0",
     "tailwindcss": "^4.1.7",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.32.1"
