@@ -13,7 +13,7 @@ import {
   Renderer2,
   signal
 } from "@angular/core";
-import { I18nService } from "ariyadey-main/src/app/shared/i18n/i18n.service";
+import { I18nService } from "@main/shared/i18n/i18n.service";
 import { timer } from "rxjs";
 
 /**

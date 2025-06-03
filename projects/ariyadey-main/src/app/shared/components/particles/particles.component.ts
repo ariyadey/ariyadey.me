@@ -12,15 +12,14 @@ import {
 } from "@angular/core";
 import { ThemeService } from "@main/shared/theming/theme.service";
 
-// Interface for particle objects
-interface Particle {
-  velocityX: number;
-  velocityY: number;
-  x: number;
-  y: number;
+type Particle = {
   originalX: number;
   originalY: number;
-}
+  currentX: number;
+  currentY: number;
+  velocityX: number;
+  velocityY: number;
+};
 
 @Component({
   selector: "app-particles",
@@ -126,8 +125,8 @@ export class ParticlesComponent implements AfterViewInit, OnDestroy {
       return {
         velocityX: 0,
         velocityY: 0,
-        x: particleX,
-        y: particleY,
+        currentX: particleX,
+        currentY: particleY,
         originalX: particleX,
         originalY: particleY,
       };
@@ -168,8 +167,8 @@ export class ParticlesComponent implements AfterViewInit, OnDestroy {
       const p = this.particles[i];
 
       // Use the calculated currentTargetX and currentTargetY for repulsion
-      const dx = currentTargetX - p.x;
-      const dy = currentTargetY - p.y;
+      const dx = currentTargetX - p.currentX;
+      const dy = currentTargetY - p.currentY;
 
       // const dx = this.mx - p.x;
       // const dy = this.my - p.y;
@@ -189,8 +188,8 @@ export class ParticlesComponent implements AfterViewInit, OnDestroy {
       p.velocityX += randomForceX; // Apply random force to velocity
       p.velocityY += randomForceY; // Apply random force to velocity
 
-      p.x += (p.velocityX *= this.drag()) + (p.originalX - p.x) * this.ease();
-      p.y += (p.velocityY *= this.drag()) + (p.originalY - p.y) * this.ease();
+      p.currentX += (p.velocityX *= this.drag()) + (p.originalX - p.currentX) * this.ease();
+      p.currentY += (p.velocityY *= this.drag()) + (p.originalY - p.currentY) * this.ease();
     }
   }
 
@@ -204,8 +203,8 @@ export class ParticlesComponent implements AfterViewInit, OnDestroy {
 
     for (let i = 0; i < this.NUM_PARTICLES(); i++) {
       const p = this.particles[i];
-      const px = Math.round(p.x);
-      const py = Math.round(p.y);
+      const px = Math.round(p.currentX);
+      const py = Math.round(p.currentY);
       const n = (px + py * this.canvasWidth()) * 4; // Calculate index in data array
 
       // Add bound check for safety
