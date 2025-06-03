@@ -12,7 +12,7 @@
     "watch": "ng build --watch --configuration development",
     "lint": "ng lint",
     "test": "ng test",
-    "eslint-prettier-check": "eslint-config-prettier projects/ariyadey-main/src/main.ts",
+    "eslint-prettier-check": "eslint-config-prettier projects/**/*.{ts,html}"
   },
   "dependencies": {
     "@angular/animations": "^20.0.0",
