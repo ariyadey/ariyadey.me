@@ -2,6 +2,9 @@
   "name": "ariyadey",
   "private": true,
   "packageManager": "yarn@4.9.1",
+  "browserslist": [
+    "extends browserslist-config-baseline"
+  ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -39,6 +42,7 @@
     "@types/luxon": "^3.6.2",
     "@web/test-runner": "^0.20.1",
     "angular-eslint": "^19.4.0",
+    "browserslist-config-baseline": "^0.4.0",
     "eslint": "^9.27.0",
     "eslint-config-prettier": "^10.1.5",
     "jasmine-core": "^5.7.1",
