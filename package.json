@@ -1,7 +1,7 @@
 {
   "name": "ariyadey",
   "private": true,
-  "packageManager": "yarn@4.4.0",
+  "packageManager": "yarn@4.9.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
