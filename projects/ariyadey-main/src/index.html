@@ -1,6 +1,33 @@
 <!doctype html>
 <html lang="en" style="height: 100%">
   <head>
+
+    <!-- Preload the LCP image with a high fetching priority to start loading with the stylesheet. -->
+    <!--suppress HtmlUnknownAttribute -->
+    <link
+      as="image"
+      fetchpriority="high"
+      href="img/avatar-800w.avif"
+      rel="preload"
+      type="image/avif"
+    />
+
+    <!-- Google tag (gtag.js) -->
+    <!--suppress HtmlUnknownAttribute -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PD2Y9YTRBM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag("js", new Date());
+      // noinspection SpellCheckingInspection
+      gtag("config", "G-PD2Y9YTRBM");
+    </script>
+
+    <!-- Basic -->
     <meta charset="utf-8" />
     <title>Ariya Moheb</title>
     <base href="/" />
@@ -9,6 +36,8 @@
       content="Results-oriented Software Engineer with 5+ years of experience in Java, Spring, and Angular. Specializing in enterprise and web app development, I focus on performance optimization and high-quality product delivery."
       name="description"
     />
+
+    <!-- Open Graph -->
     <meta content="Ariya Moheb - Full-Stack Software Engineer" property="og:title" />
     <meta content="website" property="og:type" />
     <meta content="https://ariyadey.github.io/" property="og:url" />
@@ -20,20 +49,16 @@
       content="Results-oriented Software Engineer with 5+ years of experience in Java, Spring, and Angular. Specializing in enterprise and web app development, I focus on performance optimization and high-quality product delivery."
       property="og:description"
     />
+
+    <!-- Favicons -->
     <link href="favicon/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png" />
     <link href="favicon/favicon.svg" rel="icon" type="image/svg+xml" />
     <link href="favicon/favicon.ico" rel="shortcut icon" />
     <link href="favicon/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180" />
     <meta content="Ariya" name="apple-mobile-web-app-title" />
     <link href="favicon/site.webmanifest" rel="manifest" />
-    <!-- Preload the LCP image with a high fetchpriority so it starts loading with the stylesheet. -->
-    <link
-      as="image"
-      fetchpriority="high"
-      href="img/avatar-800w.avif"
-      rel="preload"
-      type="image/avif"
-    />
+
+    <!-- Google Assets -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect" />
     <link
@@ -44,6 +69,8 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined"
       rel="stylesheet"
     />
+
+    <!-- Splash Screen Styles -->
     <style>
       app-root:empty {
         display: none;
@@ -119,19 +146,6 @@
       }
     </style>
   </head>
-
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PD2Y9YTRBM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag("js", new Date());
-    gtag("config", "G-PD2Y9YTRBM");
-  </script>
 
   <body style="height: 100%; margin: 0">
     <div id="splash-screen">
