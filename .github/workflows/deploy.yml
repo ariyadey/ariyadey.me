@@ -9,7 +9,6 @@ jobs:
     permissions: write-all
 
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -27,6 +26,9 @@ jobs:
 
       - name: Build Angular application
         run: npx ng build --configuration production
+
+      - name: Create 404.html for SPA routing
+        run: cp ./dist/ariyadey-main/browser/index.html ./dist/ariyadey-main/browser/404.html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
