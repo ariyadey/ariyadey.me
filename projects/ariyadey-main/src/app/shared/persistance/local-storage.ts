@@ -4,7 +4,7 @@ import { PersistKey } from "@main/shared/persistance/persist-key";
 @Injectable({
   providedIn: "root",
 })
-export class LocalStorageService {
+export class LocalStorage {
   private readonly localStorage = inject(DOCUMENT).defaultView!.localStorage;
 
   get<T>(key: PersistKey): T | null {

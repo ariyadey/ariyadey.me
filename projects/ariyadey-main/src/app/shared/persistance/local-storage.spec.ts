@@ -1,12 +1,12 @@
 import { TestBed } from "@angular/core/testing";
-import { LocalStorageService } from "@main/shared/persistance/local-storage.service";
+import { LocalStorage } from "@main/shared/persistance/local-storage";
 
 describe("LocalStorageService", () => {
-  let service: LocalStorageService;
+  let service: LocalStorage;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LocalStorageService);
+    service = TestBed.inject(LocalStorage);
   });
 
   it("should be created", () => {

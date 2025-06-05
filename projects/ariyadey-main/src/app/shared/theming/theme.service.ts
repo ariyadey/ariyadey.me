@@ -1,7 +1,7 @@
 import { DOCUMENT, effect, inject, Injectable, RendererFactory2, signal } from "@angular/core";
 import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
-import { LocalStorageService } from "@main/shared/persistance/local-storage.service";
+import { LocalStorage } from "@main/shared/persistance/local-storage";
 import { PersistKey } from "@main/shared/persistance/persist-key";
 import { DEFAULT_THEME, Theme } from "@main/shared/theming/theme";
 
@@ -11,11 +11,11 @@ import { DEFAULT_THEME, Theme } from "@main/shared/theming/theme";
 export class ThemeService {
   private readonly document = inject(DOCUMENT);
   private readonly renderer = inject(RendererFactory2).createRenderer(null, null);
-  private readonly localStorageService = inject(LocalStorageService);
+  private readonly localStorage = inject(LocalStorage);
   private readonly matIconRegistry = inject(MatIconRegistry);
   private readonly domSanitizer = inject(DomSanitizer);
   private readonly _currentTheme = signal(
-    this.localStorageService.get<Theme>(PersistKey.THEME) ?? DEFAULT_THEME,
+    this.localStorage.get<Theme>(PersistKey.THEME) ?? DEFAULT_THEME,
   );
 
   constructor() {
@@ -32,14 +32,14 @@ export class ThemeService {
   }
 
   private onThemeChange() {
-    const previousTheme = this.localStorageService.get<Theme>(PersistKey.THEME);
+    const previousTheme = this.localStorage.get<Theme>(PersistKey.THEME);
     if (previousTheme != null) {
       this.renderer.removeClass(
         this.document.documentElement,
         `${previousTheme.name}-${previousTheme.variant}-theme`,
       );
     }
-    this.localStorageService.set(PersistKey.THEME, this._currentTheme());
+    this.localStorage.set(PersistKey.THEME, this._currentTheme());
     if (this._currentTheme().variant !== "AUTO") {
       this.renderer.addClass(
         this.document.documentElement,
