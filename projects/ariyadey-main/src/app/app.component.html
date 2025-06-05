@@ -109,7 +109,9 @@
         <ng-container *ngTemplateOutlet="language" />
       </mat-toolbar>
     }
-    <app-home class="mt-14 mb-10 inline-block w-full px-2 sm:mt-16 md:mt-4" />
+    <div class="mt-14 mb-10 inline-block w-full px-2 sm:mt-16 md:mt-4">
+      <router-outlet />
+    </div>
     <footer class="px-4">
       <mat-divider />
       <p class="text-on-surface-variant py-2">

@@ -46,7 +46,6 @@ import { ThemeService } from "@main/shared/theming/theme.service";
     MatButtonToggleGroup,
     MatButtonToggle,
     I18nPipe,
-    HomeComponent,
     ScrollableDirective,
     MatDivider,
     CdkMenu,
@@ -54,6 +53,7 @@ import { ThemeService } from "@main/shared/theming/theme.service";
     NgTemplateOutlet,
     MatToolbarRow,
     MatAnchor,
+    RouterOutlet,
   ],
 })
 export class AppComponent {

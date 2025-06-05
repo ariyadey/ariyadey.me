@@ -1,8 +1,11 @@
 import { DOCUMENT, inject, Injectable, RendererFactory2 } from "@angular/core";
 import { getBrowserLang, TranslocoService } from "@jsverse/transloco";
-import { Language, LanguageDirection } from "@main/shared/i18n/language";
-import { LocalStorageService } from "@main/shared/persistance/local-storage.service";
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from "@main/shared/i18n/i18n.config";
+import { Language, LANGUAGE_DIRECTION_MAP } from "@main/shared/i18n/language";
+import { LocalStorage } from "@main/shared/persistance/local-storage";
 import { PersistKey } from "@main/shared/persistance/persist-key";
+import { UrlUtils } from "@main/shared/resource/url-utils";
+import { forkJoin } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -11,17 +14,22 @@ export class I18nService {
   private readonly document = inject(DOCUMENT);
   private readonly renderer = inject(RendererFactory2).createRenderer(null, null);
   private readonly translator = inject(TranslocoService);
-  private readonly localStorageService = inject(LocalStorageService);
+  private readonly localStorage = inject(LocalStorage);
+  private readonly urlUtils = new UrlUtils();
   private readonly language = this.getInitialLanguage();
 
   constructor() {
-    this.localStorageService.set(PersistKey.LANGUAGE, this.language);
+    this.localStorage.set(PersistKey.LANGUAGE, this.language);
     this.translator.setActiveLang(this.language);
     this.renderer.setAttribute(
       this.document.documentElement,
       "dir",
-      LanguageDirection[this.language],
+      LANGUAGE_DIRECTION_MAP[this.language],
     );
+  }
+
+  initialize() {
+    return forkJoin(SUPPORTED_LANGUAGES.map((lang) => this.translator.load(lang)));
   }
 
   getActiveLanguage() {
@@ -37,8 +45,9 @@ export class I18nService {
   }
 
   switchLanguage(language: Language) {
-    this.localStorageService.set(PersistKey.LANGUAGE, language);
-    this.document.location.reload();
+    this.document.location.assign(
+      [language, ...this.urlUtils.getCurrentNoLanguagePath()].join("/"),
+    );
   }
 
   translate(
@@ -49,12 +58,9 @@ export class I18nService {
   }
 
   private getInitialLanguage(): Language {
-    const browserLang = getBrowserLang() as Language;
-    return (
-      this.localStorageService.get<Language>(PersistKey.LANGUAGE) ??
-      (Object.values(Language).includes(browserLang)
-        ? browserLang
-        : (this.translator.getDefaultLang() as Language))
-    );
+    const urlLanguage = this.urlUtils.getCurrentUrlLanguage();
+    const storageLanguage = this.localStorage.get<Language>(PersistKey.LANGUAGE);
+    const browserLanguage = SUPPORTED_LANGUAGES.find((lang) => lang === getBrowserLang());
+    return urlLanguage ?? storageLanguage ?? browserLanguage ?? DEFAULT_LANGUAGE;
   }
 }

@@ -38,6 +38,6 @@ export class UrlUtils {
    * @returns An array of strings representing the path segments without the language.
    */
   getCurrentNoLanguagePath() {
-    return this.document.location.pathname.split("/").slice(1);
+    return this.document.location.pathname.split("/").slice(2);
   }
 }

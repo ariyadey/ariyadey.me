@@ -5,7 +5,7 @@ export enum Language {
   PERSIAN = "fa",
 }
 
-export const LanguageDirection: Readonly<Record<Language, Direction>> = {
+export const LANGUAGE_DIRECTION_MAP: Readonly<Record<Language, Direction>> = {
   [Language.ENGLISH]: "ltr",
   [Language.PERSIAN]: "rtl",
 };
