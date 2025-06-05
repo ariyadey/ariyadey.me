@@ -6,9 +6,9 @@ import { MatDivider } from "@angular/material/divider";
 import { MatIcon } from "@angular/material/icon";
 import { DateRangePipe } from "@main/shared/i18n/date-range.pipe";
 import { I18nPipe } from "@main/shared/i18n/i18n.pipe";
-import { ImgResolvePipe } from "@main/shared/image-resolver.pipe";
 import { TruncatableDirective } from "@main/shared/layout/truncatable.directive";
 import { PersonalInfoService } from "@main/shared/personal-info/personal-info.service";
+import { ImgResolvePipe } from "@main/shared/resource/image-resolver.pipe";
 
 @Component({
   selector: "app-experience",
