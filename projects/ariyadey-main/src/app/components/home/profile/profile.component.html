@@ -1,13 +1,13 @@
 <mat-card class="relative overflow-hidden [--mat-card-elevated-container-color:transparent]">
   <ng-container *ngTemplateOutlet="background" />
-  @if (layout().xs && !layout().sm) {
+  @if (breakpoint().xs && !breakpoint().sm) {
     <div class="relative aspect-square">
       <img alt="Avatar" ngSrc="{{ mainInfo.avatarPath | imgResolve }}" fill priority />
     </div>
   }
   <mat-card-header class="sm:py-4! md:py-10!">
     <mat-card-title-group class="sm:items-center sm:justify-around!">
-      @if (layout().sm) {
+      @if (breakpoint().sm) {
         <div
           class="shadow-5! relative aspect-square w-72 overflow-hidden rounded-t-[1024px]! rounded-b-full! md:w-xl"
         >

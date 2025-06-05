@@ -6,9 +6,9 @@ import { combineLatest, map, Observable } from "rxjs";
 @Injectable({
   providedIn: "root",
 })
-export class LayoutService {
+export class LayoutObserver {
   private readonly breakPointObserver = inject(BreakpointObserver);
-  private readonly _layout = toSignal<Layout, Layout>(
+  private readonly _breakpoint = toSignal<Layout, Layout>(
     combineLatest<Record<keyof Layout, Observable<boolean>>>({
       xs: this.breakPointObserver
         .observe("(max-width: 599.98px)")
@@ -26,8 +26,8 @@ export class LayoutService {
     { initialValue: { xs: false, sm: false, md: false, lg: false } },
   );
 
-  get layout() {
-    return this._layout;
+  get breakpoint() {
+    return this._breakpoint;
   }
 }
 

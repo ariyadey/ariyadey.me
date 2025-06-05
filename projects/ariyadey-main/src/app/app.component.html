@@ -1,11 +1,11 @@
 <mat-sidenav-container class="h-full">
   <mat-sidenav
     #drawer
-    [mode]="layout().md ? 'side' : 'push'"
-    [opened]="layout().md"
+    [mode]="breakpoint().md ? 'side' : 'push'"
+    [opened]="breakpoint().md"
     class="md:pt-4"
   >
-    @if (layout().xs && !layout().md) {
+    @if (breakpoint().xs && !breakpoint().md) {
       <mat-toolbar>
         <button (click)="drawer.close()" mat-icon-button>
           <mat-icon class="mat-icon-rtl-mirror" fontIcon="menu_open" />
@@ -52,7 +52,7 @@
         <mat-button-toggle-group
           (valueChange)="switchThemeVariant($event)"
           [value]="currentThemeVariant()"
-          [vertical]="layout().md"
+          [vertical]="breakpoint().md"
           hideSingleSelectionIndicator
         >
           <mat-button-toggle aria-label="Change theme automatically" value="AUTO">
@@ -67,7 +67,7 @@
         </mat-button-toggle-group>
       </mat-toolbar-row>
 
-      @if (layout().md) {
+      @if (breakpoint().md) {
         <mat-toolbar-row class="justify-center">
           <ng-container *ngTemplateOutlet="language" />
         </mat-toolbar-row>
@@ -76,13 +76,13 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    @if (layout().xs && !layout().md) {
+    @if (breakpoint().xs && !breakpoint().md) {
       <mat-toolbar class="fixed z-50 justify-between md:hidden!">
         <div class="flex items-center gap-2">
           <button (click)="drawer.toggle()" aria-label="Open navigation menu" mat-icon-button>
             <mat-icon fontIcon="menu" />
           </button>
-          @if (layout().xs) {
+          @if (breakpoint().xs) {
             <a
               aria-label="Go to homepage"
               mat-icon-button
@@ -92,7 +92,7 @@
             >
               <mat-icon class="flex! h-6! w-6! items-center text-2xl!" fontIcon="terminal" />
             </a>
-          } @else if (layout().sm) {
+          } @else if (breakpoint().sm) {
             <a
               class="font-title-md! gap-2"
               aria-label="Go to homepage"

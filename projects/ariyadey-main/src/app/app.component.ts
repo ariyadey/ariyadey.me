@@ -8,14 +8,14 @@ import { MatIcon } from "@angular/material/icon";
 import { MatListItem, MatListItemIcon, MatListItemTitle, MatNavList } from "@angular/material/list";
 import { MatSidenav, MatSidenavContainer, MatSidenavContent } from "@angular/material/sidenav";
 import { MatToolbar, MatToolbarRow } from "@angular/material/toolbar";
-import { RouterLink } from "@angular/router";
-import { HomeComponent } from "@main/components/home/home.component";
+import { RouterLink, RouterOutlet } from "@angular/router";
 import { MENU } from "@main/menu-item";
 import { I18nPipe } from "@main/shared/i18n/i18n.pipe";
 import { I18nService } from "@main/shared/i18n/i18n.service";
 import { Language } from "@main/shared/i18n/language";
-import { LayoutService } from "@main/shared/layout/layout.service";
+import { LayoutObserver } from "@main/shared/layout/layout-observer";
 import { ScrollableDirective } from "@main/shared/layout/scrollable.directive";
+import { SeoService } from "@main/shared/seo.service";
 import { Theme } from "@main/shared/theming/theme";
 import { ThemeService } from "@main/shared/theming/theme.service";
 
@@ -59,13 +59,13 @@ import { ThemeService } from "@main/shared/theming/theme.service";
 export class AppComponent {
   readonly i18nService = inject(I18nService);
   readonly themeService = inject(ThemeService);
-  readonly layout = inject(LayoutService).layout;
+  readonly breakpoint = inject(LayoutObserver).breakpoint;
   readonly alternativeLanguage = this.i18nService
     .getAvailableLanguages()
     .find((language) => language !== this.i18nService.getActiveLanguage());
   readonly currentThemeVariant = computed(() => this.themeService.currentTheme().variant);
   readonly menu = computed(() =>
-    this.layout().md ? MENU.filter((item) => item.titleKey !== "contact") : MENU,
+    this.breakpoint().md ? MENU.filter((item) => item.titleKey !== "contact") : MENU,
   );
 
   switchLanguage(language: Language) {
