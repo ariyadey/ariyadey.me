@@ -1,9 +1,12 @@
-import { APP_BASE_HREF, DOCUMENT } from "@angular/common";
+import { DOCUMENT } from "@angular/common";
 import { inject, Injectable, RendererFactory2 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
-import { SUPPORTED_LANGUAGES } from "@main/shared/i18n/i18n.config";
+import { Meta, Title } from "@angular/platform-browser";
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from "@main/shared/i18n/i18n.config";
+import { I18nService } from "@main/shared/i18n/i18n.service";
 import { Language } from "@main/shared/i18n/language";
 import { RouteUtils } from "@main/shared/resource/route-utils";
+import { UrlUtils } from "@main/shared/resource/url-utils";
 import { exhaustMap, filter, map } from "rxjs";
 
 /**
@@ -19,13 +22,14 @@ import { exhaustMap, filter, map } from "rxjs";
 export class SeoService {
   private readonly document = inject(DOCUMENT);
   private readonly renderer = inject(RendererFactory2).createRenderer(null, null);
+  private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
+  private readonly i18nService = inject(I18nService);
   private readonly routeUtils = inject(RouteUtils);
-  private readonly baseUrl = [this.document.location.origin]
-    .concat(inject(APP_BASE_HREF).split("/"))
-    .filter((string) => string.length > 0)
-    .join("/");
+  private readonly urlUtils = inject(UrlUtils);
 
   initSearchEngineOptimization() {
+    this.setMetaTags();
     this.setStaticHrefLangTag();
     this.routeUtils.deepestPrimaryRouteChange$
       .pipe(
@@ -40,11 +44,29 @@ export class SeoService {
       });
   }
 
+  private setMetaTags() {
+    if (DEFAULT_LANGUAGE !== this.i18nService.getActiveLanguage()) {
+      this.title.setTitle(this.i18nService.translate("seo.title"));
+      this.meta.updateTag({
+        name: "description",
+        content: this.i18nService.translate("seo.meta.description"),
+      });
+      this.meta.updateTag({
+        property: "og:title",
+        content: this.i18nService.translate("seo.meta.og-title"),
+      });
+      this.meta.updateTag({
+        property: "og:description",
+        content: this.i18nService.translate("seo.meta.description"),
+      });
+    }
+  }
+
   private setCanonicalTag(lang: Language, ...paths: ReadonlyArray<string>) {
     this.removeCanonicalTag();
     const link = this.renderer.createElement("link") as HTMLLinkElement;
     this.renderer.setAttribute(link, "rel", "canonical");
-    this.renderer.setAttribute(link, "href", this.getAbsoluteUrl(lang, paths));
+    this.renderer.setAttribute(link, "href", this.urlUtils.getAbsoluteUrl(lang, paths));
     this.renderer.appendChild(this.document.head, link);
   }
 
@@ -52,7 +74,7 @@ export class SeoService {
     const link = this.renderer.createElement("link") as HTMLLinkElement;
     this.renderer.setAttribute(link, "rel", "alternate");
     this.renderer.setAttribute(link, "hreflang", "x-default");
-    this.renderer.setAttribute(link, "href", `${this.baseUrl}/${Language.ENGLISH}/`);
+    this.renderer.setAttribute(link, "href", this.urlUtils.getAbsoluteUrl(Language.ENGLISH));
     this.renderer.appendChild(this.document.head, link);
   }
 
@@ -62,11 +84,7 @@ export class SeoService {
       const link = this.renderer.createElement("link") as HTMLLinkElement;
       this.renderer.setAttribute(link, "rel", "alternate");
       this.renderer.setAttribute(link, "hreflang", lang);
-      this.renderer.setAttribute(
-        link,
-        "href",
-        `${this.baseUrl}/${lang}/${paths.join("/")}${paths.length > 0 ? "/" : ""}`,
-      );
+      this.renderer.setAttribute(link, "href", this.urlUtils.getAbsoluteUrl(lang, paths));
       this.renderer.appendChild(this.document.head, link);
     });
   }
@@ -83,16 +101,5 @@ export class SeoService {
     this.document
       .querySelectorAll("link[rel='alternate'][hreflang]:not([hreflang='x-default'])")
       .forEach((link) => this.renderer.removeChild(this.document.head, link));
-  }
-
-  /**
-   * Constructs an absolute URL based on the base URL, language, and path segments.
-   * Handles trailing slashes for directory-like paths.
-   * @param lang The language segment of the URL.
-   * @param paths The path segments following the language segment.
-   * @returns The fully constructed absolute URL.
-   */
-  private getAbsoluteUrl(lang: Language, paths: ReadonlyArray<string>) {
-    return `${this.baseUrl}/${lang}/${paths.join("/")}${paths.length > 0 ? "/" : ""}`;
   }
 }

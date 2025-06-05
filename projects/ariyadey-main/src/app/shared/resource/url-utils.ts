@@ -1,5 +1,7 @@
+import { APP_BASE_HREF } from "@angular/common";
 import { DOCUMENT, inject, Injectable } from "@angular/core";
 import { SUPPORTED_LANGUAGES } from "@main/shared/i18n/i18n.config";
+import { Language } from "@main/shared/i18n/language";
 
 /**
  * A utility service for extracting language and path information from the current URL.
@@ -13,6 +15,10 @@ import { SUPPORTED_LANGUAGES } from "@main/shared/i18n/i18n.config";
 })
 export class UrlUtils {
   private readonly document = inject(DOCUMENT);
+  private readonly baseUrl = [this.document.location.origin]
+    .concat(inject(APP_BASE_HREF).split("/"))
+    .filter((string) => string.length > 0)
+    .join("/");
 
   /**
    * Retrieves the language segment from the current URL's pathname.
@@ -39,5 +45,16 @@ export class UrlUtils {
    */
   getCurrentNoLanguagePath() {
     return this.document.location.pathname.split("/").slice(2);
+  }
+
+  /**
+   * Constructs an absolute URL based on the base URL, language, and path segments.
+   * Handles trailing slashes for directory-like paths.
+   * @param lang The language segment of the URL.
+   * @param paths The path segments following the language segment.
+   * @returns The fully constructed absolute URL.
+   */
+  getAbsoluteUrl(lang: Language, paths = [] as ReadonlyArray<string>) {
+    return `${this.baseUrl}/${lang}/${paths.join("/")}${paths.length > 0 ? "/" : ""}`;
   }
 }
