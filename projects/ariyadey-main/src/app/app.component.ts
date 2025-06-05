@@ -68,6 +68,10 @@ export class AppComponent {
     this.breakpoint().md ? MENU.filter((item) => item.titleKey !== "contact") : MENU,
   );
 
+  constructor() {
+    inject(SeoService).initSearchEngineOptimization();
+  }
+
   switchLanguage(language: Language) {
     this.i18nService.switchLanguage(language);
   }
