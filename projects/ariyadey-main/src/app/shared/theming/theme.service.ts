@@ -3,7 +3,8 @@ import { MatIconRegistry } from "@angular/material/icon";
 import { DomSanitizer } from "@angular/platform-browser";
 import { LocalStorage } from "@main/shared/persistance/local-storage";
 import { PersistKey } from "@main/shared/persistance/persist-key";
-import { DEFAULT_THEME, Theme } from "@main/shared/theming/theme";
+import { Theme } from "@main/shared/theming/theme";
+import { DEFAULT_THEME } from "@main/shared/theming/theme.config";
 
 @Injectable({
   providedIn: "root",
