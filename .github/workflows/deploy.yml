@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Build & Deploy
 on:
   push:
     branches:
@@ -25,14 +25,13 @@ jobs:
         run: yarn install --immutable
 
       - name: Build Angular application
-        run: npx ng build --configuration production
+        run: yarn run build
 
-      - name: Create 404.html for SPA routing
-        run: cp ./dist/ariyadey-main/browser/index.html ./dist/ariyadey-main/browser/404.html
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/ariyadey-main/browser
-          publish_branch: gh-pages
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: |
+            pages project list
+            pages deploy dist/ariyadey-main/browser --project-name=ariyadey --branch=gh-pages
