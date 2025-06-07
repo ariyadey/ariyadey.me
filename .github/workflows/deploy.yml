@@ -35,5 +35,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: |
-            pages project list
-            pages deploy dist/ariyadey-main/browser --project-name=ariyadey --branch=gh-pages
+            pages deploy dist/ariyadey-main/browser --project-name=ariyadey --branch=main
