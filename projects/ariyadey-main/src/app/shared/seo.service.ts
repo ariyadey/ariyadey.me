@@ -2,7 +2,7 @@ import { DOCUMENT } from "@angular/common";
 import { inject, Injectable, RendererFactory2 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Meta, Title } from "@angular/platform-browser";
-import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from "@main/shared/i18n/i18n.config";
+import { SUPPORTED_LANGUAGES } from "@main/shared/i18n/i18n.config";
 import { I18nService } from "@main/shared/i18n/i18n.service";
 import { Language } from "@main/shared/i18n/language";
 import { RouteUtils } from "@main/shared/resource/route-utils";
@@ -29,7 +29,8 @@ export class SeoService {
   private readonly urlUtils = inject(UrlUtils);
 
   initSearchEngineOptimization() {
-    this.setMetaTags();
+    this.setTitleAndDescription();
+    this.setOpenGraphTags();
     this.setStaticHrefLangTag();
     this.routeUtils.deepestPrimaryRouteChange$
       .pipe(
@@ -44,29 +45,56 @@ export class SeoService {
       });
   }
 
-  private setMetaTags() {
-    if (DEFAULT_LANGUAGE !== this.i18nService.getActiveLanguage()) {
-      this.title.setTitle(this.i18nService.translate("seo.title"));
-      this.meta.updateTag({
-        name: "description",
-        content: this.i18nService.translate("seo.meta.description"),
-      });
-      this.meta.updateTag({
+  private setTitleAndDescription() {
+    this.title.setTitle(this.i18nService.translate("seo.title"));
+    this.meta.addTag({
+      name: "description",
+      content: this.i18nService.translate("seo.description"),
+    });
+  }
+
+  private setOpenGraphTags() {
+    this.meta.addTags([
+      {
         property: "og:title",
-        content: this.i18nService.translate("seo.meta.og-title"),
-      });
-      this.meta.updateTag({
+        content: this.i18nService.translate("seo.open-graph.title",
+      },
+      {
         property: "og:description",
-        content: this.i18nService.translate("seo.meta.description"),
-      });
-    }
+        content: this.i18nService.translate("seo.open-graph.description")
+      },
+      {
+        property: "og:type",
+        content: "website"
+      },
+      {
+        property: "og:url",
+        content: this.urlUtils.getAbsoluteUrl(this.i18nService.getActiveLanguage())
+      },
+      {
+        property: "og:image",
+        content: this.urlUtils.getAssetAbsoluteUrl(this.urlUtils.getImagePath("avatar-1000w.avif"))
+      },
+      {
+        property: "og:image:width",
+        content: "1000"
+      },
+      {
+        property: "og:image:height",
+        content: "1000"
+      },
+      {
+        property: "og:image:alt",
+        content: this.i18nService.translate("seo.open-graph.image.alt")
+      }
+    ]);
   }
 
   private setCanonicalTag(lang: Language, ...paths: ReadonlyArray<string>) {
     this.removeCanonicalTag();
     const link = this.renderer.createElement("link") as HTMLLinkElement;
     this.renderer.setAttribute(link, "rel", "canonical");
-    this.renderer.setAttribute(link, "href", this.urlUtils.getAbsoluteUrl(lang, paths));
+    this.renderer.setAttribute(link, "href", this.urlUtils.getAbsoluteUrl(lang, ...paths));
     this.renderer.appendChild(this.document.head, link);
   }
 
@@ -84,7 +112,7 @@ export class SeoService {
       const link = this.renderer.createElement("link") as HTMLLinkElement;
       this.renderer.setAttribute(link, "rel", "alternate");
       this.renderer.setAttribute(link, "hreflang", lang);
-      this.renderer.setAttribute(link, "href", this.urlUtils.getAbsoluteUrl(lang, paths));
+      this.renderer.setAttribute(link, "href", this.urlUtils.getAbsoluteUrl(lang, ...paths));
       this.renderer.appendChild(this.document.head, link);
     });
   }

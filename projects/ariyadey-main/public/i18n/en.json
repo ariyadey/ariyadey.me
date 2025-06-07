@@ -5,9 +5,13 @@
   },
   "seo": {
     "title": "{{me.full-name}}",
-    "meta": {
-      "description": "Results-oriented Software Engineer with 5+ years of experience in Java, Spring, and Angular. Specializing in enterprise and web app development, I focus on performance optimization and high-quality product delivery.",
-      "og-title": "{{me.full-name}} - {{me.headline}}"
+    "description": "Results-oriented Software Engineer with 5+ years of experience in Java, Spring, and Angular. Specializing in enterprise and web app development, I focus on performance optimization and high-quality product delivery.",
+    "open-graph": {
+      "title": "{{me.full-name}} - {{me.headline}}",
+      "description": "{{seo.description}}",
+      "image": {
+        "alt": "Ariya Moheb's professional avatar"
+      }
     }
   },
   "me": {
