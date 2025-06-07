@@ -57,36 +57,36 @@ export class SeoService {
     this.meta.addTags([
       {
         property: "og:title",
-        content: this.i18nService.translate("seo.open-graph.title",
+        content: this.i18nService.translate("seo.open-graph.title"),
       },
       {
         property: "og:description",
-        content: this.i18nService.translate("seo.open-graph.description")
+        content: this.i18nService.translate("seo.open-graph.description"),
       },
       {
         property: "og:type",
-        content: "website"
+        content: "website",
       },
       {
         property: "og:url",
-        content: this.urlUtils.getAbsoluteUrl(this.i18nService.getActiveLanguage())
+        content: this.urlUtils.getAbsoluteUrl(this.i18nService.getActiveLanguage()),
       },
       {
         property: "og:image",
-        content: this.urlUtils.getAssetAbsoluteUrl(this.urlUtils.getImagePath("avatar-1000w.avif"))
+        content: this.urlUtils.getAssetAbsoluteUrl(this.urlUtils.getImagePath("avatar-1000w.avif")),
       },
       {
         property: "og:image:width",
-        content: "1000"
+        content: "1000",
       },
       {
         property: "og:image:height",
-        content: "1000"
+        content: "1000",
       },
       {
         property: "og:image:alt",
-        content: this.i18nService.translate("seo.open-graph.image.alt")
-      }
+        content: this.i18nService.translate("seo.open-graph.image.alt"),
+      },
     ]);
   }
 
