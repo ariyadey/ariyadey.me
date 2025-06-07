@@ -48,13 +48,42 @@ export class UrlUtils {
   }
 
   /**
-   * Constructs an absolute URL based on the base URL, language, and path segments.
-   * Handles trailing slashes for directory-like paths.
-   * @param lang The language segment of the URL.
-   * @param paths The path segments following the language segment.
-   * @returns The fully constructed absolute URL.
+   * Constructs a relative path for an image.
+   * This is typically used for images loaded directly into HTML via src attributes
+   * or within CSS, where a full absolute URL might not be necessary.
+   * @param paths - A readonly array of string segments forming the image path.
+   * @returns The relative image path (e.g., 'img/category/logo.png').
    */
-  getAbsoluteUrl(lang: Language, paths = [] as ReadonlyArray<string>) {
+  getImagePath(...paths: ReadonlyArray<string>) {
+    return `img/${paths.join("/")}`;
+  }
+
+  /**
+   * Constructs a full absolute URL for a specific page within the application.
+   * This is essential for SEO purposes (e.g., canonical tags, hreflang, Open Graph `og:url`).
+   * It includes the base domain, language segment, and all provided path segments.
+   * Handles trailing slashes for directory-like paths.
+   * @param lang The language segment of the URL (e.g., 'en', 'fa').
+   * @param paths The path segments following the language segment (e.g., ['about'], ['projects', 'my-app']).
+   * @returns The fully constructed absolute URL (e.g., 'https://ariyadey.me/en/about/').
+   */
+  getAbsoluteUrl(lang: Language, ...paths: ReadonlyArray<string>) {
     return `${this.baseUrl}/${lang}/${paths.join("/")}${paths.length > 0 ? "/" : ""}`;
+  }
+
+  /**
+   * Constructs a full absolute URL for an asset (e.g., images, fonts, documents)
+   * that resides in the application's asset directory.
+   * This is particularly useful for Open Graph `og:image` and Twitter Card `twitter:image` tags,
+   * where absolute URLs are required for proper rendering on social media platforms.
+   * @param paths - A readonly array of string segments forming the asset path (e.g., ['assets', 'images', 'hero.jpg']).
+   * @returns The fully constructed absolute URL to the asset (e.g., 'https://ariyadey.me/assets/images/hero.jpg').
+   * @throws Error if no path segments are provided.
+   */
+  getAssetAbsoluteUrl(...paths: ReadonlyArray<string>) {
+    if (paths.length === 0) {
+      throw new Error("The path must not be empty");
+    }
+    return `${this.baseUrl}/${paths.join("/")}`;
   }
 }

@@ -1,4 +1,5 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { inject, Pipe, PipeTransform } from "@angular/core";
+import { UrlUtils } from "@main/shared/resource/url-utils";
 
 /**
  * @description
@@ -15,7 +16,9 @@ import { Pipe, PipeTransform } from "@angular/core";
   name: "imgResolve",
 })
 export class ImgResolvePipe implements PipeTransform {
+  private readonly urlUtils = inject(UrlUtils);
+
   transform(path: string): string {
-    return `img/${path}`;
+    return this.urlUtils.getImagePath(path);
   }
 }
