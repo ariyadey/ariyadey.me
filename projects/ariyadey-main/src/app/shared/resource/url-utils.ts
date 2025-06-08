@@ -67,8 +67,8 @@ export class UrlUtils {
    * @param paths The path segments following the language segment (e.g., ['about'], ['projects', 'my-app']).
    * @returns The fully constructed absolute URL (e.g., 'https://ariyadey.me/en/about/').
    */
-  getAbsoluteUrl(lang: Language, ...paths: ReadonlyArray<string>) {
-    return `${this.baseUrl}/${lang}/${paths.join("/")}${paths.length > 0 ? "/" : ""}`;
+  getAbsoluteUrl(lang?: Language, ...paths: ReadonlyArray<string>) {
+    return `${this.baseUrl}/${lang ?? ''}${lang != null ? "/" : ""}${paths.join("/")}${paths.length > 0 ? "/" : ""}`;
   }
 
   /**

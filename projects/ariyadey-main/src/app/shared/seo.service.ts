@@ -102,7 +102,7 @@ export class SeoService {
     const link = this.renderer.createElement("link") as HTMLLinkElement;
     this.renderer.setAttribute(link, "rel", "alternate");
     this.renderer.setAttribute(link, "hreflang", "x-default");
-    this.renderer.setAttribute(link, "href", this.urlUtils.getAbsoluteUrl(Language.ENGLISH));
+    this.renderer.setAttribute(link, "href", this.urlUtils.getAbsoluteUrl());
     this.renderer.appendChild(this.document.head, link);
   }
 
