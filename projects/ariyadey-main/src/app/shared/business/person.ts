@@ -11,6 +11,7 @@ export type Person = Readonly<{
     headline: string;
     description: string;
     avatarPath: string;
+    avatarPathAlt: string;
     resumePath: string;
   };
   skills: Readonly<Record<SkillCategory, ReadonlyArray<Skill>>>;

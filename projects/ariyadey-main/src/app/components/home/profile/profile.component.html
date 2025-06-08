@@ -2,7 +2,12 @@
   <ng-container *ngTemplateOutlet="background" />
   @if (breakpoint().xs && !breakpoint().sm) {
     <div class="relative aspect-square">
-      <img alt="Avatar" ngSrc="{{ mainInfo.avatarPath | imgResolve }}" fill priority />
+      <img
+        alt="{{ mainInfo.avatarPathAlt | i18n }}"
+        ngSrc="{{ mainInfo.avatarPath | imgResolve }}"
+        fill
+        priority
+      />
     </div>
   }
   <mat-card-header class="sm:py-4! md:py-10!">
@@ -11,7 +16,12 @@
         <div
           class="shadow-5! relative aspect-square w-72 overflow-hidden rounded-t-[1024px]! rounded-b-full! md:w-xl"
         >
-          <img alt="Avatar" ngSrc="{{ mainInfo.avatarPath | imgResolve }}" fill priority />
+          <img
+            alt="{{ mainInfo.avatarPathAlt | i18n }}"
+            ngSrc="{{ mainInfo.avatarPath | imgResolve }}"
+            fill
+            priority
+          />
         </div>
       }
       <mat-card-title>

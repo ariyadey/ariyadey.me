@@ -73,7 +73,7 @@ export class SeoService {
   //     },
   //     {
   //       property: "og:image",
-  //       content: this.urlUtils.getAssetAbsoluteUrl(this.urlUtils.getImagePath("avatar-1000w.avif")),
+  //       content: this.urlUtils.getAssetAbsoluteUrl(this.urlUtils.getImagePath("ariya-moheb-avatar-1000w.avif")),
   //     },
   //     {
   //       property: "og:image:width",
