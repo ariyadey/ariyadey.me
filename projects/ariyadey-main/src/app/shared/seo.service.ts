@@ -2,7 +2,7 @@ import { DOCUMENT } from "@angular/common";
 import { inject, Injectable, RendererFactory2 } from "@angular/core";
 import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { Meta, Title } from "@angular/platform-browser";
-import { SUPPORTED_LANGUAGES } from "@main/shared/i18n/i18n.config";
+import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from "@main/shared/i18n/i18n.config";
 import { I18nService } from "@main/shared/i18n/i18n.service";
 import { Language } from "@main/shared/i18n/language";
 import { RouteUtils } from "@main/shared/resource/route-utils";
@@ -45,11 +45,13 @@ export class SeoService {
   }
 
   private setTitleAndDescription() {
-    this.title.setTitle(this.i18nService.translate("seo.title"));
-    this.meta.addTag({
-      name: "description",
-      content: this.i18nService.translate("seo.description"),
-    });
+    if (DEFAULT_LANGUAGE !== this.i18nService.getActiveLanguage()) {
+      this.title.setTitle(this.i18nService.translate("seo.title"));
+      this.meta.updateTag({
+        name: "description",
+        content: this.i18nService.translate("seo.description"),
+      });
+    }
   }
 
   // Practically this method has no effect since it adds the Open Graph tags too late.
