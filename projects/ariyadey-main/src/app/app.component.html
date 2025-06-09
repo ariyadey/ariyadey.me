@@ -16,7 +16,7 @@
         @for (menuItem of menu(); track $index) {
           <a
             (click)="drawer.close()"
-            [routerLink]=""
+            [routerLink]="['/']"
             [fragment]="menuItem.fragment"
             [scroll]="menuItem.fragment"
             mat-list-item

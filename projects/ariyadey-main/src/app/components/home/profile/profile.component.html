@@ -35,7 +35,7 @@
       <mat-card-subtitle>
         <div class="mt-4 hidden flex-wrap gap-4 sm:flex">
           <a
-            [routerLink]=""
+            [routerLink]="['/']"
             class="md:hidden!"
             fragment="contact"
             mat-flat-button
@@ -56,7 +56,7 @@
     </mat-card-title-group>
   </mat-card-header>
   <mat-card-actions class="gap-2 sm:hidden!">
-    <a [routerLink]="" fragment="contact" mat-button scroll="contact">{{
+    <a [routerLink]="['/']" fragment="contact" mat-button scroll="contact">{{
       "action.contact" | i18n
     }}</a>
     <a [href]="mainInfo.resumePath" mat-button target="_blank">{{ "action.resume" | i18n }}</a>
