@@ -26,11 +26,11 @@
               />
               <div class="flex flex-col justify-around">
                 <span class="font-title-lg">{{ "job.title." + experience.title | i18n }}</span>
-                <div class="font-title-md flex gap-1">
-                  <h5>{{ "company." + experience.companyName | i18n }}</h5>
+                <h4 class="font-title-md flex gap-1">
+                  <span>{{ "company." + experience.companyName | i18n }}</span>
                   <span>·</span>
-                  <h5>{{ "employment.type." + experience.employmentType | i18n }}</h5>
-                </div>
+                  <span>{{ "employment.type." + experience.employmentType | i18n }}</span>
+                </h4>
               </div>
             </a>
             <div class="flex flex-col gap-1">
