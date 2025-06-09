@@ -1,6 +1,10 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title>{{ "section.experience" | i18n }}</mat-card-title>
+    <mat-card-title>
+      <h3>
+        {{ "section.experience" | i18n }}
+      </h3>
+    </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <ul class="flex flex-col gap-5 pt-5">
@@ -34,8 +38,8 @@
                 <div class="flex items-center gap-1">
                   <mat-icon fontIcon="date_range" inline />
                   <span>{{
-                      experience.timeFrame.start | dateRange: experience.timeFrame.end
-                    }}</span>
+                    experience.timeFrame.start | dateRange: experience.timeFrame.end
+                  }}</span>
                 </div>
                 <div class="flex items-center gap-1">
                   <mat-icon inline fontIcon="place" />
