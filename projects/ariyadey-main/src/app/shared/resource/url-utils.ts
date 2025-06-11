@@ -16,7 +16,7 @@ import { APP_DOMAIN } from "ariyadey-main/src/main";
 })
 export class UrlUtils {
   private readonly document = inject(DOCUMENT);
-  private readonly baseUrl = ["https://", APP_DOMAIN, inject(APP_BASE_HREF).split("/")]
+  private readonly baseUrl = [`https://${APP_DOMAIN}`, ...inject(APP_BASE_HREF).split("/")]
     .filter((string) => string.length > 0)
     .join("/");
 
@@ -55,7 +55,7 @@ export class UrlUtils {
    * @returns The relative image path (e.g., 'img/category/logo.png').
    */
   getImagePath(...paths: ReadonlyArray<string>) {
-    return `img/${paths.join("/")}`;
+    return ["img", ...paths].filter((string) => string.length > 0).join("/");
   }
 
   /**
@@ -68,7 +68,7 @@ export class UrlUtils {
    * @returns The fully constructed absolute URL (e.g., 'https://ariyadey.me/en/about/').
    */
   getAbsoluteUrl(lang?: Language, ...paths: ReadonlyArray<string>) {
-    return `${this.baseUrl}/${lang ?? ""}${lang != null ? "/" : ""}${paths.join("/")}${paths.length > 0 ? "/" : ""}`;
+    return [this.baseUrl, lang ?? "", ...paths].filter((string) => string.length > 0).join("/");
   }
 
   /**
@@ -84,6 +84,6 @@ export class UrlUtils {
     if (paths.length === 0) {
       throw new Error("The path must not be empty");
     }
-    return `${this.baseUrl}/${paths.join("/")}`;
+    return [this.baseUrl, ...paths].filter((string) => string.length > 0).join("/");
   }
 }
