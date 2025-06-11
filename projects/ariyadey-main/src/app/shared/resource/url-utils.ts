@@ -2,6 +2,7 @@ import { APP_BASE_HREF } from "@angular/common";
 import { DOCUMENT, inject, Injectable } from "@angular/core";
 import { SUPPORTED_LANGUAGES } from "@main/shared/i18n/i18n.config";
 import { Language } from "@main/shared/i18n/language";
+import { APP_DOMAIN } from "ariyadey-main/src/main";
 
 /**
  * A utility service for extracting language and path information from the current URL.
@@ -15,8 +16,7 @@ import { Language } from "@main/shared/i18n/language";
 })
 export class UrlUtils {
   private readonly document = inject(DOCUMENT);
-  private readonly baseUrl = [this.document.location.origin]
-    .concat(inject(APP_BASE_HREF).split("/"))
+  private readonly baseUrl = ["https://", APP_DOMAIN, inject(APP_BASE_HREF).split("/")]
     .filter((string) => string.length > 0)
     .join("/");
 
@@ -68,7 +68,7 @@ export class UrlUtils {
    * @returns The fully constructed absolute URL (e.g., 'https://ariyadey.me/en/about/').
    */
   getAbsoluteUrl(lang?: Language, ...paths: ReadonlyArray<string>) {
-    return `${this.baseUrl}/${lang ?? ''}${lang != null ? "/" : ""}${paths.join("/")}${paths.length > 0 ? "/" : ""}`;
+    return `${this.baseUrl}/${lang ?? ""}${lang != null ? "/" : ""}${paths.join("/")}${paths.length > 0 ? "/" : ""}`;
   }
 
   /**
