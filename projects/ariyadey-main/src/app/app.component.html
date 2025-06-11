@@ -29,10 +29,9 @@
     } @else {
       <nav class="font-body-md flex flex-col items-center gap-7" cdkMenu>
         @for (menuItem of menu(); track $index) {
-          <!--FIXME: Navigation with keyboard not working-->
           <a
             class="desktop-menu-item box-border flex w-11/12 cursor-pointer flex-col items-center py-1! hover:font-bold!"
-            [routerLink]=""
+            [routerLink]="['/']"
             [fragment]="menuItem.fragment"
             [scroll]="menuItem.fragment"
             cdkMenuItem
