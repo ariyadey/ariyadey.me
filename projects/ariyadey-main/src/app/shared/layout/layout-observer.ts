@@ -10,9 +10,7 @@ export class LayoutObserver {
   private readonly breakPointObserver = inject(BreakpointObserver);
   private readonly _breakpoint = toSignal<Layout, Layout>(
     combineLatest<Record<keyof Layout, Observable<boolean>>>({
-      xs: this.breakPointObserver
-        .observe("(max-width: 599.98px)")
-        .pipe(map((result) => result.matches)),
+      xs: this.breakPointObserver.observe("(min-width: 0px)").pipe(map((result) => result.matches)),
       sm: this.breakPointObserver
         .observe("(min-width: 600px)")
         .pipe(map((result) => result.matches)),

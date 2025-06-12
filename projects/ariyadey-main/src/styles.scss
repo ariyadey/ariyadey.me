@@ -3,55 +3,95 @@
 @use "theme";
 @use "sass:map";
 
+/* Material Colors */
 :root {
-  color-scheme: light dark;
-
   @include mat.theme(
-    (
-      color: (
-        primary: theme.$primary-palette,
-        tertiary: theme.$tertiary-palette,
-        theme-type: color-scheme,
-      ),
-      density: 0,
-    )
+      (
+        color: (
+          primary: theme.$primary-palette,
+          tertiary: theme.$tertiary-palette,
+          theme-type: color-scheme,
+        ),
+        density: 0,
+      )
   );
+}
 
+/* Material Typography */
+:root {
   &[dir="ltr"] {
     @include mat.theme(
-      (
-        typography: (
-          brand-family: (
-            Arya,
-            Zain,
-            sans-serif,
+        (
+          typography: (
+            brand-family: (
+              Arya,
+              sans-serif,
+            ),
+            plain-family: (
+              Roboto,
+              sans-serif,
+            ),
           ),
-          plain-family: (
-            Roboto,
-            Vazirmatn,
-            sans-serif,
-          ),
-        ),
-      )
+        )
     );
   }
 
   &[dir="rtl"] {
     @include mat.theme(
-      (
-        typography: (
-          brand-family: (
-            Zain,
-            sans-serif,
+        (
+          typography: (
+            brand-family: (
+              Zain,
+              sans-serif,
+            ),
+            plain-family: (
+              Vazirmatn,
+              sans-serif,
+            ),
           ),
-          plain-family: (
-            Vazirmatn,
-            sans-serif,
-          ),
-        ),
-      )
+        )
     );
   }
+}
+
+/* Material Components */
+:root {
+  @include mat.sidenav-overrides(
+      (
+        container-width: 256px,
+        container-divider-color: var(--mat-sys-outline-variant),
+      )
+  );
+
+  @include mat.card-overrides(
+      (
+        title-text-font: var(--mat-sys-headline-medium-font),
+        title-text-line-height: var(--mat-sys-headline-medium-line-height),
+        title-text-size: var(--mat-sys-headline-medium-size),
+        title-text-tracking: var(--mat-sys-headline-medium-tracking),
+        title-text-weight: var(--mat-sys-headline-medium-weight),
+      )
+  );
+
+  @include mat.divider-overrides(
+      (
+        color: var(--mat-sys-outline-variant),
+      )
+  );
+
+  @media (width >= 960px) {
+    @include mat.sidenav-overrides(
+        (
+          container-width: 88px,
+        )
+    );
+    --mat-sidenav-container-background-color: var(--mat-sys-surface-container);
+  }
+}
+
+/* Custom */
+:root {
+  color-scheme: light dark;
 
   &.DEFAULT-LIGHT-theme {
     color-scheme: light;
@@ -65,37 +105,31 @@
   @apply text-on-surface;
   @apply font-body-lg;
 
-  @include mat.sidenav-overrides(
-    (
-      container-width: 256px,
-      container-divider-color: var(--mat-sys-outline-variant),
-    )
-  );
-
-  @include mat.card-overrides(
-    (
-      title-text-font: var(--mat-sys-headline-small-font),
-      title-text-line-height: var(--mat-sys-headline-small-line-height),
-      title-text-size: var(--mat-sys-headline-small-size),
-      title-text-tracking: var(--mat-sys-headline-small-tracking),
-      title-text-weight: var(--mat-sys-headline-small-weight),
-    )
-  );
-
-  @include mat.divider-overrides(
-    (
-      color: var(--mat-sys-outline-variant),
-    )
-  );
-
-  @media (width >= 960px) {
-    @include mat.sidenav-overrides(
-      (
-        container-width: 88px,
-      )
-    );
-    --mat-sidenav-container-background-color: var(--mat-sys-surface-container);
+  h1 {
+    @apply font-display-md;
+    @apply font-bold;
+    @apply sm:font-display-lg;
+    @apply sm:leading-tight;
+    @apply sm:font-bold;
+    @apply md:text-7xl;
   }
+
+  h2 {
+    @apply font-headline-sm;
+    @apply md:font-headline-lg;
+  }
+
+  h4 {
+    @apply font-title-lg;
+  }
+
+  h5 {
+    @apply font-title-md;
+  }
+}
+
+.card-content {
+  @apply mt-4;
 }
 
 .more-less-btn {

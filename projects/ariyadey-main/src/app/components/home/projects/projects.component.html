@@ -5,12 +5,12 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <ul class="flex flex-col gap-5 pt-5">
+    <ul class="card-content flex flex-col gap-5">
       @for (project of projects; track project; let isLast = $last) {
         <li class="flex flex-col gap-5">
           <div>
             <div class="flex items-center gap-2">
-              <h4 class="font-title-lg">{{ "me.project." + project.title + ".title" | i18n }}</h4>
+              <h4>{{ "me.project." + project.title + ".title" | i18n }}</h4>
               <a
                 [href]="project.link"
                 aria-label="View project"

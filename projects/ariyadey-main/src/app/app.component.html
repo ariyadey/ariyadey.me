@@ -81,29 +81,6 @@
           <button (click)="drawer.toggle()" aria-label="Open navigation menu" mat-icon-button>
             <mat-icon fontIcon="menu" />
           </button>
-          @if (breakpoint().xs) {
-            <a
-              aria-label="Go to homepage"
-              mat-icon-button
-              routerLink="/"
-              fragment="profile"
-              scroll="profile"
-            >
-              <mat-icon class="flex! h-6! w-6! items-center text-2xl!" fontIcon="terminal" />
-            </a>
-          } @else if (breakpoint().sm) {
-            <a
-              class="font-title-md! gap-2"
-              aria-label="Go to homepage"
-              mat-button
-              routerLink="/"
-              fragment="profile"
-              scroll="profile"
-            >
-              <mat-icon class="flex! h-6! w-6! items-center text-2xl!" fontIcon="terminal" />
-              {{ "me.full-name" | i18n }}
-            </a>
-          }
         </div>
         <ng-container *ngTemplateOutlet="language" />
       </mat-toolbar>
