@@ -122,7 +122,7 @@
 
 <ng-template #language>
   @if (alternativeLanguage) {
-    <button (click)="switchLanguage(alternativeLanguage!)" mat-button>
+    <button (click)="switchLanguage(alternativeLanguage!)" [lang]="alternativeLanguage" mat-button>
       {{ `language.native.${alternativeLanguage}` | i18n }}
     </button>
   }

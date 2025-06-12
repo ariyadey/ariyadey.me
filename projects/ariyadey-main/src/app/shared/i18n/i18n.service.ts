@@ -20,6 +20,7 @@ export class I18nService {
   constructor() {
     this.localStorage.set(PersistKey.LANGUAGE, this.language);
     this.translator.setActiveLang(this.language);
+    this.renderer.setAttribute(this.document.documentElement, "lang", this.language);
     this.renderer.setAttribute(
       this.document.documentElement,
       "dir",
