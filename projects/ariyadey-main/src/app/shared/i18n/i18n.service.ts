@@ -5,7 +5,6 @@ import { Language, LANGUAGE_DIRECTION_MAP } from "@main/shared/i18n/language";
 import { LocalStorage } from "@main/shared/persistance/local-storage";
 import { PersistKey } from "@main/shared/persistance/persist-key";
 import { UrlUtils } from "@main/shared/resource/url-utils";
-import { forkJoin } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -15,7 +14,7 @@ export class I18nService {
   private readonly renderer = inject(RendererFactory2).createRenderer(null, null);
   private readonly translator = inject(TranslocoService);
   private readonly localStorage = inject(LocalStorage);
-  private readonly urlUtils = new UrlUtils();
+  private readonly urlUtils = inject(UrlUtils);
   private readonly language = this.getInitialLanguage();
 
   constructor() {
@@ -29,7 +28,7 @@ export class I18nService {
   }
 
   initialize() {
-    return forkJoin(SUPPORTED_LANGUAGES.map((lang) => this.translator.load(lang)));
+    return this.translator.load(this.language);
   }
 
   getActiveLanguage() {

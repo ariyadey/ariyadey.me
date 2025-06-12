@@ -1,7 +1,10 @@
 {
   "language": {
     "en": "English",
-    "fa": "Persian"
+    "fa": "Persian",
+    "native": {
+      "fa": "پارسی"
+    }
   },
   "seo": {
     "title": "{{me.full-name}} - {{me.headline}}",
