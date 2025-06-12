@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - preview
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -35,4 +36,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: |
-            pages deploy dist/ariyadey-main/browser --project-name=ariyadey --branch=main
+            pages deploy dist/ariyadey-main/browser --project-name=ariyadey --branch=${{ github.ref_name }}
