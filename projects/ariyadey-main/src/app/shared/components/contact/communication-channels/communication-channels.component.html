@@ -3,19 +3,19 @@
 >
   @if (showEmail()) {
     <li>
-      <a aria-label="Send an email" href="mailto:{{ contacts.email }}" mat-icon-button target="_blank">
+      <a
+        aria-label="Send an email"
+        href="mailto:{{ contacts.email }}"
+        mat-icon-button
+        target="_blank"
+      >
         <mat-icon class="h-auto! w-auto!" svgIcon="email" />
       </a>
     </li>
   }
   @for (contact of contacts.socials; track contact) {
     <li>
-      <a
-        aria-label="Contact me"
-        href="{{ contact.url }}"
-        mat-icon-button
-        target="_blank"
-      >
+      <a aria-label="Contact me" href="{{ contact.url }}" mat-icon-button target="_blank">
         <mat-icon class="h-auto! w-auto!" [svgIcon]="contact.iconName" />
       </a>
     </li>
