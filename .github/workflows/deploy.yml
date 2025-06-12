@@ -2,8 +2,7 @@ name: Build & Deploy
 on:
   push:
     branches:
-      - main
-      - preview
+      - "*"
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
