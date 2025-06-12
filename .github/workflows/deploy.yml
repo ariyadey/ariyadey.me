@@ -27,7 +27,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Build Angular application
-        run: yarn run build
+        run: yarn build
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
