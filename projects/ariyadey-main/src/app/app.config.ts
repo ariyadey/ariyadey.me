@@ -28,7 +28,7 @@ export const appConfig: ApplicationConfig = {
       inject(I18nService)
         .initialize()
         .pipe(
-          delay(500),
+          delay(750),
           tap(() => {
             const splashScreen = document.getElementById("splash-screen")!;
             splashScreen.classList.add("hidden");
