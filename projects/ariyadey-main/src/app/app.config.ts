@@ -30,6 +30,7 @@ export const appConfig: ApplicationConfig = {
         .pipe(
           delay(1000),
           tap(() => {
+            document.getElementsByTagName("app-root")[0].classList.add("loaded");
             const splashScreen = document.getElementById("splash-screen")!;
             splashScreen.classList.add("hidden");
             splashScreen.addEventListener("transitionend", () => splashScreen.remove());
