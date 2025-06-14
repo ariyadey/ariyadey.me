@@ -1,6 +1,7 @@
 @use "tailwind";
 @use "@angular/material" as mat;
 @use "theme";
+@use "typography";
 @use "sass:map";
 
 /* Material Colors */
@@ -28,7 +29,7 @@
               sans-serif,
             ),
             plain-family: (
-              Roboto,
+              Inter,
               sans-serif,
             ),
           ),

@@ -15,7 +15,7 @@ import { provideTransloco } from "@jsverse/transloco";
 import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from "@main/shared/i18n/i18n.config";
 import { I18nService } from "@main/shared/i18n/i18n.service";
 import { TranslocoHttpLoader } from "@main/shared/i18n/transloco-http-loader";
-import { delay, tap } from "rxjs";
+import { tap } from "rxjs";
 import { routes } from "./app.routes";
 
 export const appConfig: ApplicationConfig = {
@@ -28,7 +28,6 @@ export const appConfig: ApplicationConfig = {
       inject(I18nService)
         .initialize()
         .pipe(
-          delay(1000),
           tap(() => {
             document.getElementsByTagName("app-root")[0].classList.add("loaded");
             const splashScreen = document.getElementById("splash-screen")!;
