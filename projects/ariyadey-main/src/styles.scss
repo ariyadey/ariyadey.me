@@ -149,6 +149,14 @@ blockquote {
   @apply overflow-hidden;
   transition: max-height 0.5s ease-in-out;
 
+  &.truncated::after {
+    content: "";
+    @apply absolute inset-x-0 bottom-0;
+    @apply h-10;
+    background: linear-gradient(to top, var(--mat-sys-surface-container-low), transparent);
+    @apply pointer-events-none;
+  }
+
   &.expanded {
     @apply max-h-[2000px];
   }
@@ -159,21 +167,24 @@ blockquote {
     @apply cursor-pointer;
     @apply font-body-lg;
     @apply text-on-surface-variant;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    @apply z-10;
+    transition: opacity 0.3s ease-in-out,
+    visibility 0.3s ease-in-out;
     will-change: opacity, visibility;
 
     &.visible-btn {
-      @apply opacity-100 visible;
+      @apply visible opacity-100;
       @apply pointer-events-auto;
     }
 
     &.hidden-btn {
-      @apply opacity-0 invisible;
+      @apply invisible opacity-0;
       @apply pointer-events-none;
     }
 
     mat-card & {
-      background: linear-gradient(
+      background: linear-gradient(to bottom, transparent, var(--mat-sys-surface-container-low) 50%),
+      linear-gradient(
           to right,
           transparent,
           var(--mat-sys-surface-container-low) 50%,
@@ -182,7 +193,8 @@ blockquote {
     }
 
     [dir="rtl"] mat-card & {
-      background: linear-gradient(
+      background: linear-gradient(to bottom, transparent, var(--mat-sys-surface-container-low) 50%),
+      linear-gradient(
           to left,
           transparent,
           var(--mat-sys-surface-container-low) 50%,
