@@ -5,6 +5,8 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <p class="card-content max-h-36" reTruncate="false" truncate>{{ description | i18n }}</p>
+    <blockquote class="card-content flex flex-col gap-2 whitespace-pre-line">
+      <p class="max-h-40 md:max-h-none" reTruncate="false" truncate>{{ description | i18n }}</p>
+    </blockquote>
   </mat-card-content>
 </mat-card>
