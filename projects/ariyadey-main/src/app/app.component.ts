@@ -10,6 +10,7 @@ import { MatSidenav, MatSidenavContainer, MatSidenavContent } from "@angular/mat
 import { MatToolbar, MatToolbarRow } from "@angular/material/toolbar";
 import { RouterLink, RouterOutlet } from "@angular/router";
 import { MENU } from "@main/menu-item";
+import { BackToTopComponent } from "@main/shared/components/back-to-top/back-to-top.component";
 import { I18nPipe } from "@main/shared/i18n/i18n.pipe";
 import { I18nService } from "@main/shared/i18n/i18n.service";
 import { Language } from "@main/shared/i18n/language";
@@ -54,6 +55,7 @@ import { ThemeService } from "@main/shared/theming/theme.service";
     MatToolbarRow,
     MatAnchor,
     RouterOutlet,
+    BackToTopComponent,
   ],
 })
 export class AppComponent {

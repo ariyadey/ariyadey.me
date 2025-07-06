@@ -1,0 +1,8 @@
+<div
+  [ngClass]="(showButton$ | async) ? 'visible opacity-100' : 'invisible opacity-0'"
+  class="wrapper fixed end-5 bottom-5 z-50 hover:-translate-y-0.5 active:translate-0 md:hidden"
+>
+  <button (click)="scrollToTop()" aria-label="Back to top" mat-fab>
+    <mat-icon fontIcon="arrow_upward" />
+  </button>
+</div>
