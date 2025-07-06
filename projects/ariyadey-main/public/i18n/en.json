@@ -9,8 +9,9 @@
   "seo": {
     "title": "{{me.full-name}} - {{me.headline}}",
     "description": "Results-oriented Software Engineer with 5+ years of experience in Java, Spring, and Angular. Specializing in enterprise and web app development, I focus on performance optimization and high-quality product delivery.",
+    "keywords": "Ariya Moheb, Arya Moheb, Aria Moheb, Mojtaba Moheb, AriyaDey",
     "open-graph": {
-      "title": "{{me.full-name}} - {{me.headline}}",
+      "title": "{{seo.title}}",
       "description": "{{seo.description}}",
       "image": {
         "alt": "{{me.full-name}}'s professional avatar"
@@ -22,24 +23,28 @@
     "last-name": "Moheb",
     "full-name": "{{me.first-name}} {{me.last-name}}",
     "headline": "Full-stack Software Engineer",
-    "description": "Results-oriented and highly motivated Software Engineer with over 5 years of experience in enterprise and web application development. Specializing in Java, Spring Framework, and Angular. Proven track record of improving system performance (e.g., 10x faster build times ) and implementing complex features. Seeking a Remote position where I can leverage my skills in a dynamic, international team and contribute to delivering high-quality products.",
+    "description": "Hi! I'm Ariya Moheb, a results-oriented Software Engineer with over 5 years of experience in enterprise and web application development. I specialize in Angular, Java, and Spring Framework.\n\nMy passion lies in crafting high-quality, high-performance software solutions that address real-world challenges. I thrive on translating complex requirements into intuitive user experiences and efficient backend systems. Throughout my career, I've focused on driving impactful improvements, always prioritizing clean, maintainable code.\n\nThis website is my personal space to share my professional journey and showcase projects that reflect my commitment to technical excellence and continuous learning.\n\nI'm keen to contribute my skills to innovative projects within dynamic, international remote teams. Please feel free to explore my work in the projects section, and I look forward to connecting!",
     "avatar-alt": "{{me.full-name}} - {{me.headline}}",
     "project": {
-      "portfolio": {
+      "ariyadey": {
         "title": "Personal Website",
-        "description": "A portfolio website built with modern technologies and methodologies."
+        "description": "- Developed and deployed a personal website from scratch, serving as a dynamic portfolio to showcase my professional journey and projects.\n- Implemented a responsive user interface with Angular and TypeScript, ensuring cross-browser compatibility and optimal performance. \n- Leveraged internationalization (i18n) for multilingual support (English and Persian) and optimized for SEO with dynamic hreflang and canonical tags. \n- Utilized GitHub Actions for CI/CD, automating build, test, and deployment processes to Cloudflare Workers for global content delivery and edge computing benefits."
       },
       "minesweeper": {
         "title": "Minesweeper Game",
-        "description": "A classic Minesweeper game implemented in React."
+        "description": "- Developed an interactive web-based classic Minesweeper game using React. \n- Implemented core game logic from scratch, including recursive empty cell reveal, mine placement algorithms, and flag/question mark mechanics. \n- Focused on clean component architecture and state management to ensure a smooth user experience. \n- This project reinforced my understanding of graph-based algorithms and front-end development best practices."
+      },
+      "jast": {
+        "title": "JAST",
+        "description": "JAST (Java Abstract Syntax Tree Generator) is an educational project I developed independently during my university compilers course. Built entirely with Java and its Swing framework for the GUI, JAST functions as a universal Abstract Syntax Tree (AST) generator.\n\nThe core of the project involved designing and implementing the fundamental algorithms and data structures necessary for parsing source code and constructing its corresponding AST. A key feature is its intuitive graphical user interface (GUI), which I developed using Swing, allowing for the visual representation and exploration of the generated ASTs. This project provided invaluable hands-on experience in compiler design principles, complex algorithm implementation, and robust GUI development in Java, solidifying my understanding of how programming languages are processed internally."
       }
     },
     "experience": {
       "tosan": {
-        "description": "As a Full-Stack Developer at NetWay, I played a key role in developing and maintaining the company's core banking system. My responsibilities included designing and implementing new features, optimizing performance, and ensuring the system's security and reliability."
+        "description": "NetWay is the leading Internet Bank platform in Iran, serving millions of active users daily. As a Full-Stack Developer over a remarkable 4.5-year tenure at TOSAN, I played a pivotal role in the continuous evolution and enhancement of this high-traffic, mission-critical enterprise application.\n\nMy responsibilities encompassed a wide array of full-stack tasks, ranging from Angular frontend development and robust backend engineering with Java and Spring Framework to implementing critical caching solutions with Redis, strengthening security measures, and designing complex authentication flows.\n\nI was deeply involved in developing and maintaining key modules, including the Wistore widget feature—a dynamic content platform enabling third parties to integrate their services using NetWay's user authentication and banking APIs, with support for BPMS flows. My contributions also extended to the implementation of the corporate cards feature (Sigma) and the complex definition and configuration of corporate customer profiles.\n\nI thrived on tackling significant technical challenges, notably:\n- Re-engineering a critical, complex combobox component from scratch for the Angular frontend. This involved meticulously designing for cleaner code, a modern UI, enhanced maintainability, and improved scalability, all while strictly adhering to backward compatibility requirements.\n- Seamlessly integrating advanced CAPTCHA mechanisms within core authentication flows, significantly bolstering system security.\n- Optimizing Angular profiles, asset management, and styling within the Maven build system to dramatically improve build times for the large-scale application.\n\nWorking within a dedicated development team of less than 10 members, I collaborated closely with various infrastructure, QA, and project management teams across TOSAN. This experience not only honed my technical skills but also provided me with extensive, invaluable domain knowledge in banking and financial businesses, giving me a comprehensive understanding of real-world financial operations. My work directly contributed to the platform's stability, performance, and its ability to deliver secure and intuitive financial services to its vast user base."
       },
       "asta": {
-        "description": "Developed a library management system while applying Spring Framework, TDD, Clean Coding, and SOLID Principles, improving code quality and project efficiency."
+        "description": "During a 2-month intensive apprenticeship at Asta, I was selected among over 100 candidates for one of only five intern positions, showcasing a strong aptitude for software development. Under the guidance of a dedicated mentor, I engaged in a structured learning environment that included daily development tasks, weekly progress reports, and meticulous time tracking.\n\nIn this role, I developed a demo library management system using a modern Java stack. This project provided hands-on experience with Spring Boot and Spring Data JPA for robust data persistence, alongside JAX-RS for building efficient RESTful APIs. A core focus of my work was on practical application of advanced software engineering principles, including Test-Driven Development (TDD), Clean Coding practices, and SOLID Principles. I utilized JUnit and Mockito extensively to ensure high code quality and test coverage.\n\nThis apprenticeship significantly improved my understanding of enterprise application development and backend architecture. My contributions directly led to improved code quality and enhanced project efficiency, laying a strong foundation for my subsequent career in complex software systems."
       }
     }
   },
@@ -70,7 +75,7 @@
     "about": "About Me",
     "skills": "My Skills",
     "projects": "My Open Source Projects",
-    "experience": "My Experience",
+    "experience": "My Experiences",
     "contact": "Contact Me"
   },
   "action": {
@@ -122,12 +127,13 @@
       "AOP": "Aspect-Oriented Programming",
       "BREATH_FIRST_SEARCH": "Breadth-First Search",
       "CSS": "CSS",
+      "CLOUDFLARE_WORKERS": "Cloudflare Workers",
       "DATA_STRUCTURES": "Data Structures",
       "DEPTH_FIRST_SEARCH": "Depth-First Search",
       "DESIGN_PATTERNS": "Design Patterns",
       "FUNCTIONAL_PROGRAMMING": "Functional Programming",
       "GIT": "Git",
-      "GITHUB": "GitHub",
+      "GITHUB_ACTIONS": "GitHub Actions",
       "HTML": "HTML",
       "I18N": "Internationalization (i18n)",
       "INTELLIJ_IDEA": "IntelliJ IDEA",
@@ -143,12 +149,15 @@
       "MOCKITO": "Mockito",
       "OOP": "Object-Oriented Programming",
       "OWASP": "OWASP Top 10",
+      "PROGRAMMING_PARADIGMS": "Programming Paradigms",
       "REACT": "React",
       "REACTIVE_PROGRAMMING": "Reactive Programming",
-      "RESTFUL_APIS": "Restful APIS",
+      "REDIS": "Redis",
+      "RESTFUL_APIS": "Restful APIs",
       "RXJS": "RxJS",
       "SOLID": "SOLID Principles",
       "SPRING_FRAMEWORK": "Spring Framework",
+      "SWING": "Swing",
       "TDD": "Test-Driven Development",
       "TYPESCRIPT": "TypeScript",
       "VS_CODE": "Visual Studio Code"
