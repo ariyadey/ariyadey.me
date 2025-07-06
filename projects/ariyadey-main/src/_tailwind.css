@@ -29,7 +29,7 @@
   --color-surface-dim: var(--mat-sys-surface-dim);
   --color-surface-bright: var(--mat-sys-surface-bright);
   --color-surface-container-lowest: var(--mat-sys-surface-container-lowest);
-  --color-surface-low: var(--mat-sys-surface-container-low);
+  --color-surface-container-low: var(--mat-sys-surface-container-low);
   --color-surface-container: var(--mat-sys-surface-container);
   --color-surface-container-high: var(--mat-sys-surface-container-high);
   --color-surface-container-highest: var(--mat-sys-surface-container-highest);
