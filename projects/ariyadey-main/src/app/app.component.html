@@ -1,7 +1,7 @@
 <mat-sidenav-container class="h-full">
   <mat-sidenav
     #drawer
-    [mode]="breakpoint().md ? 'side' : 'push'"
+    [mode]="breakpoint().md ? 'side' : breakpoint().sm ? 'push' : 'over'"
     [opened]="breakpoint().md"
     class="md:pt-4"
   >
