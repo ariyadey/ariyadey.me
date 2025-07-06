@@ -152,7 +152,7 @@ blockquote {
   &.truncated::after {
     content: "";
     @apply absolute inset-x-0 bottom-0;
-    @apply h-10;
+    @apply h-20;
     background: linear-gradient(to top, var(--mat-sys-surface-container-low), transparent);
     @apply pointer-events-none;
   }
