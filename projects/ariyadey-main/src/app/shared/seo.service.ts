@@ -45,52 +45,20 @@ export class SeoService {
   }
 
   private setTitleAndDescription() {
-    if (DEFAULT_LANGUAGE !== this.i18nService.getActiveLanguage()) {
-      this.title.setTitle(this.i18nService.translate("seo.title"));
-      this.meta.updateTag({
-        name: "description",
-        content: this.i18nService.translate("seo.description"),
-      });
+    if (DEFAULT_LANGUAGE === this.i18nService.getActiveLanguage()) {
+      return;
     }
-  }
 
-  // Practically this method has no effect since it adds the Open Graph tags too late.
-  // private setOpenGraphTags() {
-  //   this.meta.addTags([
-  //     {
-  //       property: "og:title",
-  //       content: this.i18nService.translate("seo.open-graph.title"),
-  //     },
-  //     {
-  //       property: "og:description",
-  //       content: this.i18nService.translate("seo.open-graph.description"),
-  //     },
-  //     {
-  //       property: "og:type",
-  //       content: "website",
-  //     },
-  //     {
-  //       property: "og:url",
-  //       content: this.urlUtils.getAbsoluteUrl(this.i18nService.getActiveLanguage()),
-  //     },
-  //     {
-  //       property: "og:image",
-  //       content: this.urlUtils.getAssetAbsoluteUrl(this.urlUtils.getImagePath("ariya-moheb-avatar-1000w.avif")),
-  //     },
-  //     {
-  //       property: "og:image:width",
-  //       content: "1000",
-  //     },
-  //     {
-  //       property: "og:image:height",
-  //       content: "1000",
-  //     },
-  //     {
-  //       property: "og:image:alt",
-  //       content: this.i18nService.translate("seo.open-graph.image.alt"),
-  //     },
-  //   ]);
-  // }
+    this.title.setTitle(this.i18nService.translate("seo.title"));
+    this.meta.updateTag({
+      name: "description",
+      content: this.i18nService.translate("seo.description"),
+    });
+    this.meta.updateTag({
+      name: "keywords",
+      content: this.i18nService.translate("seo.keywords"),
+    });
+  }
 
   private setCanonicalTag(lang: Language, ...paths: ReadonlyArray<string>) {
     this.removeCanonicalTag();
