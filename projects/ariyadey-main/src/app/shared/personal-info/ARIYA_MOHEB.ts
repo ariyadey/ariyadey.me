@@ -8,6 +8,9 @@ import { Skill } from "@main/shared/business/skill";
 import { SkillCategory } from "@main/shared/business/skill-category";
 import { SOCIALS } from "@main/shared/business/social";
 
+// TODO:
+//  15/06/2025 Dynamic content like name and description shouldn't be defined in translation files
+//  and instead they should be here.
 export const ARIYA_MOHEB: Person = {
   main: {
     firstName: "me.first-name",
@@ -22,13 +25,9 @@ export const ARIYA_MOHEB: Person = {
     [SkillCategory.COMPUTER_SCIENCE]: [
       Skill.ALGORITHMS,
       Skill.DATA_STRUCTURES,
-      Skill.OOP,
-      Skill.FUNCTIONAL_PROGRAMMING,
-      Skill.REACTIVE_PROGRAMMING,
-      Skill.AOP,
+      Skill.PROGRAMMING_PARADIGMS,
       Skill.DESIGN_PATTERNS,
       Skill.TDD,
-      Skill.SOLID,
       Skill.OWASP,
       Skill.I18N,
     ],
@@ -36,11 +35,11 @@ export const ARIYA_MOHEB: Person = {
       Skill.JAVA,
       Skill.SPRING_FRAMEWORK,
       Skill.MAVEN,
+      Skill.REDIS,
       Skill.JUNIT,
       Skill.MOCKITO,
       Skill.RESTFUL_APIS,
       Skill.JWT,
-      Skill.MAPSTRUCT,
     ],
     [SkillCategory.FRONTEND_DEVELOPMENT]: [
       Skill.TYPESCRIPT,
@@ -53,17 +52,23 @@ export const ARIYA_MOHEB: Person = {
     [SkillCategory.PLATFORMS_TOOLS]: [
       Skill.LINUX,
       Skill.GIT,
-      Skill.GITHUB,
-      Skill.INTELLIJ_IDEA,
-      Skill.VS_CODE,
+      Skill.GITHUB_ACTIONS,
+      Skill.CLOUDFLARE_WORKERS,
       Skill.JIRA,
     ],
   },
   projects: [
     {
-      title: "portfolio",
-      description: "portfolio",
-      skills: [Skill.ANGULAR_FRAMEWORK, Skill.TYPESCRIPT, Skill.RXJS, Skill.I18N],
+      title: "ariyadey",
+      description: "ariyadey",
+      skills: [
+        Skill.ANGULAR_FRAMEWORK,
+        Skill.TYPESCRIPT,
+        Skill.RXJS,
+        Skill.I18N,
+        Skill.GITHUB_ACTIONS,
+        Skill.CLOUDFLARE_WORKERS
+      ],
       link: "https://github.com/ariyadey/personal-website",
       timeFrame: {
         start: new Date(2024, 6),
@@ -85,6 +90,16 @@ export const ARIYA_MOHEB: Person = {
         end: new Date(2020, 12),
       },
     },
+    {
+      title: "jast",
+      description: "jast",
+      skills: [Skill.JAVA, Skill.ALGORITHMS, Skill.DATA_STRUCTURES, Skill.SWING],
+      link: "https://github.com/ariyadey/JAST",
+      timeFrame: {
+        start: new Date(2020, 1),
+        end: new Date(2020, 1
+          ,
+          ,
   ],
   experiences: [
     {
@@ -104,6 +119,7 @@ export const ARIYA_MOHEB: Person = {
         Skill.TYPESCRIPT,
         Skill.ANGULAR_FRAMEWORK,
         Skill.OWASP,
+        Skill.REDIS
       ],
       link: "https://www.tosan.com",
     },
@@ -126,9 +142,9 @@ export const ARIYA_MOHEB: Person = {
   contacts: {
     email: "ariya.mms@gmail.com",
     socials: [
-      { ...SOCIALS.TELEGRAM, url: "https://ariyadey.t.me" },
       { ...SOCIALS.LINKEDIN, url: "https://linkedin.com/in/ariyadey" },
-      { ...SOCIALS.GITHUB, url: "http://github.com/ariyadey" },
+      { ...SOCIALS.TELEGRAM, url: "https://ariyadey.t.me" },
+      { ...SOCIALS.GITHUB, url: "https://github.com/ariyadey" },
       { ...SOCIALS.STACK_OVERFLOW, url: "https://stackoverflow.com/users/7930516/ariyadey" },
     ],
   },
