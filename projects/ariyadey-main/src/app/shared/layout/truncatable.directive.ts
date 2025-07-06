@@ -1,11 +1,11 @@
 import {
   AfterViewInit,
   booleanAttribute,
+  DestroyRef,
   Directive,
   DOCUMENT,
   effect,
   ElementRef,
-  HostListener,
   inject,
   input,
   OnDestroy,
@@ -13,8 +13,9 @@ import {
   Renderer2,
   signal
 } from "@angular/core";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 import { I18nService } from "@main/shared/i18n/i18n.service";
-import { timer } from "rxjs";
+import { fromEvent, startWith, throttleTime } from "rxjs";
 
 /**
  * @desc
@@ -42,6 +43,7 @@ export class TruncatableDirective implements OnInit, AfterViewInit, OnDestroy {
   readonly renderer = inject(Renderer2);
   readonly element = inject(ElementRef).nativeElement as HTMLElement;
   readonly i18nService = inject(I18nService);
+  readonly destroyRef = inject(DestroyRef);
   readonly expandButton = this.renderer.createElement("button") as HTMLButtonElement;
   readonly truncateButton = this.renderer.createElement("button") as HTMLButtonElement;
   readonly shouldTruncate = signal(false);
@@ -70,10 +72,13 @@ export class TruncatableDirective implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.initialMaxHeight = this.window
-      .getComputedStyle(this.element)
-      .getPropertyValue("max-height");
-    this.applyModifications();
+    // FIXME: 06/07/2025 Switching from mobile to desktop does not change the computed max-height.
+    fromEvent(this.window, "resize")
+      .pipe(startWith(null), throttleTime(100), takeUntilDestroyed(this.destroyRef))
+      .subscribe((_) => {
+        this.initialMaxHeight = this.window.getComputedStyle(this.element).maxHeight;
+        this.applyModifications();
+      });
   }
 
   ngOnDestroy() {
@@ -81,16 +86,11 @@ export class TruncatableDirective implements OnInit, AfterViewInit, OnDestroy {
     this.renderer.removeChild(this.element, this.truncateButton);
   }
 
-  @HostListener("window:resize")
-  onResize() {
-    timer(500).subscribe(() => this.applyModifications());
-  }
-
   private setUpBtn(button: HTMLButtonElement, buttonTextKey: string) {
     const buttonText = this.i18nService.translate(buttonTextKey);
     this.renderer.setProperty(button, "textContent", buttonText);
     this.renderer.addClass(button, "more-less-btn");
-    this.renderer.setStyle(button, "display", "none");
+    this.renderer.addClass(button, "hidden-btn");
     this.renderer.appendChild(this.element, button);
   }
 
@@ -100,15 +100,12 @@ export class TruncatableDirective implements OnInit, AfterViewInit, OnDestroy {
    * This method is called on initialization, and the window resizes.
    */
   private applyModifications() {
-    this.expand(this.element);
     if (this.initialMaxHeight == null || this.initialMaxHeight === "none") {
       console.warn("TruncatableDirective: max-height is not set.");
       return;
     }
-    timer(0).subscribe(() => {
-      const numericMaxHeight = parseFloat(this.initialMaxHeight);
-      this.shouldTruncate.set(numericMaxHeight > 0 && this.element.scrollHeight > numericMaxHeight);
-    });
+    const numericMaxHeight = parseFloat(this.initialMaxHeight);
+    this.shouldTruncate.set(numericMaxHeight > 0 && this.element.scrollHeight > numericMaxHeight);
   }
 
   /**
@@ -116,11 +113,15 @@ export class TruncatableDirective implements OnInit, AfterViewInit, OnDestroy {
    * @param element The host HTMLElement.
    */
   private truncate(element: HTMLElement) {
-    this.renderer.setStyle(element, "position", "relative");
+    this.renderer.addClass(element, "truncated");
+    this.renderer.removeClass(element, "expanded");
     this.renderer.setStyle(element, "max-height", this.initialMaxHeight);
-    this.renderer.setStyle(element, "overflow", "hidden");
-    this.renderer.setStyle(this.truncateButton, "display", "none");
-    this.renderer.removeStyle(this.expandButton, "display");
+
+    this.renderer.addClass(this.expandButton, "visible-btn");
+    this.renderer.removeClass(this.expandButton, "hidden-btn");
+
+    this.renderer.addClass(this.truncateButton, "hidden-btn");
+    this.renderer.removeClass(this.truncateButton, "visible-btn");
   }
 
   /**
@@ -128,11 +129,16 @@ export class TruncatableDirective implements OnInit, AfterViewInit, OnDestroy {
    * @param element The host HTMLElement.
    */
   private expand(element: HTMLElement) {
-    this.renderer.setStyle(element, "max-height", "unset");
-    this.renderer.removeStyle(element, "overflow");
-    this.renderer.setStyle(this.expandButton, "display", "none");
+    this.renderer.addClass(element, "expanded");
+    this.renderer.removeClass(element, "truncated");
+    this.renderer.removeStyle(element, "max-height");
+
+    this.renderer.addClass(this.expandButton, "hidden-btn");
+    this.renderer.removeClass(this.expandButton, "visible-btn");
+
     if (this.reTruncate()) {
-      this.renderer.removeStyle(this.truncateButton, "display");
+      this.renderer.addClass(this.truncateButton, "visible-btn");
+      this.renderer.removeClass(this.truncateButton, "hidden-btn");
     }
   }
 }

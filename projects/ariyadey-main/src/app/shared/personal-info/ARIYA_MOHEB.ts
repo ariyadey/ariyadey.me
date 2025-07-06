@@ -67,7 +67,7 @@ export const ARIYA_MOHEB: Person = {
         Skill.RXJS,
         Skill.I18N,
         Skill.GITHUB_ACTIONS,
-        Skill.CLOUDFLARE_WORKERS
+        Skill.CLOUDFLARE_WORKERS,
       ],
       link: "https://github.com/ariyadey/personal-website",
       timeFrame: {
@@ -97,9 +97,9 @@ export const ARIYA_MOHEB: Person = {
       link: "https://github.com/ariyadey/JAST",
       timeFrame: {
         start: new Date(2020, 1),
-        end: new Date(2020, 1
-          ,
-          ,
+        end: new Date(2020, 1),
+      },
+    },
   ],
   experiences: [
     {
@@ -119,7 +119,7 @@ export const ARIYA_MOHEB: Person = {
         Skill.TYPESCRIPT,
         Skill.ANGULAR_FRAMEWORK,
         Skill.OWASP,
-        Skill.REDIS
+        Skill.REDIS,
       ],
       link: "https://www.tosan.com",
     },

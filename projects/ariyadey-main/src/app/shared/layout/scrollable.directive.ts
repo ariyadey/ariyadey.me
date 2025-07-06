@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 /**
  * @desc Directive to scroll to a specific fragment on the page when clicked.
  *
- * TODO: Deprecate it and use `RouterLink` instead after ZonelessChangeDetection got stable.
+ * TODO: Deprecate it and use `RouterLink` after this issue resolves: https://github.com/angular/components/issues/4280
  * @example
  * <a [scroll]="'targetElementId'">Scroll to Target</a>
  */

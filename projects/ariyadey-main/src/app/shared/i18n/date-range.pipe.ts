@@ -42,7 +42,7 @@ export class DateRangePipe implements PipeTransform {
     if (!showDuration) {
       return formattedRange;
     }
-    const separator = duration.years > 0 || duration.months > 0 ? " •" : "";
+    const separator = duration.years > 0 || duration.months > 0 ? " ·" : "";
     const formattedYearUnit = this.i18nService.translate(
       `time.short.year${duration.years > 1 ? "s" : ""}`,
     );
