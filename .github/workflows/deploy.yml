@@ -19,15 +19,14 @@ jobs:
         with:
           node-version: "22"
 
-      # Corepack enabled for Yarn 2+ support
       - name: Enable Corepack
         run: corepack enable
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: npm ci
 
       - name: Build Angular application
-        run: yarn build
+        run: npm build
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
