@@ -10,6 +10,7 @@
       "@main/*": ["ariyadey-main/src/app/*"]
     },
     "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
