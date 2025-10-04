@@ -69,7 +69,7 @@ Ensure you have the latest stable versions of:
    ```
 3. **Enable Corepack**
    ```bash
-   corpack enable
+   corepack enable
    ```
 4. **Install Yarn**
    ```bash

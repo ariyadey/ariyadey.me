@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build && node generate-sitemp.js",
+    "build": "ng build && node generate-sitemap.js",
     "watch": "ng build --watch --configuration development",
     "lint": "ng lint",
     "test": "ng test",
