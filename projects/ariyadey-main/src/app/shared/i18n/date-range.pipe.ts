@@ -14,6 +14,7 @@ import { DateTime } from "luxon";
 export class DateRangePipe implements PipeTransform {
   readonly i18nService = inject(I18nService);
   readonly locale = this.i18nService.getActiveLocale();
+  readonly outputCalendar = this.locale === "fa" ? "persian" : undefined;
   readonly numberFormatter = new Intl.NumberFormat(this.locale);
 
   /**
@@ -26,18 +27,18 @@ export class DateRangePipe implements PipeTransform {
    * @throws Error if the start date is after the end date.
    */
   transform(start: Date, end?: Date, showDuration = true): string {
-    const locale = this.i18nService.getActiveLocale();
+    const localeOptions = { locale: this.locale, outputCalendar: this.outputCalendar };
     if (end != null && start.valueOf() > end.valueOf()) {
       throw new Error("Start date cannot be after end date.");
     }
     const startDt = DateTime.fromJSDate(start);
     const endDt = end == null ? DateTime.now() : DateTime.fromJSDate(end);
     const duration = endDt.diff(startDt, ["year", "month", "day"]);
-    const formattedStartDate = startDt.toFormat("MMM yyyy", { locale });
+    const formattedStartDate = startDt.toFormat("MMM yyyy", localeOptions);
     const formattedEndDate =
       end == null
         ? this.i18nService.translate("time.present")
-        : endDt.toFormat("MMM yyyy", { locale });
+        : endDt.toFormat("MMM yyyy", localeOptions);
     const formattedRange = `${formattedStartDate} - ${formattedEndDate}`;
     if (!showDuration) {
       return formattedRange;
