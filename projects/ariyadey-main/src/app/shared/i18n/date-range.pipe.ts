@@ -38,12 +38,14 @@ export class DateRangePipe implements PipeTransform {
     const formattedEndDate =
       end == null
         ? this.i18nService.translate("time.present")
-        : endDt.toFormat("MMM yyyy", localeOptions);
-    const formattedRange = `${formattedStartDate} - ${formattedEndDate}`;
+        : endDt.diff(startDt, ["month"]).months >= 1
+          ? endDt.toFormat("MMM yyyy", localeOptions)
+          : "";
+    const formattedRange = `${formattedStartDate}${formattedEndDate ? " - " : ""}${formattedEndDate}`;
     if (!showDuration) {
       return formattedRange;
     }
-    const separator = duration.years > 0 || duration.months > 0 ? " ·" : "";
+    const separator = duration.years > 0 || duration.months > 0 ? " |" : "";
     const formattedYearUnit = this.i18nService.translate(
       `time.short.year${duration.years > 1 ? "s" : ""}`,
     );
