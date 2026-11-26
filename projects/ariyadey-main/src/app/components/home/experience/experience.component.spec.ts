@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { ExperienceComponent } from "ariyadey-main/src/app/components/home/experience/experience.component";
+import { ExperienceComponent } from "@main/components/home/experience/experience.component";
+import { provideAppTesting } from "@main/shared/testing/test-providers";
 
 describe("ExperienceComponent", () => {
   let component: ExperienceComponent;
@@ -9,6 +9,7 @@ describe("ExperienceComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ExperienceComponent],
+      providers: [provideAppTesting()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ExperienceComponent);
