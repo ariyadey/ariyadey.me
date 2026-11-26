@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { CommunicationChannelsComponent } from "ariyadey-main/src/app/shared/components/contact/communication-channels/communication-channels.component";
+import { CommunicationChannelsComponent } from "@main/shared/components/contact/communication-channels/communication-channels.component";
+import { provideAppTesting } from "@main/shared/testing/test-providers";
 
 describe("CommunicationChannelsComponent", () => {
   let component: CommunicationChannelsComponent;
@@ -9,6 +9,7 @@ describe("CommunicationChannelsComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CommunicationChannelsComponent],
+      providers: [provideAppTesting()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CommunicationChannelsComponent);

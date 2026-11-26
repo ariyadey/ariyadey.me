@@ -1,5 +1,5 @@
 import { APP_BASE_HREF } from "@angular/common";
-import { provideHttpClient } from "@angular/common/http";
+import { provideHttpClient, withXhr } from "@angular/common/http";
 import {
   ApplicationConfig,
   DOCUMENT,
@@ -9,7 +9,6 @@ import {
   provideZonelessChangeDetection,
 } from "@angular/core";
 import { MAT_CARD_CONFIG, MatCardConfig } from "@angular/material/card";
-import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
 import { provideRouter, withInMemoryScrolling, withRouterConfig } from "@angular/router";
 import { provideTransloco } from "@jsverse/transloco";
 import { DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES } from "@main/shared/i18n/i18n.config";
@@ -46,8 +45,7 @@ export const appConfig: ApplicationConfig = {
         scrollPositionRestoration: "enabled",
       }),
     ),
-    provideAnimationsAsync(),
-    provideHttpClient(),
+    provideHttpClient(withXhr()),
     provideTransloco({
       config: {
         availableLangs: SUPPORTED_LANGUAGES,

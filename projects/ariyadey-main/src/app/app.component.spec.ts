@@ -1,10 +1,12 @@
 import { TestBed } from "@angular/core/testing";
+import { provideAppTesting } from "@main/shared/testing/test-providers";
 import { AppComponent } from "./app.component";
 
 describe("AppComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
+      providers: [provideAppTesting()],
     }).compileComponents();
   });
 
@@ -14,10 +16,11 @@ describe("AppComponent", () => {
     expect(app).toBeTruthy();
   });
 
-  it("should render title", () => {
+  it("should render the main navigation shell and footer", () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector("h1")?.textContent).toContain("Hello, ariyadey-main");
+    expect(compiled.querySelector("mat-sidenav-container")).toBeTruthy();
+    expect(compiled.querySelector("footer")).toBeTruthy();
   });
 });

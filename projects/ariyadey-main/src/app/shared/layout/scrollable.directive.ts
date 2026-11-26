@@ -6,16 +6,16 @@ import { ActivatedRoute, Router } from "@angular/router";
  *
  * TODO: Deprecate it and use `RouterLink` after this issue resolves: https://github.com/angular/components/issues/4280
  * @example
- * <a [scroll]="'targetElementId'">Scroll to Target</a>
+ * <a [appScroll]="'targetElementId'">Scroll to Target</a>
  */
 @Directive({
-  selector: "[scroll]",
+  selector: "[appScroll]",
 })
 export class ScrollableDirective {
   readonly document = inject(DOCUMENT);
   readonly router = inject(Router);
   readonly activatedRoute = inject(ActivatedRoute);
-  readonly targetFragment = input("", { alias: "scroll" });
+  readonly targetFragment = input("", { alias: "appScroll" });
 
   @HostListener("click")
   onClick() {

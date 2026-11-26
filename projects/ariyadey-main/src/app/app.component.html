@@ -18,7 +18,7 @@
             (click)="drawer.close()"
             [routerLink]="['/']"
             [fragment]="menuItem.fragment"
-            [scroll]="menuItem.fragment"
+            [appScroll]="menuItem.fragment"
             mat-list-item
           >
             <mat-icon [fontIcon]="menuItem.iconName" matListItemIcon />
@@ -33,7 +33,7 @@
             class="desktop-menu-item box-border flex w-11/12 cursor-pointer flex-col items-center py-1! hover:font-bold!"
             [routerLink]="['/']"
             [fragment]="menuItem.fragment"
-            [scroll]="menuItem.fragment"
+            [appScroll]="menuItem.fragment"
             cdkMenuItem
             mat-button
           >

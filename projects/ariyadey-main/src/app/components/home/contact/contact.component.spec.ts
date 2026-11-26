@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-
+import { provideAppTesting } from "@main/shared/testing/test-providers";
 import { ContactComponent } from "./contact.component";
 
 describe("ContactComponent", () => {
@@ -9,6 +9,7 @@ describe("ContactComponent", () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ContactComponent],
+      providers: [provideAppTesting()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ContactComponent);

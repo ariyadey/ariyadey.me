@@ -24,16 +24,16 @@ import { fromEvent, startWith, throttleTime } from "rxjs";
  * buttons to toggle between the two states.
  *
  * @example
- * <div truncate [expandTextKey]="'action.expand'" [truncateTextKey]="'action.truncate'" [reTruncate]="true">
+ * <div appTruncate [expandTextKey]="'action.expand'" [truncateTextKey]="'action.truncate'" [reTruncate]="true">
  *   Long content here...
  * </div>
  *
- * @selector [truncate]
+ * @selector [appTruncate]
  *
  * @author Ariya Moheb
  */
 @Directive({
-  selector: "[truncate]",
+  selector: "[appTruncate]",
 })
 export class TruncatableDirective implements OnInit, AfterViewInit, OnDestroy {
   readonly expandTextKey = input("action.truncate.undo");

@@ -1,8 +1,16 @@
+import { TestBed } from "@angular/core/testing";
 import { ImgResolvePipe } from "@main/shared/resource/image-resolver.pipe";
+import { provideAppTesting } from "@main/shared/testing/test-providers";
 
-describe("ImageResolverPipe", () => {
+describe("ImgResolvePipe", () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers: [provideAppTesting()],
+    });
+  });
+
   it("create an instance", () => {
-    const pipe = new ImgResolvePipe();
+    const pipe = TestBed.runInInjectionContext(() => new ImgResolvePipe());
     expect(pipe).toBeTruthy();
   });
 });
