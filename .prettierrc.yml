@@ -14,3 +14,5 @@ attributeGroups:
   - ^(ngClass|\[ngClass\])$
   - $ANGULAR_TWO_WAY_BINDING
   - $ANGULAR_INPUT
+# TODO
+#  https://medium.com/@sehban.alam/almost-perfect-prettier-settings-for-your-angular-projects-a-step-by-step-guide-f7492943e53d

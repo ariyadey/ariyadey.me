@@ -2,7 +2,7 @@ import { APP_BASE_HREF } from "@angular/common";
 import { DOCUMENT, inject, Injectable } from "@angular/core";
 import { SUPPORTED_LANGUAGES } from "@main/shared/i18n/i18n.config";
 import { Language } from "@main/shared/i18n/language";
-import { APP_DOMAIN } from "ariyadey-main/src/main";
+import { APP_DOMAIN } from "@main/app.constants";
 
 /**
  * A utility service for extracting language and path information from the current URL.

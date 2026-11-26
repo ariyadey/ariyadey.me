@@ -144,7 +144,7 @@ blockquote {
   @apply mt-5;
 }
 
-[truncate] {
+[appTruncate] {
   @apply relative;
   @apply overflow-hidden;
   transition: max-height 0.5s ease-in-out;

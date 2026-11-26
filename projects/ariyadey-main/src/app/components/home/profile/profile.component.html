@@ -37,7 +37,7 @@
             class="md:hidden!"
             fragment="contact"
             mat-flat-button
-            scroll="contact"
+            appScroll="contact"
           >{{ "action.contact" | i18n }}</a
           >
           <a class="hidden! md:flex!" href="mailto:{{ email }}" mat-flat-button target="_blank">{{
@@ -54,7 +54,7 @@
     </mat-card-title-group>
   </mat-card-header>
   <mat-card-actions class="gap-2 sm:hidden! [--mat-button-text-label-text-size:16px]">
-    <a [routerLink]="['/']" fragment="contact" mat-button scroll="contact">{{
+    <a [routerLink]="['/']" fragment="contact" mat-button appScroll="contact">{{
       "action.contact" | i18n
     }}</a>
     <a [href]="mainInfo.resumePath" mat-button target="_blank">{{ "action.resume" | i18n }}</a>
